@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\FirstProject.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{3EC0AF77-8A68-49FA-9359-BC9F8BEBBA43}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\FirstProject.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\FirstProjectEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.gitignore" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{783AB65B-89C1-443B-92C1-CD7728CD8F77}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\FirstProject">
+      <UniqueIdentifier>{A8446E48-AAFA-4194-A38A-32752700E2CE}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\FirstProject\Collider.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\Collider.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstProject\ColliderMovementComponent.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\ColliderMovementComponent.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstProject\Critter.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\Critter.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
+    <None Include="..\..\Source\FirstProject\FirstProject.Build.cs">
+      <Filter>Source\FirstProject</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\FirstProject\FirstProject.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\FirstProject.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstProject\FirstProjectGameModeBase.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\FirstProjectGameModeBase.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstProject\Main.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\Main.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstProject\MainCharacter.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\MainCharacter.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstProject\MyObject.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\MyObject.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
+    <Filter Include="Source\FirstProject\GameplayActors">
+      <UniqueIdentifier>{E7610B9B-C1ED-468C-AD3E-B95292195232}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\FirstProject\GameplayActors\Floater.cpp">
+      <Filter>Source\FirstProject\GameplayActors</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\GameplayActors\Floater.h">
+      <Filter>Source\FirstProject\GameplayActors</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\FirstProject.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{3EC0AF77-8A68-49FA-9359-BC9F8BEBBA43}</UniqueIdentifier>
+      <UniqueIdentifier>{2A9E6FB7-1ECA-43AC-93BB-24C466135CE2}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\FirstProject.Target.cs">
       <Filter>Source</Filter>
@@ -14,7 +14,7 @@
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{783AB65B-89C1-443B-92C1-CD7728CD8F77}</UniqueIdentifier>
+      <UniqueIdentifier>{32CEF0E8-BED1-4449-AE82-498E0E3BD8D6}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -29,7 +29,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\FirstProject">
-      <UniqueIdentifier>{A8446E48-AAFA-4194-A38A-32752700E2CE}</UniqueIdentifier>
+      <UniqueIdentifier>{9CAC5B23-056B-4CF2-9ED8-65260BF09FE7}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\FirstProject\Collider.cpp">
       <Filter>Source\FirstProject</Filter>
@@ -64,10 +64,22 @@
     <ClInclude Include="..\..\Source\FirstProject\FirstProjectGameModeBase.h">
       <Filter>Source\FirstProject</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\FirstProject\FloorSwitch.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\FloorSwitch.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\FirstProject\Main.cpp">
       <Filter>Source\FirstProject</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\FirstProject\Main.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstProject\MainAnimInstance.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\MainAnimInstance.h">
       <Filter>Source\FirstProject</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\FirstProject\MainCharacter.cpp">
@@ -83,7 +95,7 @@
       <Filter>Source\FirstProject</Filter>
     </ClInclude>
     <Filter Include="Source\FirstProject\GameplayActors">
-      <UniqueIdentifier>{E7610B9B-C1ED-468C-AD3E-B95292195232}</UniqueIdentifier>
+      <UniqueIdentifier>{D7BD3C46-55F8-49A4-80B6-28F177868D5B}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\FirstProject\GameplayActors\Floater.cpp">
       <Filter>Source\FirstProject\GameplayActors</Filter>

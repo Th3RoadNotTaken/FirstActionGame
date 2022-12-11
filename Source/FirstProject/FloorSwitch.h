@@ -16,7 +16,7 @@ public:
 	AFloorSwitch();
 
 	/** Overlap volume for functionality to be triggered */
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category=FloorSwitch)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = FloorSwitch)
 	class UBoxComponent* TriggerBox;
 
 	/** The switch for the character to step on */
@@ -26,6 +26,27 @@ public:
 	/** Door to open when floor switch is stepped on */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = FloorSwitch)
 	UStaticMeshComponent* Door;
+
+	/** Initial location for the door */
+	UPROPERTY(BlueprintReadWrite, Category = FloorSwitch)
+	FVector InitialDoorLocation;
+
+	/** Initial location for the floor switch */
+	UPROPERTY(BlueprintReadWrite, Category = FloorSwitch)
+	FVector InitialSwitchLocation;
+
+	/** Defining a timer handle for when the door should drop down */
+	/** once the character is no longer overlapping with the switch */
+	FTimerHandle SwitchHandle;
+
+	/** Timer count*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FloorSwitch)
+	float SwitchTime;
+
+	/** Calling this function once the timer ends*/
+	void CloseDoor();
+
+	bool bCharacterOnSwitch;
 
 protected:
 	// Called when the game starts or when spawned
@@ -40,4 +61,22 @@ public:
 
 	UFUNCTION()
 	void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = FloorSwitch)  // BlueprintImplementableEvent means you can implement the functionality in the blueprint
+	void RaiseDoor();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = FloorSwitch)  
+	void LowerDoor();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = FloorSwitch)  
+	void RaiseFloorSwitch();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = FloorSwitch) 
+	void LowerFloorSwitch();
+
+	UFUNCTION(BlueprintCallable, Category = FloorSwitch)
+	void UpdateDoorLocation(float Z);
+
+	UFUNCTION(BlueprintCallable, Category = FloorSwitch)
+	void UpdateFloorSwitchLocation(float Z);
 };

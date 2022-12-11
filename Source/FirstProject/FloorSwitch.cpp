@@ -26,6 +26,9 @@ AFloorSwitch::AFloorSwitch()
 	FloorSwitch->SetupAttachment(GetRootComponent());
 	Door = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Door"));
 	Door->SetupAttachment(GetRootComponent());
+
+	SwitchTime = 2.f;
+	bCharacterOnSwitch = false;
 }
 
 // Called when the game starts or when spawned
@@ -36,6 +39,8 @@ void AFloorSwitch::BeginPlay()
 	// To find function signature for OnComponentBeginOverlap -> Go to its definition -> Go to the definition of that structure
 	TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &AFloorSwitch::OnOverlapBegin);  // AddDynamic is a macro for OnComponentBeginOverlap (Binds a function to the overlap event
 	TriggerBox->OnComponentEndOverlap.AddDynamic(this, &AFloorSwitch::OnOverlapEnd);
+	InitialDoorLocation = Door->GetComponentLocation();
+	InitialSwitchLocation = FloorSwitch->GetComponentLocation();
 }
 
 // Called every frame
@@ -48,9 +53,39 @@ void AFloorSwitch::Tick(float DeltaTime)
 void AFloorSwitch::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Overlap begun!"));
+	if (!bCharacterOnSwitch)
+		bCharacterOnSwitch = true;
+	RaiseDoor();
+	LowerFloorSwitch();
 }
 
 void AFloorSwitch::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Overlap end..."));
+	if (bCharacterOnSwitch)
+		bCharacterOnSwitch = false;
+	GetWorldTimerManager().SetTimer(SwitchHandle, this, &AFloorSwitch::CloseDoor, SwitchTime);
+}
+
+void AFloorSwitch::UpdateDoorLocation(float Z)
+{
+	FVector NewLocation = InitialDoorLocation;
+	NewLocation.Z += Z;
+	Door->SetWorldLocation(NewLocation);
+}
+
+void AFloorSwitch::UpdateFloorSwitchLocation(float Z)
+{
+	FVector NewLocation = InitialSwitchLocation;
+	NewLocation.Z += Z;
+	FloorSwitch->SetWorldLocation(NewLocation);
+}
+
+void AFloorSwitch::CloseDoor()
+{
+	if (!bCharacterOnSwitch)
+	{
+		LowerDoor();
+		RaiseFloorSwitch();
+	}
 }

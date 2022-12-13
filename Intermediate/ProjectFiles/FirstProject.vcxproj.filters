@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\FirstProject.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{BD532FFC-242F-4E84-A749-833F8B9A13F3}</UniqueIdentifier>
+      <UniqueIdentifier>{538AED6B-BE92-4B8D-AC9F-91982843DB2D}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\FirstProject.Target.cs">
       <Filter>Source</Filter>
@@ -14,7 +14,7 @@
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{ADD147C4-9737-4593-9D29-D94E16CF4E18}</UniqueIdentifier>
+      <UniqueIdentifier>{28DF5193-98F3-4719-9B69-253C03263CC0}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -29,7 +29,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\FirstProject">
-      <UniqueIdentifier>{E007D608-3DD3-4E07-B648-853420F3EFF0}</UniqueIdentifier>
+      <UniqueIdentifier>{411D4F88-B16D-4385-8C90-1A33ED2036E8}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\FirstProject\Collider.cpp">
       <Filter>Source\FirstProject</Filter>
@@ -62,6 +62,12 @@
       <Filter>Source\FirstProject</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\FirstProject\FirstProjectGameModeBase.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstProject\FloatingPlatform.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\FloatingPlatform.h">
       <Filter>Source\FirstProject</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\FirstProject\FloorSwitch.cpp">
@@ -101,7 +107,7 @@
       <Filter>Source\FirstProject</Filter>
     </ClInclude>
     <Filter Include="Source\FirstProject\GameplayActors">
-      <UniqueIdentifier>{E6E4657E-A73D-411C-AD6D-1A762637A3ED}</UniqueIdentifier>
+      <UniqueIdentifier>{6C28FDA9-DDF3-46B9-AF05-44F57E94DC41}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\FirstProject\GameplayActors\Floater.cpp">
       <Filter>Source\FirstProject\GameplayActors</Filter>

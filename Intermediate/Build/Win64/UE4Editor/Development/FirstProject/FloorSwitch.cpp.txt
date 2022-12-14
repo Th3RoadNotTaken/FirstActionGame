@@ -1,0 +1,7 @@
+D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h
+D:\UEProjects\FirstProject\Source\FirstProject\FloorSwitch.h
+D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\FloorSwitch.generated.h
+C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/BoxComponent.h
+C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
+C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ShapeComponent.generated.h
+C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\BoxComponent.generated.h

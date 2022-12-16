@@ -33,6 +33,24 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | Sounds")
 	class USoundCue* OverlapSound;
 
+	/** A boolean to decide which item will have rotational properties */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | ItemProperties")
+	bool bRotate;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | ItemProperties")
+	float RotationRate;
+
+	/** A boolean to decide which item will hover */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | ItemProperties")
+	bool bHover;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | ItemProperties")
+	float HoverRate;
+
+	/** Amplitude of the sine wave for floating */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | ItemProperties")
+	float OscillationRate;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

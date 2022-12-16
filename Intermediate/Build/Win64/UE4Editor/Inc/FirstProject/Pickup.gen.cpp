@@ -72,7 +72,7 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APickup, 2364660848);
+	IMPLEMENT_CLASS(APickup, 1201399182);
 	template<> FIRSTPROJECT_API UClass* StaticClass<APickup>()
 	{
 		return APickup::StaticClass();

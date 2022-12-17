@@ -18,6 +18,10 @@ public:
 
 	AExplosive();
 
+	/** Amount of damage the explosive will deal to the character */ 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
+	float Damage;
+
 	/** Overriding the overlap functions from Item (We will also inherit the UFUNCTION macro. Don't include it here or it will throw an error) */
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
 

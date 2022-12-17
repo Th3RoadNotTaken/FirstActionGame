@@ -45,6 +45,17 @@ AMain::AMain()
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 640.f, 0.0f); // ... at this rotation rate
 	GetCharacterMovement()->JumpZVelocity = 400.f;
 	GetCharacterMovement()->AirControl = 0.4f;
+
+	// Default values for player stats
+	MaxHealth = 100.f;
+	Health = 65.f;
+	MaxStamina = 350.f;
+	Stamina = 120.f;
+	Coins = 0;
+
+	RunningSpeed = 650.f;
+	SprintingSpeed = 950.f;
+	bShiftKeyDown = false;
 }
 
 // Called when the game starts or when spawned
@@ -77,6 +88,9 @@ void AMain::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Released, this, &ACharacter::StopJumping);
+
+	PlayerInputComponent->BindAction("Sprint", EInputEvent::IE_Pressed, this, &AMain::ShiftKeyDown);
+	PlayerInputComponent->BindAction("Sprint", EInputEvent::IE_Released, this, &AMain::ShiftKeyUp);
 }
 
 void AMain::MoveForward(float Value)
@@ -113,4 +127,51 @@ void AMain::TurnAtRate(float Rate)
 void AMain::LookUpAtRate(float Rate)
 {
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
+}
+
+void AMain::DecrementHealth(float Damage)
+{
+	if (Health - Damage <= 0.f)
+	{
+		Health = 0.f;
+		Die();
+	}
+	else
+	{
+		Health -= Damage;
+	}
+}
+
+void AMain::Die()
+{
+
+}
+
+void AMain::IncrementCoins(int32 CoinCount)
+{
+	Coins += CoinCount;
+}
+
+void AMain::SetMovementStatus(EMovementStatus Status)
+{
+	MovementStatus = Status;
+	if (MovementStatus == EMovementStatus::EMS_Sprinting)
+	{
+		GetCharacterMovement()->MaxWalkSpeed = SprintingSpeed;
+	}
+
+	else
+	{
+		GetCharacterMovement()->MaxWalkSpeed = RunningSpeed;
+	}
+}
+
+void AMain::ShiftKeyDown()
+{
+	bShiftKeyDown = true;
+}
+
+void AMain::ShiftKeyUp()
+{
+	bShiftKeyDown = false;
 }

@@ -6,6 +6,15 @@
 #include "GameFramework/Character.h"
 #include "Main.generated.h"
 
+UENUM(BlueprintType) // BlueprintType same as Blueprintable
+enum class EMovementStatus : uint8
+{
+	EMS_Normal UMETA(DisplayName = "Normal"),  // If we are marking the enum class and UENUM, we also need to mark the enum constants with UMETA
+	EMS_Sprinting UMETA(DisplayName = "Sprinting"),
+
+	EMS_Max UMETA(DisplayName = "DefaultMax")
+};
+
 UCLASS()
 class FIRSTPROJECT_API AMain : public ACharacter
 {
@@ -14,6 +23,25 @@ class FIRSTPROJECT_API AMain : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AMain();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Enums")
+	EMovementStatus MovementStatus;
+
+	/** Set movement status and running speed */
+	void SetMovementStatus(EMovementStatus Status);
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Running")
+	float RunningSpeed;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Running")
+	float SprintingSpeed;
+
+	bool bShiftKeyDown;
+
+	/** Press down to enable sprinting */
+	void ShiftKeyDown();
+
+	/** Release to stop sprinting */
+	void ShiftKeyUp();
 
 	/** Camera boom positioning the camera behind the player */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess="true"))
@@ -28,6 +56,36 @@ public:
 	float BaseTurnRate;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
 	float BaseLookUpRate;
+
+	/**
+	* 
+	* 
+	* Player Stats
+	* 
+	*/
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "PlayerStats")
+	float MaxHealth;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+	float Health;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "PlayerStats")
+	float MaxStamina;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+	float Stamina;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+	int32 Coins;
+
+	/** Function to decrease character health if damaged */
+	void DecrementHealth(float Damage);
+
+	/** Function when the character reaches 0 health */
+	void Die();
+
+	void IncrementCoins(int32 CoinCount);
 
 protected:
 	// Called when the game starts or when spawned

@@ -43,19 +43,27 @@ AMain::AMain()
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 640.f, 0.0f); // ... at this rotation rate
-	GetCharacterMovement()->JumpZVelocity = 400.f;
+	GetCharacterMovement()->JumpZVelocity = 450.f;
 	GetCharacterMovement()->AirControl = 0.4f;
 
 	// Default values for player stats
 	MaxHealth = 100.f;
 	Health = 65.f;
-	MaxStamina = 350.f;
+	MaxStamina = 150.f;
 	Stamina = 120.f;
 	Coins = 0;
 
 	RunningSpeed = 650.f;
 	SprintingSpeed = 950.f;
 	bShiftKeyDown = false;
+
+	// Initialize Enum variables
+	MovementStatus = EMovementStatus::EMS_Normal;
+	StaminaStatus = EStaminaStatus::ESS_Normal;
+
+	StaminaDrainRate = 20.f;
+	MinSprintStamina = 60.f;
+	StaminaRecoveryRate = 25.f;
 }
 
 // Called when the game starts or when spawned
@@ -69,6 +77,99 @@ void AMain::BeginPlay()
 void AMain::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	float DeltaStamina = StaminaDrainRate * DeltaTime;
+	float DeltaStaminaRecovery = StaminaRecoveryRate * DeltaTime;
+
+	switch (StaminaStatus)
+	{
+		case EStaminaStatus::ESS_Normal:
+			if (bShiftKeyDown)
+			{
+				if (Stamina - DeltaStamina <= MinSprintStamina)
+				{
+					SetStaminaStatus(EStaminaStatus::ESS_BelowMinimum);
+					Stamina -= DeltaStamina;
+				}
+				else
+				{
+					Stamina -= DeltaStamina;
+				}
+				SetMovementStatus(EMovementStatus::EMS_Sprinting);
+			}
+			else
+			{
+				if (Stamina + DeltaStaminaRecovery >= MaxStamina)
+				{
+					Stamina = MaxStamina;
+				}
+				else
+				{
+					Stamina += DeltaStaminaRecovery;
+				}
+				SetMovementStatus(EMovementStatus::EMS_Normal);
+			}
+			break;
+
+		case EStaminaStatus::ESS_BelowMinimum:
+			if (bShiftKeyDown)
+			{
+				if (Stamina - DeltaStamina <= 0.f)
+				{
+					SetStaminaStatus(EStaminaStatus::ESS_Exhausted);
+					Stamina = 0.f;
+					SetMovementStatus(EMovementStatus::EMS_Normal);
+				}
+				else
+				{
+					Stamina -= DeltaStamina;
+					SetMovementStatus(EMovementStatus::EMS_Sprinting);
+				}
+			}
+			else
+			{
+				if (Stamina + DeltaStaminaRecovery >= MinSprintStamina)
+				{
+					SetStaminaStatus(EStaminaStatus::ESS_Normal);
+					Stamina += DeltaStaminaRecovery;
+				}
+				else
+				{
+					Stamina += DeltaStaminaRecovery;
+				}
+				SetMovementStatus(EMovementStatus::EMS_Normal);
+			}
+			break;
+
+		case EStaminaStatus::ESS_Exhausted:
+			if (bShiftKeyDown)
+			{
+				Stamina = 0.f;
+			}
+			else
+			{
+				SetStaminaStatus(EStaminaStatus::ESS_ExhaustedRecovering);
+				Stamina += DeltaStaminaRecovery;
+			}
+			SetMovementStatus(EMovementStatus::EMS_Normal);
+			break;
+
+		case EStaminaStatus::ESS_ExhaustedRecovering:
+			if (Stamina + DeltaStaminaRecovery >= MinSprintStamina)
+			{
+				SetStaminaStatus(EStaminaStatus::ESS_Normal);
+				Stamina += DeltaStaminaRecovery;
+			}
+			else
+			{
+				Stamina += DeltaStaminaRecovery;
+			}
+			SetMovementStatus(EMovementStatus::EMS_Normal);
+			break;
+
+		default:
+			;
+	}
 }
 
 // Called to bind functionality to input

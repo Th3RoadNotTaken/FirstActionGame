@@ -150,8 +150,42 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return ReturnEnum;
 	}
+	DEFINE_FUNCTION(AMain::execShowPickupLocations)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->ShowPickupLocations();
+		P_NATIVE_END;
+	}
 	void AMain::StaticRegisterNativesAMain()
 	{
+		UClass* Class = AMain::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "ShowPickupLocations", &AMain::execShowPickupLocations },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_AMain_ShowPickupLocations_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMain_ShowPickupLocations_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Main.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AMain_ShowPickupLocations_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMain, nullptr, "ShowPickupLocations", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AMain_ShowPickupLocations_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AMain_ShowPickupLocations_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AMain_ShowPickupLocations()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMain_ShowPickupLocations_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	UClass* Z_Construct_UClass_AMain_NoRegister()
 	{
@@ -160,6 +194,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 	struct Z_Construct_UClass_AMain_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -236,6 +271,9 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 	UObject* (*const Z_Construct_UClass_AMain_Statics::DependentSingletons[])() = {
 		(UObject* (*)())Z_Construct_UClass_ACharacter,
 		(UObject* (*)())Z_Construct_UPackage__Script_FirstProject,
+	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_AMain_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_AMain_ShowPickupLocations, "ShowPickupLocations" }, // 488232727
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMain_Statics::Class_MetaDataParams[] = {
@@ -404,11 +442,11 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		"Game",
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_AMain_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_AMain_Statics::PropPointers),
 		0,
 		0x009000A4u,
@@ -423,7 +461,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMain, 1093262296);
+	IMPLEMENT_CLASS(AMain, 828037647);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AMain>()
 	{
 		return AMain::StaticClass();

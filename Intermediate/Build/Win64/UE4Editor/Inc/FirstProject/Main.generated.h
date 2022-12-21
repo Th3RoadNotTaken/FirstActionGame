@@ -14,8 +14,16 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FIRSTPROJECT_Main_generated_h
 
 #define FirstProject_Source_FirstProject_Main_h_32_SPARSE_DATA
-#define FirstProject_Source_FirstProject_Main_h_32_RPC_WRAPPERS
-#define FirstProject_Source_FirstProject_Main_h_32_RPC_WRAPPERS_NO_PURE_DECLS
+#define FirstProject_Source_FirstProject_Main_h_32_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execShowPickupLocations);
+
+
+#define FirstProject_Source_FirstProject_Main_h_32_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execShowPickupLocations);
+
+
 #define FirstProject_Source_FirstProject_Main_h_32_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMain(); \

@@ -16,11 +16,13 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FirstProject_Source_FirstProject_Main_h_32_SPARSE_DATA
 #define FirstProject_Source_FirstProject_Main_h_32_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execAttackEnd); \
 	DECLARE_FUNCTION(execShowPickupLocations);
 
 
 #define FirstProject_Source_FirstProject_Main_h_32_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execAttackEnd); \
 	DECLARE_FUNCTION(execShowPickupLocations);
 
 

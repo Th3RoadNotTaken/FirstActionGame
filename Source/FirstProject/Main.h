@@ -169,8 +169,13 @@ public:
 
 	void Attack();
 
+	void UnarmedAttack();
+
 	UFUNCTION(BlueprintCallable)
 	void AttackEnd();
+
+	UFUNCTION(BlueprintCallable)
+	void UnarmedAttackEnd();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Anims")
 	class UAnimMontage* CombatMontage;

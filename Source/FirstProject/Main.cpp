@@ -254,6 +254,10 @@ void AMain::LMBDown()
 	{
 		Attack();
 	}
+	else if (ActiveOverlappingItem == nullptr && EquippedWeapon == nullptr)
+	{
+		UnarmedAttack();
+	}
 }
 
 void AMain::LMBUp()
@@ -356,6 +360,37 @@ void AMain::Attack()
 	}
 }
 
+void AMain::UnarmedAttack()
+{
+	if (!bAttacking)
+	{
+		bAttacking = true;
+
+		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+
+		if (AnimInstance && CombatMontage)
+		{
+			int32 Section = FMath::RandRange(0, 1);
+
+			switch (Section)
+			{
+			case 0:
+				AnimInstance->Montage_Play(CombatMontage, 1.8f);
+				AnimInstance->Montage_JumpToSection(FName("Punch_1"), CombatMontage);
+				break;
+
+			case 1:
+				AnimInstance->Montage_Play(CombatMontage, 1.3f);
+				AnimInstance->Montage_JumpToSection(FName("Punch_2"), CombatMontage);
+				break;
+
+			default:
+				;
+			}
+		}
+	}
+}
+
 void AMain::AttackEnd()
 {
 	bAttacking = false;
@@ -363,5 +398,15 @@ void AMain::AttackEnd()
 	if (bLMBDown)
 	{
 		Attack();
+	}
+}
+
+void AMain::UnarmedAttackEnd()
+{
+	bAttacking = false;
+
+	if (bLMBDown && (ActiveOverlappingItem == nullptr && EquippedWeapon == nullptr))
+	{
+		UnarmedAttack();
 	}
 }

@@ -8,14 +8,31 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UPrimitiveComponent;
+class AActor;
+struct FHitResult;
 #ifdef FIRSTPROJECT_Enemy_generated_h
 #error "Enemy.generated.h already included, missing '#pragma once' in Enemy.h"
 #endif
 #define FIRSTPROJECT_Enemy_generated_h
 
 #define FirstProject_Source_FirstProject_Enemy_h_23_SPARSE_DATA
-#define FirstProject_Source_FirstProject_Enemy_h_23_RPC_WRAPPERS
-#define FirstProject_Source_FirstProject_Enemy_h_23_RPC_WRAPPERS_NO_PURE_DECLS
+#define FirstProject_Source_FirstProject_Enemy_h_23_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execCombatSphereOnOverlapEnd); \
+	DECLARE_FUNCTION(execCombatSphereOnOverlapBegin); \
+	DECLARE_FUNCTION(execAggroSphereOnOverlapEnd); \
+	DECLARE_FUNCTION(execAggroSphereOnOverlapBegin);
+
+
+#define FirstProject_Source_FirstProject_Enemy_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execCombatSphereOnOverlapEnd); \
+	DECLARE_FUNCTION(execCombatSphereOnOverlapBegin); \
+	DECLARE_FUNCTION(execAggroSphereOnOverlapEnd); \
+	DECLARE_FUNCTION(execAggroSphereOnOverlapBegin);
+
+
 #define FirstProject_Source_FirstProject_Enemy_h_23_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAEnemy(); \

@@ -22,13 +22,14 @@ void UEnemyAnimInstance::UpdateAnimationProperties()
 	if (Pawn == nullptr)
 	{
 		Pawn = TryGetPawnOwner();
-		if (Pawn)
-		{
-			FVector Speed = Pawn->GetVelocity();
-			FVector LateralSpeed = FVector(Speed.X, Speed.Y, 0.0f);
-			MovementSpeed = LateralSpeed.Size();
+	}
+	else
+	{	
+		FVector Speed = Pawn->GetVelocity();
+		FVector LateralSpeed = FVector(Speed.X, Speed.Y, 0.0f);
+		MovementSpeed = LateralSpeed.Size();
 
-			Enemy = Cast<AEnemy>(Pawn);
-		}
+		Enemy = Cast<AEnemy>(Pawn);
+		
 	}
 }

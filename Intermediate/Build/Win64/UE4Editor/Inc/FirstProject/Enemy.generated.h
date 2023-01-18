@@ -8,6 +8,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AMain;
 class UPrimitiveComponent;
 class AActor;
 struct FHitResult;
@@ -19,6 +20,7 @@ struct FHitResult;
 #define FirstProject_Source_FirstProject_Enemy_h_23_SPARSE_DATA
 #define FirstProject_Source_FirstProject_Enemy_h_23_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execMoveToTarget); \
 	DECLARE_FUNCTION(execCombatSphereOnOverlapEnd); \
 	DECLARE_FUNCTION(execCombatSphereOnOverlapBegin); \
 	DECLARE_FUNCTION(execAggroSphereOnOverlapEnd); \
@@ -27,6 +29,7 @@ struct FHitResult;
 
 #define FirstProject_Source_FirstProject_Enemy_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execMoveToTarget); \
 	DECLARE_FUNCTION(execCombatSphereOnOverlapEnd); \
 	DECLARE_FUNCTION(execCombatSphereOnOverlapBegin); \
 	DECLARE_FUNCTION(execAggroSphereOnOverlapEnd); \

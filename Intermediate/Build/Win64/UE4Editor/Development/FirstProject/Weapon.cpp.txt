@@ -33,3 +33,9 @@ C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Par
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Particles/Emitter.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Emitter.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ParticleSystemComponent.generated.h
+C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/BoxComponent.h
+C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
+C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ShapeComponent.generated.h
+C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\BoxComponent.generated.h
+D:\UEProjects\FirstProject\Source\FirstProject\Enemy.h
+D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\Enemy.generated.h

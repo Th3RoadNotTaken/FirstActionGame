@@ -9,6 +9,9 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class AMain;
+class UPrimitiveComponent;
+class AActor;
+struct FHitResult;
 #ifdef FIRSTPROJECT_Weapon_generated_h
 #error "Weapon.generated.h already included, missing '#pragma once' in Weapon.h"
 #endif
@@ -17,12 +20,20 @@ class AMain;
 #define FirstProject_Source_FirstProject_Weapon_h_24_SPARSE_DATA
 #define FirstProject_Source_FirstProject_Weapon_h_24_RPC_WRAPPERS \
  \
-	DECLARE_FUNCTION(execEquip);
+	DECLARE_FUNCTION(execDeactivateCollision); \
+	DECLARE_FUNCTION(execActivateCollision); \
+	DECLARE_FUNCTION(execEquip); \
+	DECLARE_FUNCTION(execCombatOnOverlapEnd); \
+	DECLARE_FUNCTION(execCombatOnOverlapBegin);
 
 
 #define FirstProject_Source_FirstProject_Weapon_h_24_RPC_WRAPPERS_NO_PURE_DECLS \
  \
-	DECLARE_FUNCTION(execEquip);
+	DECLARE_FUNCTION(execDeactivateCollision); \
+	DECLARE_FUNCTION(execActivateCollision); \
+	DECLARE_FUNCTION(execEquip); \
+	DECLARE_FUNCTION(execCombatOnOverlapEnd); \
+	DECLARE_FUNCTION(execCombatOnOverlapBegin);
 
 
 #define FirstProject_Source_FirstProject_Weapon_h_24_INCLASS_NO_PURE_DECLS \

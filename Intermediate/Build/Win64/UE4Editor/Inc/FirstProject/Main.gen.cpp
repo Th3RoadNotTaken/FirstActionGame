@@ -153,6 +153,13 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return ReturnEnum;
 	}
+	DEFINE_FUNCTION(AMain::execPlaySwingSound)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->PlaySwingSound();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AMain::execUnarmedAttackEnd)
 	{
 		P_FINISH;
@@ -179,6 +186,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		UClass* Class = AMain::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "AttackEnd", &AMain::execAttackEnd },
+			{ "PlaySwingSound", &AMain::execPlaySwingSound },
 			{ "ShowPickupLocations", &AMain::execShowPickupLocations },
 			{ "UnarmedAttackEnd", &AMain::execUnarmedAttackEnd },
 		};
@@ -203,6 +211,28 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMain_AttackEnd_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AMain_PlaySwingSound_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMain_PlaySwingSound_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Main.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AMain_PlaySwingSound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMain, nullptr, "PlaySwingSound", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AMain_PlaySwingSound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AMain_PlaySwingSound_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AMain_PlaySwingSound()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMain_PlaySwingSound_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -354,6 +384,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AMain_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_AMain_AttackEnd, "AttackEnd" }, // 2152435191
+		{ &Z_Construct_UFunction_AMain_PlaySwingSound, "PlaySwingSound" }, // 3537128432
 		{ &Z_Construct_UFunction_AMain_ShowPickupLocations, "ShowPickupLocations" }, // 488232727
 		{ &Z_Construct_UFunction_AMain_UnarmedAttackEnd, "UnarmedAttackEnd" }, // 2422634254
 	};
@@ -579,7 +610,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMain, 2316706462);
+	IMPLEMENT_CLASS(AMain, 453956082);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AMain>()
 	{
 		return AMain::StaticClass();

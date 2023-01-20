@@ -10,6 +10,8 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "Weapon.h" 
 #include "Components/SkeletalMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 
 // Sets default values
 AMain::AMain()
@@ -408,5 +410,13 @@ void AMain::UnarmedAttackEnd()
 	if (bLMBDown && (ActiveOverlappingItem == nullptr && EquippedWeapon == nullptr))
 	{
 		UnarmedAttack();
+	}
+}
+
+void AMain::PlaySwingSound()
+{
+	if (EquippedWeapon->SwingSound)
+	{
+		UGameplayStatics::PlaySound2D(this, EquippedWeapon->SwingSound);
 	}
 }

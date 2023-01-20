@@ -8,10 +8,10 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class AMain;
 class UPrimitiveComponent;
 class AActor;
 struct FHitResult;
+class AMain;
 #ifdef FIRSTPROJECT_Enemy_generated_h
 #error "Enemy.generated.h already included, missing '#pragma once' in Enemy.h"
 #endif
@@ -20,6 +20,11 @@ struct FHitResult;
 #define FirstProject_Source_FirstProject_Enemy_h_23_SPARSE_DATA
 #define FirstProject_Source_FirstProject_Enemy_h_23_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execAttackEnd); \
+	DECLARE_FUNCTION(execDeactivateCollision); \
+	DECLARE_FUNCTION(execActivateCollision); \
+	DECLARE_FUNCTION(execCombatOnOverlapEnd); \
+	DECLARE_FUNCTION(execCombatOnOverlapBegin); \
 	DECLARE_FUNCTION(execMoveToTarget); \
 	DECLARE_FUNCTION(execCombatSphereOnOverlapEnd); \
 	DECLARE_FUNCTION(execCombatSphereOnOverlapBegin); \
@@ -29,6 +34,11 @@ struct FHitResult;
 
 #define FirstProject_Source_FirstProject_Enemy_h_23_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execAttackEnd); \
+	DECLARE_FUNCTION(execDeactivateCollision); \
+	DECLARE_FUNCTION(execActivateCollision); \
+	DECLARE_FUNCTION(execCombatOnOverlapEnd); \
+	DECLARE_FUNCTION(execCombatOnOverlapBegin); \
 	DECLARE_FUNCTION(execMoveToTarget); \
 	DECLARE_FUNCTION(execCombatSphereOnOverlapEnd); \
 	DECLARE_FUNCTION(execCombatSphereOnOverlapBegin); \

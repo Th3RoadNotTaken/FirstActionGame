@@ -12,6 +12,9 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundCue.h"
+#include "Components/BoxComponent.h"
+#include "Engine/SkeletalMeshSocket.h"
+#include "Enemy.h"
 
 // Sets default values
 AMain::AMain()
@@ -71,12 +74,33 @@ AMain::AMain()
 	StaminaRecoveryRate = 25.f;
 
 	bLMBDown = false;
+
+	CombatCollisionLeft = CreateDefaultSubobject<UBoxComponent>(TEXT("CombatCollisionLeft"));
+	CombatCollisionRight = CreateDefaultSubobject<UBoxComponent>(TEXT("CombatCollisionRight"));
+	CombatCollisionLeft->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("PunchSocketLeft"));
+	CombatCollisionRight->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("PunchSocketRight"));
 }
 
 // Called when the game starts or when spawned
 void AMain::BeginPlay()
 {
 	Super::BeginPlay();
+
+	CombatCollisionLeft->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	CombatCollisionLeft->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
+	CombatCollisionLeft->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	CombatCollisionLeft->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
+
+	CombatCollisionRight->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	CombatCollisionRight->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
+	CombatCollisionRight->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	CombatCollisionRight->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
+
+	CombatCollisionLeft->OnComponentBeginOverlap.AddDynamic(this, &AMain::CombatOnOverlapBegin);
+	CombatCollisionLeft->OnComponentEndOverlap.AddDynamic(this, &AMain::CombatOnOverlapEnd);
+
+	CombatCollisionRight->OnComponentBeginOverlap.AddDynamic(this, &AMain::CombatOnOverlapBegin);
+	CombatCollisionRight->OnComponentEndOverlap.AddDynamic(this, &AMain::CombatOnOverlapEnd);
 }
 
 // Called every frame
@@ -379,11 +403,13 @@ void AMain::UnarmedAttack()
 			case 0:
 				AnimInstance->Montage_Play(CombatMontage, 1.8f);
 				AnimInstance->Montage_JumpToSection(FName("Punch_1"), CombatMontage);
+				bFirstPunchAttack = true;
 				break;
 
 			case 1:
 				AnimInstance->Montage_Play(CombatMontage, 1.3f);
 				AnimInstance->Montage_JumpToSection(FName("Punch_2"), CombatMontage);
+				bFirstPunchAttack = false;
 				break;
 
 			default:
@@ -418,5 +444,60 @@ void AMain::PlaySwingSound()
 	if (EquippedWeapon->SwingSound)
 	{
 		UGameplayStatics::PlaySound2D(this, EquippedWeapon->SwingSound);
+	}
+}
+
+void AMain::CombatOnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (OtherActor)
+	{
+		AEnemy* Enemy = Cast<AEnemy>(OtherActor);
+		if (Enemy)
+		{
+			if (Enemy->HitParticles)
+			{
+				const USkeletalMeshSocket* TipSocket = GetMesh()->GetSocketByName("TipSocket");
+
+				if (TipSocket)
+				{
+					FVector SocketLocation = TipSocket->GetSocketLocation(GetMesh());
+					UGameplayStatics::SpawnEmitterAtLocation(this, Enemy->HitParticles, SocketLocation, FRotator(0.f), false);
+				}
+			}
+
+			if (Enemy->HitSound)
+			{
+				UGameplayStatics::PlaySound2D(this, Enemy->HitSound);
+			}
+		}
+	}
+}
+
+void AMain::CombatOnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+
+}
+
+void AMain::ActivatePunchCollision()
+{
+	if (bFirstPunchAttack)
+	{
+		CombatCollisionLeft->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	}
+	else
+	{
+		CombatCollisionRight->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	}
+}
+
+void AMain::DeactivatePunchCollision()
+{
+	if (bFirstPunchAttack)
+	{
+		CombatCollisionLeft->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+	else
+	{
+		CombatCollisionRight->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 }

@@ -8,6 +8,9 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UPrimitiveComponent;
+class AActor;
+struct FHitResult;
 #ifdef FIRSTPROJECT_Main_generated_h
 #error "Main.generated.h already included, missing '#pragma once' in Main.h"
 #endif
@@ -16,6 +19,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FirstProject_Source_FirstProject_Main_h_32_SPARSE_DATA
 #define FirstProject_Source_FirstProject_Main_h_32_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execDeactivatePunchCollision); \
+	DECLARE_FUNCTION(execActivatePunchCollision); \
+	DECLARE_FUNCTION(execCombatOnOverlapEnd); \
+	DECLARE_FUNCTION(execCombatOnOverlapBegin); \
 	DECLARE_FUNCTION(execPlaySwingSound); \
 	DECLARE_FUNCTION(execUnarmedAttackEnd); \
 	DECLARE_FUNCTION(execAttackEnd); \
@@ -24,6 +31,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define FirstProject_Source_FirstProject_Main_h_32_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execDeactivatePunchCollision); \
+	DECLARE_FUNCTION(execActivatePunchCollision); \
+	DECLARE_FUNCTION(execCombatOnOverlapEnd); \
+	DECLARE_FUNCTION(execCombatOnOverlapBegin); \
 	DECLARE_FUNCTION(execPlaySwingSound); \
 	DECLARE_FUNCTION(execUnarmedAttackEnd); \
 	DECLARE_FUNCTION(execAttackEnd); \

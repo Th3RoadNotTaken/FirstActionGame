@@ -124,6 +124,17 @@ public:
 
 	void IncrementCoins(int32 CoinCount);
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat")
+	class UBoxComponent* CombatCollisionLeft;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat")
+	class UBoxComponent* CombatCollisionRight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	USoundCue* PunchSound;
+
+	bool bFirstPunchAttack;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -188,4 +199,16 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void PlaySwingSound();
+
+	UFUNCTION()
+	void CombatOnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void CombatOnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	UFUNCTION(BlueprintCallable)
+	void ActivatePunchCollision();
+
+	UFUNCTION(BlueprintCallable)
+	void DeactivatePunchCollision();
 };

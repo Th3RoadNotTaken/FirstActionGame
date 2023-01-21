@@ -48,3 +48,9 @@ C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Sound/SoundCue.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Sound/SoundNode.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SoundNode.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SoundCue.generated.h
+C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/BoxComponent.h
+C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\BoxComponent.generated.h
+C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Engine/SkeletalMeshSocket.h
+C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SkeletalMeshSocket.generated.h
+D:\UEProjects\FirstProject\Source\FirstProject\Enemy.h
+D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\Enemy.generated.h

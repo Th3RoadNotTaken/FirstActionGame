@@ -15,6 +15,7 @@
 #include "Components/BoxComponent.h"
 #include "Engine/SkeletalMeshSocket.h"
 #include "Enemy.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 AMain::AMain()
@@ -79,6 +80,9 @@ AMain::AMain()
 	CombatCollisionRight = CreateDefaultSubobject<UBoxComponent>(TEXT("CombatCollisionRight"));
 	CombatCollisionLeft->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("PunchSocketLeft"));
 	CombatCollisionRight->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("PunchSocketRight"));
+
+	InterpSpeed = 15.f;
+	bInterpToEnemy = false;
 }
 
 // Called when the game starts or when spawned
@@ -199,6 +203,14 @@ void AMain::Tick(float DeltaTime)
 
 		default:
 			;
+	}
+
+	if (bInterpToEnemy && CombatTarget)
+	{
+		FRotator LookAtYaw = GetLookAtRotationYaw(CombatTarget->GetActorLocation());
+		FRotator InterpRotation = FMath::RInterpTo(GetActorRotation(), LookAtYaw, DeltaTime, InterpSpeed);
+		
+		SetActorRotation(InterpRotation);
 	}
 }
 
@@ -360,6 +372,7 @@ void AMain::Attack()
 	if (!bAttacking)
 	{
 		bAttacking = true;
+		SetInterpToEnemy(true);
 
 		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 
@@ -391,6 +404,7 @@ void AMain::UnarmedAttack()
 	if (!bAttacking)
 	{
 		bAttacking = true;
+		SetInterpToEnemy(true);
 
 		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 
@@ -422,6 +436,7 @@ void AMain::UnarmedAttack()
 void AMain::AttackEnd()
 {
 	bAttacking = false;
+	SetInterpToEnemy(false);
 
 	if (bLMBDown)
 	{
@@ -432,6 +447,7 @@ void AMain::AttackEnd()
 void AMain::UnarmedAttackEnd()
 {
 	bAttacking = false;
+	SetInterpToEnemy(false);
 
 	if (bLMBDown && (ActiveOverlappingItem == nullptr && EquippedWeapon == nullptr))
 	{
@@ -465,9 +481,9 @@ void AMain::CombatOnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActo
 				}
 			}
 
-			if (Enemy->HitSound)
+			if (PunchSound)
 			{
-				UGameplayStatics::PlaySound2D(this, Enemy->HitSound);
+				UGameplayStatics::PlaySound2D(this, PunchSound);
 			}
 		}
 	}
@@ -500,4 +516,16 @@ void AMain::DeactivatePunchCollision()
 	{
 		CombatCollisionRight->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
+}
+
+void AMain::SetInterpToEnemy(bool Interp)
+{
+	bInterpToEnemy = Interp;
+}
+
+FRotator AMain::GetLookAtRotationYaw(FVector Target)
+{
+	FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), Target);
+	FRotator LookAtRotationYaw = FRotator(0.f, LookAtRotation.Yaw, 0.f);
+	return LookAtRotationYaw;
 }

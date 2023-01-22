@@ -64,6 +64,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	float StaminaRecoveryRate;
 
+	/** Creating interpolation for the player towards the enemy if they are close enough */
+	float InterpSpeed;
+	bool bInterpToEnemy;
+	void SetInterpToEnemy(bool Interp);
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat")
+	class AEnemy* CombatTarget;
+	FORCEINLINE void SetCombatTarget(AEnemy* Target) { CombatTarget = Target; }
+	FRotator GetLookAtRotationYaw(FVector Target);
+
 	/** Set movement status and running speed */
 	void SetMovementStatus(EMovementStatus Status);
 
@@ -133,6 +142,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	USoundCue* PunchSound;
 
+	/** Boolean to trigger collision based on which arm is attacking */
 	bool bFirstPunchAttack;
 
 protected:

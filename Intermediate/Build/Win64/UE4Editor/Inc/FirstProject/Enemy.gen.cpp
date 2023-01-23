@@ -791,6 +791,14 @@ void EmptyLinkFunctionForGeneratedCodeEnemy() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_CombatMontage;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_AttackMinTime_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_AttackMinTime;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_AttackMaxTime_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_AttackMaxTime;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bOverlappingCombatSphere_MetaData[];
 #endif
 		static void NewProp_bOverlappingCombatSphere_SetBit(void* Obj);
@@ -928,6 +936,20 @@ void EmptyLinkFunctionForGeneratedCodeEnemy() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemy_Statics::NewProp_CombatMontage = { "CombatMontage", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AEnemy, CombatMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AEnemy_Statics::NewProp_CombatMontage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AEnemy_Statics::NewProp_CombatMontage_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AEnemy_Statics::NewProp_AttackMinTime_MetaData[] = {
+		{ "Category", "Combat" },
+		{ "ModuleRelativePath", "Enemy.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AEnemy_Statics::NewProp_AttackMinTime = { "AttackMinTime", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AEnemy, AttackMinTime), METADATA_PARAMS(Z_Construct_UClass_AEnemy_Statics::NewProp_AttackMinTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AEnemy_Statics::NewProp_AttackMinTime_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AEnemy_Statics::NewProp_AttackMaxTime_MetaData[] = {
+		{ "Category", "Combat" },
+		{ "ModuleRelativePath", "Enemy.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AEnemy_Statics::NewProp_AttackMaxTime = { "AttackMaxTime", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AEnemy, AttackMaxTime), METADATA_PARAMS(Z_Construct_UClass_AEnemy_Statics::NewProp_AttackMaxTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AEnemy_Statics::NewProp_AttackMaxTime_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AEnemy_Statics::NewProp_bOverlappingCombatSphere_MetaData[] = {
 		{ "Category", "AI" },
 		{ "ModuleRelativePath", "Enemy.h" },
@@ -970,6 +992,8 @@ void EmptyLinkFunctionForGeneratedCodeEnemy() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_SwingSound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_CombatCollision,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_CombatMontage,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_AttackMinTime,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_AttackMaxTime,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_bOverlappingCombatSphere,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_CombatTarget,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_bAttacking,
@@ -1001,7 +1025,7 @@ void EmptyLinkFunctionForGeneratedCodeEnemy() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AEnemy, 1703305400);
+	IMPLEMENT_CLASS(AEnemy, 2301522658);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AEnemy>()
 	{
 		return AEnemy::StaticClass();

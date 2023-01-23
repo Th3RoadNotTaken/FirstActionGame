@@ -68,6 +68,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	class UAnimMontage* CombatMontage;
 
+	/** Random timer for the delay between enemy attacks */
+	FTimerHandle AttackTimer;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	float AttackMinTime;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	float AttackMaxTime;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

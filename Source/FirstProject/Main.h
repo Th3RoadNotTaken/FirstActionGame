@@ -128,6 +128,9 @@ public:
 	/** Function to decrease character health if damaged */
 	void DecrementHealth(float Damage);
 
+	/** TakeDamage function is part of the Actor class which we are overriding here */
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
+
 	/** Function when the character reaches 0 health */
 	void Die();
 
@@ -144,6 +147,12 @@ public:
 
 	/** Boolean to trigger collision based on which arm is attacking */
 	bool bFirstPunchAttack;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | Combat")
+	TSubclassOf<UDamageType> DamageTypeClass;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Item | Combat" )
+	float UnarmedDamage;
 
 protected:
 	// Called when the game starts or when spawned

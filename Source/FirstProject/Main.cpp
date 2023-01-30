@@ -61,6 +61,7 @@ AMain::AMain()
 	MaxStamina = 150.f;
 	Stamina = 120.f;
 	Coins = 0;
+	UnarmedDamage = 15.f; // Damage that the player's punch applies
 
 	RunningSpeed = 650.f;
 	SprintingSpeed = 950.f;
@@ -318,7 +319,13 @@ void AMain::DecrementHealth(float Damage)
 
 void AMain::Die()
 {
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 
+	if (AnimInstance && CombatMontage)
+	{
+		AnimInstance->Montage_Play(CombatMontage, 1.2f);
+		AnimInstance->Montage_JumpToSection(FName("Death"));
+	}
 }
 
 void AMain::IncrementCoins(int32 CoinCount)
@@ -485,6 +492,11 @@ void AMain::CombatOnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActo
 			{
 				UGameplayStatics::PlaySound2D(this, PunchSound);
 			}
+
+			if (DamageTypeClass)
+			{
+				UGameplayStatics::ApplyDamage(Enemy, UnarmedDamage, GetController(), this, DamageTypeClass);
+			}
 		}
 	}
 }
@@ -528,4 +540,11 @@ FRotator AMain::GetLookAtRotationYaw(FVector Target)
 	FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), Target);
 	FRotator LookAtRotationYaw = FRotator(0.f, LookAtRotation.Yaw, 0.f);
 	return LookAtRotationYaw;
+}
+
+float AMain::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
+{
+	DecrementHealth(DamageAmount);
+
+	return DamageAmount;
 }

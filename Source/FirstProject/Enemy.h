@@ -85,6 +85,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	float DeathDelay;
 
+	/** A boolean to check if the player is still alive or dead and so is valid or not */
+	bool bHasValidTarget;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

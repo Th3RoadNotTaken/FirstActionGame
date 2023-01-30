@@ -41,6 +41,14 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HudOverlay_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_HudOverlay;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_WEnemyHealthBar_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_WEnemyHealthBar;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_EnemyHealthBar_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_EnemyHealthBar;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -76,9 +84,28 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainPlayerController_Statics::NewProp_HudOverlay = { "HudOverlay", nullptr, (EPropertyFlags)0x001000000008000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMainPlayerController, HudOverlay), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_HudOverlay_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_HudOverlay_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMainPlayerController_Statics::NewProp_WEnemyHealthBar_MetaData[] = {
+		{ "Category", "Widgets" },
+		{ "Comment", "/** Reference to the enemy health bar asset in the editor */" },
+		{ "ModuleRelativePath", "MainPlayerController.h" },
+		{ "ToolTip", "Reference to the enemy health bar asset in the editor" },
+	};
+#endif
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMainPlayerController_Statics::NewProp_WEnemyHealthBar = { "WEnemyHealthBar", nullptr, (EPropertyFlags)0x0014000000000005, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMainPlayerController, WEnemyHealthBar), Z_Construct_UClass_UUserWidget_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_WEnemyHealthBar_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_WEnemyHealthBar_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMainPlayerController_Statics::NewProp_EnemyHealthBar_MetaData[] = {
+		{ "Category", "Widgets" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "MainPlayerController.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainPlayerController_Statics::NewProp_EnemyHealthBar = { "EnemyHealthBar", nullptr, (EPropertyFlags)0x00100000000a000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMainPlayerController, EnemyHealthBar), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_EnemyHealthBar_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_EnemyHealthBar_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMainPlayerController_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_HUDOverlayAsset,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_HudOverlay,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_WEnemyHealthBar,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_EnemyHealthBar,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AMainPlayerController_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AMainPlayerController>::IsAbstract,
@@ -107,7 +134,7 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMainPlayerController, 3538064523);
+	IMPLEMENT_CLASS(AMainPlayerController, 4219377431);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AMainPlayerController>()
 	{
 		return AMainPlayerController::StaticClass();

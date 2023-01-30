@@ -71,3 +71,5 @@ C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Sou
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SoundCue.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/CapsuleComponent.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CapsuleComponent.generated.h
+D:\UEProjects\FirstProject\Source\FirstProject\MainPlayerController.h
+D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\MainPlayerController.generated.h

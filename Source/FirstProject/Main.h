@@ -11,6 +11,7 @@ enum class EMovementStatus : uint8
 {
 	EMS_Normal UMETA(DisplayName = "Normal"),  // If we are marking the enum class and UENUM, we also need to mark the enum constants with UMETA
 	EMS_Sprinting UMETA(DisplayName = "Sprinting"),
+	EMS_Dead UMETA(DisplayName = "Dead"),
 
 	EMS_Max UMETA(DisplayName = "DefaultMax")
 };
@@ -73,6 +74,16 @@ public:
 	FORCEINLINE void SetCombatTarget(AEnemy* Target) { CombatTarget = Target; }
 	FRotator GetLookAtRotationYaw(FVector Target);
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat")
+	bool bHasCombatTarget;
+	FORCEINLINE void SetHasCombatTarget(bool HasTarget) { bHasCombatTarget = HasTarget; }
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Controller")
+	class AMainPlayerController* MainPlayerController;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Combat")
+	FVector CombatTargetLocation;
+
 	/** Set movement status and running speed */
 	void SetMovementStatus(EMovementStatus Status);
 
@@ -133,6 +144,8 @@ public:
 
 	/** Function when the character reaches 0 health */
 	void Die();
+
+	virtual void Jump() override;
 
 	void IncrementCoins(int32 CoinCount);
 
@@ -230,4 +243,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void DeactivatePunchCollision();
+
+	UFUNCTION(BlueprintCallable)
+	void DeathEnd();
 };

@@ -16,6 +16,7 @@
 #include "Engine/SkeletalMeshSocket.h"
 #include "Enemy.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "MainPlayerController.h"
 
 // Sets default values
 AMain::AMain()
@@ -84,6 +85,8 @@ AMain::AMain()
 
 	InterpSpeed = 15.f;
 	bInterpToEnemy = false;
+
+	bHasCombatTarget = false;
 }
 
 // Called when the game starts or when spawned
@@ -106,12 +109,17 @@ void AMain::BeginPlay()
 
 	CombatCollisionRight->OnComponentBeginOverlap.AddDynamic(this, &AMain::CombatOnOverlapBegin);
 	CombatCollisionRight->OnComponentEndOverlap.AddDynamic(this, &AMain::CombatOnOverlapEnd);
+
+	MainPlayerController = Cast<AMainPlayerController>(GetController());
 }
 
 // Called every frame
 void AMain::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (MovementStatus == EMovementStatus::EMS_Dead)
+		return;
 
 	float DeltaStamina = StaminaDrainRate * DeltaTime;
 	float DeltaStaminaRecovery = StaminaRecoveryRate * DeltaTime;
@@ -213,6 +221,15 @@ void AMain::Tick(float DeltaTime)
 		
 		SetActorRotation(InterpRotation);
 	}
+
+	if (CombatTarget)
+	{
+		CombatTargetLocation = CombatTarget->GetActorLocation();
+		if (MainPlayerController)
+		{
+			MainPlayerController->EnemyLocation = CombatTargetLocation;
+		}
+	}
 }
 
 // Called to bind functionality to input
@@ -230,7 +247,7 @@ void AMain::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis("TurnRate", this, &AMain::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AMain::LookUpAtRate);
 
-	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Pressed, this, &AMain::Jump);
 	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Released, this, &ACharacter::StopJumping);
 
 	PlayerInputComponent->BindAction("Sprint", EInputEvent::IE_Pressed, this, &AMain::ShiftKeyDown);
@@ -242,7 +259,7 @@ void AMain::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void AMain::MoveForward(float Value)
 {
-	if ((Controller != nullptr) && (Value != 0.0f) && (!bAttacking))
+	if ((Controller != nullptr) && (Value != 0.0f) && (!bAttacking) && (MovementStatus!=EMovementStatus::EMS_Dead))
 	{
 		const FRotator Rotation = Controller->GetControlRotation();
 		// Find out which way is forward
@@ -255,7 +272,7 @@ void AMain::MoveForward(float Value)
 
 void AMain::MoveRight(float Value)
 {
-	if ((Controller != nullptr) && (Value != 0.0f) && (!bAttacking))
+	if ((Controller != nullptr) && (Value != 0.0f) && (!bAttacking) && (MovementStatus != EMovementStatus::EMS_Dead))
 	{
 		const FRotator Rotation = Controller->GetControlRotation();
 		// Find out which way is forward
@@ -279,6 +296,9 @@ void AMain::LookUpAtRate(float Rate)
 void AMain::LMBDown()
 {
 	bLMBDown = true;
+
+	if (MovementStatus == EMovementStatus::EMS_Dead)
+		return;
 
 	if (ActiveOverlappingItem)
 	{
@@ -319,6 +339,8 @@ void AMain::DecrementHealth(float Damage)
 
 void AMain::Die()
 {
+	if (MovementStatus == EMovementStatus::EMS_Dead)
+		return;
 	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 
 	if (AnimInstance && CombatMontage)
@@ -326,6 +348,21 @@ void AMain::Die()
 		AnimInstance->Montage_Play(CombatMontage, 1.2f);
 		AnimInstance->Montage_JumpToSection(FName("Death"));
 	}
+	SetMovementStatus(EMovementStatus::EMS_Dead);
+}
+
+void AMain::Jump()
+{
+	if (MovementStatus != EMovementStatus::EMS_Dead)
+	{
+		ACharacter::Jump();
+	}
+}
+
+void AMain::DeathEnd()
+{
+	GetMesh()->bPauseAnims = true;
+	GetMesh()->bNoSkeletonUpdate = true;
 }
 
 void AMain::IncrementCoins(int32 CoinCount)
@@ -376,7 +413,7 @@ void AMain::SetEquippedWeapon(AWeapon* WeaponToSet)
 
 void AMain::Attack()
 {
-	if (!bAttacking)
+	if (!bAttacking && MovementStatus!=EMovementStatus::EMS_Dead)
 	{
 		bAttacking = true;
 		SetInterpToEnemy(true);
@@ -544,7 +581,24 @@ FRotator AMain::GetLookAtRotationYaw(FVector Target)
 
 float AMain::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
 {
-	DecrementHealth(DamageAmount);
+	if (Health - DamageAmount <= 0.f)
+	{
+		Health = 0.f;
+		Die();
+
+		if (DamageCauser)
+		{
+			AEnemy* Enemy = Cast<AEnemy>(DamageCauser);
+			if (Enemy)
+			{
+				Enemy->bHasValidTarget = false;
+			}
+		}
+	}
+	else
+	{
+		Health -= DamageAmount;
+	}
 
 	return DamageAmount;
 }

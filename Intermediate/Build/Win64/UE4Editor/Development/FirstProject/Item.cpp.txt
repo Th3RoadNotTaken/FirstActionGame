@@ -5,7 +5,7 @@ C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/SphereCo
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ShapeComponent.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SphereComponent.generated.h
-C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\particles/ParticleSystemComponent.h
+C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Particles/ParticleSystemComponent.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Particles/ParticleSystem.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Particles/ParticlePerfStats.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ParticleSystem.generated.h
@@ -21,7 +21,3 @@ C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Dia
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Kismet\GameplayStaticsTypes.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
-C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Sound/SoundCue.h
-C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Sound/SoundNode.h
-C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SoundNode.generated.h
-C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SoundCue.generated.h

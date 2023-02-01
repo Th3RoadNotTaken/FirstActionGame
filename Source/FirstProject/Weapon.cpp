@@ -108,7 +108,7 @@ void AWeapon::Equip(AMain* Character)
 	if (Character)
 	{
 		SetInstigator(Character->GetController()); // We are setting this to the Main's controller since the weapon...
-												   // ... and does not have a controller
+												   // ... does not have a controller
 		// Camera won't zoom in if the sword is in the way
 		SkeletalMesh->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
 		SkeletalMesh->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);

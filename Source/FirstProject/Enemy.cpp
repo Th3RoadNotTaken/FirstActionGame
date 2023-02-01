@@ -15,6 +15,7 @@
 #include "TimerManager.h"
 #include "Components/CapsuleComponent.h"
 #include "MainPlayerController.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -47,6 +48,9 @@ AEnemy::AEnemy()
 	DeathDelay = 3.f;
 
 	bHasValidTarget = false;
+
+	InterpSpeed = 1.5f;
+	bInterpToPlayer = false;
 }
 
 // Called when the game starts or when spawned
@@ -76,6 +80,14 @@ void AEnemy::BeginPlay()
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (bInterpToPlayer && bHasValidTarget && CombatTarget)
+	{
+		FRotator LookAtYaw = GetLookAtRotationYaw(CombatTarget->GetActorLocation());
+		FRotator InterpRotation = FMath::RInterpTo(GetActorRotation(), LookAtYaw, DeltaTime, InterpSpeed);
+
+		SetActorRotation(InterpRotation);
+	}
 
 }
 
@@ -246,6 +258,7 @@ void AEnemy::Attack()
 {
 	if (Alive() && bHasValidTarget)
 	{
+
 		if (AIController)
 		{
 			AIController->StopMovement();
@@ -255,6 +268,7 @@ void AEnemy::Attack()
 		if (!bAttacking)
 		{
 			bAttacking = true;
+			SetInterpToPlayer(true);
 			UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 			if (AnimInstance)
 			{
@@ -268,6 +282,7 @@ void AEnemy::Attack()
 void AEnemy::AttackEnd()
 {
 	bAttacking = false;
+	SetInterpToPlayer(false);
 	if (bOverlappingCombatSphere)
 	{
 		float AttackTime = FMath::FRandRange(AttackMinTime, AttackMaxTime);
@@ -320,4 +335,16 @@ bool AEnemy::Alive()
 void AEnemy::Disappear()
 {
 	Destroy();
+}
+
+void AEnemy::SetInterpToPlayer(bool Interp)
+{
+	bInterpToPlayer = Interp;
+}
+
+FRotator AEnemy::GetLookAtRotationYaw(FVector Target)
+{
+	FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), Target);
+	FRotator LookAtRotationYaw = FRotator(0.f, LookAtRotation.Yaw, 0.f);
+	return LookAtRotationYaw;
 }

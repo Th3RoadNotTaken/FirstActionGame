@@ -87,6 +87,9 @@ AMain::AMain()
 	bInterpToEnemy = false;
 
 	bHasCombatTarget = false;
+
+	bMovingForward = false;
+	bMovingRight = false;
 }
 
 // Called when the game starts or when spawned
@@ -127,7 +130,7 @@ void AMain::Tick(float DeltaTime)
 	switch (StaminaStatus)
 	{
 		case EStaminaStatus::ESS_Normal:
-			if (bShiftKeyDown)
+			if (bShiftKeyDown && (bMovingForward || bMovingRight))
 			{
 				if (Stamina - DeltaStamina <= MinSprintStamina)
 				{
@@ -155,7 +158,7 @@ void AMain::Tick(float DeltaTime)
 			break;
 
 		case EStaminaStatus::ESS_BelowMinimum:
-			if (bShiftKeyDown)
+			if (bShiftKeyDown && (bMovingForward || bMovingRight))
 			{
 				if (Stamina - DeltaStamina <= 0.f)
 				{
@@ -185,7 +188,7 @@ void AMain::Tick(float DeltaTime)
 			break;
 
 		case EStaminaStatus::ESS_Exhausted:
-			if (bShiftKeyDown)
+			if (bShiftKeyDown && (bMovingForward || bMovingRight))
 			{
 				Stamina = 0.f;
 			}
@@ -259,8 +262,10 @@ void AMain::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void AMain::MoveForward(float Value)
 {
+	bMovingForward = false;
 	if ((Controller != nullptr) && (Value != 0.0f) && (!bAttacking) && (MovementStatus!=EMovementStatus::EMS_Dead))
 	{
+		bMovingForward = true;
 		const FRotator Rotation = Controller->GetControlRotation();
 		// Find out which way is forward
 		const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
@@ -272,8 +277,10 @@ void AMain::MoveForward(float Value)
 
 void AMain::MoveRight(float Value)
 {
+	bMovingRight = false;
 	if ((Controller != nullptr) && (Value != 0.0f) && (!bAttacking) && (MovementStatus != EMovementStatus::EMS_Dead))
 	{
+		bMovingRight = true;
 		const FRotator Rotation = Controller->GetControlRotation();
 		// Find out which way is forward
 		const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
@@ -445,7 +452,7 @@ void AMain::Attack()
 
 void AMain::UnarmedAttack()
 {
-	if (!bAttacking)
+	if (!bAttacking && MovementStatus != EMovementStatus::EMS_Dead)
 	{
 		bAttacking = true;
 		SetInterpToEnemy(true);

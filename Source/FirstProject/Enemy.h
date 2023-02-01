@@ -120,6 +120,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "AI")
 	AMain* CombatTarget;
 
+	/** Creating interpolation for the enemy towards the player if it is attacking */
+	float InterpSpeed;
+	bool bInterpToPlayer;
+	void SetInterpToPlayer(bool Interp);
+	FRotator GetLookAtRotationYaw(FVector Target);
+
 	UFUNCTION()
 	void CombatOnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 

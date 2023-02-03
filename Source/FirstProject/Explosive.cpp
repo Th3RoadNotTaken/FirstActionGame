@@ -7,6 +7,8 @@
 #include "Sound/SoundCue.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Engine/World.h"
+#include "Enemy.h"
+#include "Kismet/GameplayStatics.h"
 
 AExplosive::AExplosive()
 {
@@ -22,8 +24,9 @@ void AExplosive::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor
 	if (OtherActor)
 	{
 		AMain* Main = Cast<AMain>(OtherActor); // If the actor is AMain character then Main variable will hold it otherwise it will hold null
+		AEnemy* Enemy = Cast<AEnemy>(OtherActor);
 
-		if (Main)
+		if (Main || Enemy)
 		{
 			if (OverlapParticles)
 			{
@@ -35,7 +38,7 @@ void AExplosive::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor
 				UGameplayStatics::PlaySound2D(this, OverlapSound);
 			}
 
-			Main->DecrementHealth(Damage);
+			UGameplayStatics::ApplyDamage(OtherActor, Damage, nullptr, this, DamageTypeClass);
 
 			Destroy();
 		}

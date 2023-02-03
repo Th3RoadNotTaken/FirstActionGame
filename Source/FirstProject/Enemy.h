@@ -70,6 +70,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	class UAnimMontage* CombatMontage;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	float EnemyAttackAnimationPlayRate;
+
 	/** Random timer for the delay between enemy attacks */
 	FTimerHandle AttackTimer;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")

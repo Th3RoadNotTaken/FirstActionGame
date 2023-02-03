@@ -32,7 +32,7 @@ AEnemy::AEnemy()
 	CombatSphere->InitSphereRadius(75.f);
 
 	CombatCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("CombatCollision"));
-	CombatCollision->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("EnemySocket"));
+	CombatCollision->SetupAttachment(GetMesh(), FName("EnemySocket"));
 
 	bOverlappingCombatSphere = false;
 
@@ -51,6 +51,8 @@ AEnemy::AEnemy()
 
 	InterpSpeed = 1.5f;
 	bInterpToPlayer = false;
+
+	EnemyAttackAnimationPlayRate = 1.35f;
 }
 
 // Called when the game starts or when spawned
@@ -149,14 +151,16 @@ void AEnemy::CombatSphereOnOverlapBegin(UPrimitiveComponent* OverlappedComponent
 		{
 			bHasValidTarget = true;
 			Main->SetCombatTarget(this);
-			Main->SetHasCombatTarget(true);
+			Main->SetHasCombatTarget(true);  
 			if (Main->MainPlayerController)
 			{
 				Main->MainPlayerController->DisplayEnemyHealthBar();
 			}
 			CombatTarget = Main;
 			bOverlappingCombatSphere = true;
-			Attack();
+			
+			float AttackTime = FMath::FRandRange(AttackMinTime, AttackMaxTime);
+			GetWorldTimerManager().SetTimer(AttackTimer, this, &AEnemy::Attack, AttackTime);
 		}
 	}
 }
@@ -169,7 +173,7 @@ void AEnemy::CombatSphereOnOverlapEnd(UPrimitiveComponent* OverlappedComponent, 
 		if (Main)
 		{
 			bOverlappingCombatSphere = false;
-			if (EnemyMovementStatus != EEnemyMovementStatus::EMS_Attacking)
+			if (EnemyMovementStatus == EEnemyMovementStatus::EMS_Attacking)
 			{
 				MoveToTarget(Main);
 				CombatTarget = nullptr;
@@ -272,7 +276,7 @@ void AEnemy::Attack()
 			UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 			if (AnimInstance)
 			{
-				AnimInstance->Montage_Play(CombatMontage, 1.35f);
+				AnimInstance->Montage_Play(CombatMontage, EnemyAttackAnimationPlayRate);
 				AnimInstance->Montage_JumpToSection(FName("Attack"));
 			}
 		}

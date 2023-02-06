@@ -249,4 +249,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void DeathEnd();
+
+	/** If the player is overlapping with multiple targets and he/she kills one... */
+	/** ...then the combat target should be set to the next alive target */
+	void UpdateCombatTarget();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	TSubclassOf<AEnemy> EnemyFilter;
 };

@@ -138,7 +138,7 @@ void AMain::Tick(float DeltaTime)
 					Stamina -= DeltaStamina;
 				}
 				else
-				{
+				{ 
 					Stamina -= DeltaStamina;
 				}
 				SetMovementStatus(EMovementStatus::EMS_Sprinting);
@@ -375,6 +375,14 @@ void AMain::DeathEnd()
 void AMain::IncrementCoins(int32 CoinCount)
 {
 	Coins += CoinCount;
+}
+
+void AMain::IncrementHealth(float Amount)
+{
+	if (Health + Amount >= MaxHealth)
+		Health = MaxHealth;
+	else
+		Health += Amount;
 }
 
 void AMain::SetMovementStatus(EMovementStatus Status)

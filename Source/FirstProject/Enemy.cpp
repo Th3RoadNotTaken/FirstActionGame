@@ -131,13 +131,12 @@ void AEnemy::AggroSphereOnOverlapEnd(UPrimitiveComponent* OverlappedComponent, A
 				AIController->StopMovement();
 			}
 
-			Main->UpdateCombatTarget();
-
 			if (Main->CombatTarget == this)
 			{
 				Main->SetCombatTarget(nullptr);
+				Main->SetHasCombatTarget(false);
+				Main->UpdateCombatTarget();
 			}
-			Main->SetHasCombatTarget(false);
 		}
 	}
 }
@@ -173,7 +172,6 @@ void AEnemy::CombatSphereOnOverlapEnd(UPrimitiveComponent* OverlappedComponent, 
 		{
 			bOverlappingCombatSphere = false;
 			MoveToTarget(Main);
-			CombatTarget = nullptr;
 
 			if (Main->CombatTarget == this)
 			{

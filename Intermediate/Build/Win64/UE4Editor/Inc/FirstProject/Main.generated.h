@@ -27,6 +27,8 @@ struct FHitResult;
 	DECLARE_FUNCTION(execPlaySwingSound); \
 	DECLARE_FUNCTION(execUnarmedAttackEnd); \
 	DECLARE_FUNCTION(execAttackEnd); \
+	DECLARE_FUNCTION(execIncrementHealth); \
+	DECLARE_FUNCTION(execIncrementCoins); \
 	DECLARE_FUNCTION(execShowPickupLocations);
 
 
@@ -40,6 +42,8 @@ struct FHitResult;
 	DECLARE_FUNCTION(execPlaySwingSound); \
 	DECLARE_FUNCTION(execUnarmedAttackEnd); \
 	DECLARE_FUNCTION(execAttackEnd); \
+	DECLARE_FUNCTION(execIncrementHealth); \
+	DECLARE_FUNCTION(execIncrementCoins); \
 	DECLARE_FUNCTION(execShowPickupLocations);
 
 

@@ -18,11 +18,11 @@ public:
 
 	APickup();
 
-	/** Number of coins to add to the score when picked up */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Coins")
-	int32 CoinCount;
-
 	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
 
 	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) override;
+
+	/** Implementation for the specific pickup will be provided in the BP */
+	UFUNCTION(BlueprintImplementableEvent, Category = "Pickup")
+	void OnPickupBP(class AMain* Target);
 };

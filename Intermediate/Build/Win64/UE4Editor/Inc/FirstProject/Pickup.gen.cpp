@@ -17,9 +17,48 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 	FIRSTPROJECT_API UClass* Z_Construct_UClass_APickup();
 	FIRSTPROJECT_API UClass* Z_Construct_UClass_AItem();
 	UPackage* Z_Construct_UPackage__Script_FirstProject();
+	FIRSTPROJECT_API UClass* Z_Construct_UClass_AMain_NoRegister();
 // End Cross Module References
+	static FName NAME_APickup_OnPickupBP = FName(TEXT("OnPickupBP"));
+	void APickup::OnPickupBP(AMain* Target)
+	{
+		Pickup_eventOnPickupBP_Parms Parms;
+		Parms.Target=Target;
+		ProcessEvent(FindFunctionChecked(NAME_APickup_OnPickupBP),&Parms);
+	}
 	void APickup::StaticRegisterNativesAPickup()
 	{
+	}
+	struct Z_Construct_UFunction_APickup_OnPickupBP_Statics
+	{
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Target;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_APickup_OnPickupBP_Statics::NewProp_Target = { "Target", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(Pickup_eventOnPickupBP_Parms, Target), Z_Construct_UClass_AMain_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_APickup_OnPickupBP_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APickup_OnPickupBP_Statics::NewProp_Target,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_APickup_OnPickupBP_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Pickup" },
+		{ "Comment", "/** Implementation for the specific pickup will be provided in the BP */" },
+		{ "ModuleRelativePath", "Pickup.h" },
+		{ "ToolTip", "Implementation for the specific pickup will be provided in the BP" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_APickup_OnPickupBP_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_APickup, nullptr, "OnPickupBP", nullptr, nullptr, sizeof(Pickup_eventOnPickupBP_Parms), Z_Construct_UFunction_APickup_OnPickupBP_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_APickup_OnPickupBP_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08020800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_APickup_OnPickupBP_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_APickup_OnPickupBP_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_APickup_OnPickupBP()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_APickup_OnPickupBP_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	UClass* Z_Construct_UClass_APickup_NoRegister()
 	{
@@ -28,20 +67,19 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 	struct Z_Construct_UClass_APickup_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CoinCount_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FIntPropertyParams NewProp_CoinCount;
-		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
 	UObject* (*const Z_Construct_UClass_APickup_Statics::DependentSingletons[])() = {
 		(UObject* (*)())Z_Construct_UClass_AItem,
 		(UObject* (*)())Z_Construct_UPackage__Script_FirstProject,
+	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_APickup_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_APickup_OnPickupBP, "OnPickupBP" }, // 1414879292
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APickup_Statics::Class_MetaDataParams[] = {
@@ -50,18 +88,6 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 		{ "ModuleRelativePath", "Pickup.h" },
 	};
 #endif
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APickup_Statics::NewProp_CoinCount_MetaData[] = {
-		{ "Category", "Coins" },
-		{ "Comment", "/** Number of coins to add to the score when picked up */" },
-		{ "ModuleRelativePath", "Pickup.h" },
-		{ "ToolTip", "Number of coins to add to the score when picked up" },
-	};
-#endif
-	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_APickup_Statics::NewProp_CoinCount = { "CoinCount", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APickup, CoinCount), METADATA_PARAMS(Z_Construct_UClass_APickup_Statics::NewProp_CoinCount_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_APickup_Statics::NewProp_CoinCount_MetaData)) };
-	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_APickup_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APickup_Statics::NewProp_CoinCount,
-	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_APickup_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<APickup>::IsAbstract,
 	};
@@ -70,12 +96,12 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 		"Engine",
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
+		FuncInfo,
 		nullptr,
-		Z_Construct_UClass_APickup_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
+		UE_ARRAY_COUNT(FuncInfo),
 		0,
-		UE_ARRAY_COUNT(Z_Construct_UClass_APickup_Statics::PropPointers),
 		0,
 		0x009000A4u,
 		METADATA_PARAMS(Z_Construct_UClass_APickup_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_APickup_Statics::Class_MetaDataParams))
@@ -89,7 +115,7 @@ void EmptyLinkFunctionForGeneratedCodePickup() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APickup, 2011214322);
+	IMPLEMENT_CLASS(APickup, 4258943080);
 	template<> FIRSTPROJECT_API UClass* StaticClass<APickup>()
 	{
 		return APickup::StaticClass();

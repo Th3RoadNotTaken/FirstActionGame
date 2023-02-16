@@ -58,7 +58,7 @@ void AMainPlayerController::Tick(float DeltaTime)
 	{
 		FVector2D PositionInViewport;
 		ProjectWorldLocationToScreen(EnemyLocation, PositionInViewport);
-		PositionInViewport.Y -= 85.f;
+		PositionInViewport.Y -= 85.f; // In the 2D screen, the origin is located at the top left
 
 		FVector2D SizeInViewport = FVector2D(300.f, 25.f);
 

@@ -233,6 +233,22 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		P_THIS->AttackEnd();
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(AMain::execIncrementHealth)
+	{
+		P_GET_PROPERTY(FFloatProperty,Z_Param_Amount);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->IncrementHealth(Z_Param_Amount);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(AMain::execIncrementCoins)
+	{
+		P_GET_PROPERTY(FIntProperty,Z_Param_CoinCount);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->IncrementCoins(Z_Param_CoinCount);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AMain::execShowPickupLocations)
 	{
 		P_FINISH;
@@ -250,6 +266,8 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 			{ "CombatOnOverlapEnd", &AMain::execCombatOnOverlapEnd },
 			{ "DeactivatePunchCollision", &AMain::execDeactivatePunchCollision },
 			{ "DeathEnd", &AMain::execDeathEnd },
+			{ "IncrementCoins", &AMain::execIncrementCoins },
+			{ "IncrementHealth", &AMain::execIncrementHealth },
 			{ "PlaySwingSound", &AMain::execPlaySwingSound },
 			{ "ShowPickupLocations", &AMain::execShowPickupLocations },
 			{ "UnarmedAttackEnd", &AMain::execUnarmedAttackEnd },
@@ -485,6 +503,70 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AMain_IncrementCoins_Statics
+	{
+		struct Main_eventIncrementCoins_Parms
+		{
+			int32 CoinCount;
+		};
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_CoinCount;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AMain_IncrementCoins_Statics::NewProp_CoinCount = { "CoinCount", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(Main_eventIncrementCoins_Parms, CoinCount), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMain_IncrementCoins_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMain_IncrementCoins_Statics::NewProp_CoinCount,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMain_IncrementCoins_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Main.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AMain_IncrementCoins_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMain, nullptr, "IncrementCoins", nullptr, nullptr, sizeof(Main_eventIncrementCoins_Parms), Z_Construct_UFunction_AMain_IncrementCoins_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMain_IncrementCoins_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AMain_IncrementCoins_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AMain_IncrementCoins_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AMain_IncrementCoins()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMain_IncrementCoins_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AMain_IncrementHealth_Statics
+	{
+		struct Main_eventIncrementHealth_Parms
+		{
+			float Amount;
+		};
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_Amount;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AMain_IncrementHealth_Statics::NewProp_Amount = { "Amount", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(Main_eventIncrementHealth_Parms, Amount), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMain_IncrementHealth_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMain_IncrementHealth_Statics::NewProp_Amount,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMain_IncrementHealth_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Main.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AMain_IncrementHealth_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMain, nullptr, "IncrementHealth", nullptr, nullptr, sizeof(Main_eventIncrementHealth_Parms), Z_Construct_UFunction_AMain_IncrementHealth_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMain_IncrementHealth_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AMain_IncrementHealth_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AMain_IncrementHealth_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AMain_IncrementHealth()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMain_IncrementHealth_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_AMain_PlaySwingSound_Statics
 	{
 #if WITH_METADATA
@@ -709,6 +791,8 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		{ &Z_Construct_UFunction_AMain_CombatOnOverlapEnd, "CombatOnOverlapEnd" }, // 3906593457
 		{ &Z_Construct_UFunction_AMain_DeactivatePunchCollision, "DeactivatePunchCollision" }, // 194486613
 		{ &Z_Construct_UFunction_AMain_DeathEnd, "DeathEnd" }, // 1337927502
+		{ &Z_Construct_UFunction_AMain_IncrementCoins, "IncrementCoins" }, // 3889794533
+		{ &Z_Construct_UFunction_AMain_IncrementHealth, "IncrementHealth" }, // 2495941764
 		{ &Z_Construct_UFunction_AMain_PlaySwingSound, "PlaySwingSound" }, // 3537128432
 		{ &Z_Construct_UFunction_AMain_ShowPickupLocations, "ShowPickupLocations" }, // 488232727
 		{ &Z_Construct_UFunction_AMain_UnarmedAttackEnd, "UnarmedAttackEnd" }, // 2422634254
@@ -787,7 +871,9 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMain_Statics::NewProp_bHasCombatTarget_MetaData[] = {
 		{ "Category", "Combat" },
+		{ "Comment", "/** Boolean to enable or disable the enemy health bar*/" },
 		{ "ModuleRelativePath", "Main.h" },
+		{ "ToolTip", "Boolean to enable or disable the enemy health bar" },
 	};
 #endif
 	void Z_Construct_UClass_AMain_Statics::NewProp_bHasCombatTarget_SetBit(void* Obj)
@@ -1037,7 +1123,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMain, 1821494246);
+	IMPLEMENT_CLASS(AMain, 4021852106);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AMain>()
 	{
 		return AMain::StaticClass();

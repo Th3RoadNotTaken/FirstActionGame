@@ -74,6 +74,7 @@ public:
 	FORCEINLINE void SetCombatTarget(AEnemy* Target) { CombatTarget = Target; }
 	FRotator GetLookAtRotationYaw(FVector Target);
 
+	/** Boolean to enable or disable the enemy health bar*/
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat")
 	bool bHasCombatTarget;
 	FORCEINLINE void SetHasCombatTarget(bool HasTarget) { bHasCombatTarget = HasTarget; }
@@ -147,7 +148,10 @@ public:
 
 	virtual void Jump() override;
 
+	UFUNCTION(BlueprintCallable)
 	void IncrementCoins(int32 CoinCount);
+	UFUNCTION(BlueprintCallable)
+	void IncrementHealth(float Amount);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat")
 	class UBoxComponent* CombatCollisionLeft;

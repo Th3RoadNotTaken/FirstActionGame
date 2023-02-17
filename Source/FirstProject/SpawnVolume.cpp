@@ -5,7 +5,8 @@
 #include "Components/BoxComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Engine/World.h"
-#include "Critter.h"
+#include "Enemy.h"
+#include "AIController.h"
 
 // Sets default values
 ASpawnVolume::ASpawnVolume()
@@ -20,6 +21,14 @@ ASpawnVolume::ASpawnVolume()
 void ASpawnVolume::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (Actor_1 && Actor_2 && Actor_3 && Actor_4)
+	{
+		SpawnArray.Add(Actor_1);
+		SpawnArray.Add(Actor_2);
+		SpawnArray.Add(Actor_3);
+		SpawnArray.Add(Actor_4);
+	}
 	
 }
 
@@ -39,17 +48,41 @@ FVector ASpawnVolume::GetSpawnPoint()
 	return Point;
 }
 
-void ASpawnVolume::SpawnOurPawn_Implementation(UClass* ToSpawn, const FVector& Location)
+void ASpawnVolume::SpawnOurActor_Implementation(UClass* ToSpawn, const FVector& Location)
 {
 	if (ToSpawn)
 	{
 		UWorld* World = GetWorld();
 		FActorSpawnParameters SpawnParams;
-		ACritter* CritterSpawned;
 
 		if (World)
 		{
-			CritterSpawned = World->SpawnActor<ACritter>(ToSpawn, Location, FRotator(0.f), SpawnParams);
+			AActor* Actor = World->SpawnActor<AActor>(ToSpawn, Location, FRotator(0.f), SpawnParams);
+
+			AEnemy* Enemy = Cast<AEnemy>(Actor);
+			if (Enemy)
+			{
+				Enemy->SpawnDefaultController(); // Will set a default controller(which will be an AI controller here) for the spawned enemy
+
+				AAIController* AIConst = Cast<AAIController>(Enemy->GetController());
+				if (AIConst)
+				{
+					Enemy->AIController = AIConst; // We are setting the enemy's AI controller to the default controller that will be ...
+												   // ... generated for the Actor when we call SpawnDefaultController
+				}
+			}
 		}
 	}
+}
+
+TSubclassOf<AActor> ASpawnVolume::GetSpawnActor()
+{
+	if (SpawnArray.Num() > 0)
+	{
+		int32 Selection = FMath::RandRange(0, SpawnArray.Num() - 1);
+
+		return SpawnArray[Selection];
+	}
+	else
+		return nullptr;
 }

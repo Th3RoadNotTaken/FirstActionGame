@@ -19,6 +19,8 @@ struct FHitResult;
 #define FirstProject_Source_FirstProject_Main_h_33_SPARSE_DATA
 #define FirstProject_Source_FirstProject_Main_h_33_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execLoadGame); \
+	DECLARE_FUNCTION(execSaveGame); \
 	DECLARE_FUNCTION(execDeathEnd); \
 	DECLARE_FUNCTION(execDeactivatePunchCollision); \
 	DECLARE_FUNCTION(execActivatePunchCollision); \
@@ -34,6 +36,8 @@ struct FHitResult;
 
 #define FirstProject_Source_FirstProject_Main_h_33_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execLoadGame); \
+	DECLARE_FUNCTION(execSaveGame); \
 	DECLARE_FUNCTION(execDeathEnd); \
 	DECLARE_FUNCTION(execDeactivatePunchCollision); \
 	DECLARE_FUNCTION(execActivatePunchCollision); \

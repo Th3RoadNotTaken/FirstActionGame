@@ -36,6 +36,9 @@ public:
 	// Sets default values for this character's properties
 	AMain();
 
+	UPROPERTY(EditDefaultsOnly, Category = "SavedData")
+	TSubclassOf<class AItemStorage> WeaponStorage;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	class UParticleSystem* HitParticles;
 
@@ -259,4 +262,12 @@ public:
 	void UpdateCombatTarget();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	TSubclassOf<AEnemy> EnemyFilter;
+
+	void SwitchLevel(FName LevelName);
+
+	UFUNCTION(BlueprintCallable)
+	void SaveGame();
+
+	UFUNCTION(BlueprintCallable)
+	void LoadGame(bool SetPosition);
 };

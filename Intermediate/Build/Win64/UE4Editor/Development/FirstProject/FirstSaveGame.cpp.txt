@@ -1,0 +1,5 @@
+D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h
+D:\UEProjects\FirstProject\Source\FirstProject\FirstSaveGame.h
+C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/SaveGame.h
+C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SaveGame.generated.h
+D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\FirstSaveGame.generated.h

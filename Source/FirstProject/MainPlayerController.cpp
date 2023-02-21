@@ -3,6 +3,7 @@
 
 #include "MainPlayerController.h"
 #include "Blueprint/UserWidget.h"
+#include "Kismet/GameplayStatics.h"
 
 void AMainPlayerController::BeginPlay()
 {
@@ -30,6 +31,17 @@ void AMainPlayerController::BeginPlay()
 		FVector2D Alignment(0.f, 0.f);
 		EnemyHealthBar->SetAlignmentInViewport(Alignment);
 	}
+
+	if (WPauseMenu)
+	{
+		PauseMenu = CreateWidget<UUserWidget>(this, WPauseMenu);
+
+		if (PauseMenu)
+		{
+			PauseMenu->AddToViewport();
+			PauseMenu->SetVisibility(ESlateVisibility::Hidden);
+		}
+	}
 }
 
 void AMainPlayerController::DisplayEnemyHealthBar()
@@ -48,6 +60,46 @@ void AMainPlayerController::RemoveEnemyHealthBar()
 		bEnemyHealthBarVisible = false;
 		EnemyHealthBar->SetVisibility(ESlateVisibility::Hidden);
 	}
+}
+
+void AMainPlayerController::DisplayPauseMenu_Implementation()
+{
+	if (PauseMenu)
+	{
+		bPauseMenuVisible = true;
+		PauseMenu->SetVisibility(ESlateVisibility::Visible);
+
+
+		FInputModeGameAndUI InputModeGameAndUI;
+		SetInputMode(InputModeGameAndUI); // Allows the Game and UI to respond to player input
+		bShowMouseCursor = true;
+		UGameplayStatics::SetGamePaused(GetWorld(), true);
+	}
+}
+
+void AMainPlayerController::RemovePauseMenu_Implementation()
+{
+	if (PauseMenu)
+	{
+		//PauseMenu->SetVisibility(ESlateVisibility::Hidden);		//Implemented in the BP after a certain delay so that the exit animation will play first
+
+		FInputModeGameOnly InputModeGameOnly;
+		SetInputMode(InputModeGameOnly);
+		bShowMouseCursor = false;
+
+		bPauseMenuVisible = false;
+		UGameplayStatics::SetGamePaused(GetWorld(), false);
+	}
+}
+
+void AMainPlayerController::TogglePauseMenu()
+{
+	if (bPauseMenuVisible)
+	{
+		RemovePauseMenu();
+	}
+	else
+		DisplayPauseMenu();
 }
 
 void AMainPlayerController::Tick(float DeltaTime)

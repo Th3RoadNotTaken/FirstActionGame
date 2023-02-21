@@ -80,6 +80,8 @@ AMain::AMain()
 
 	bLMBDown = false;
 
+	bESCDown = false;
+
 	CombatCollisionLeft = CreateDefaultSubobject<UBoxComponent>(TEXT("CombatCollisionLeft"));
 	CombatCollisionRight = CreateDefaultSubobject<UBoxComponent>(TEXT("CombatCollisionRight"));
 	CombatCollisionLeft->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("PunchSocketLeft"));
@@ -260,12 +262,27 @@ void AMain::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAction("LMB", EInputEvent::IE_Pressed, this, &AMain::LMBDown);
 	PlayerInputComponent->BindAction("LMB", EInputEvent::IE_Released, this, &AMain::LMBUp);
+
+	FInputActionBinding& PauseButton = PlayerInputComponent->BindAction("ESC", EInputEvent::IE_Pressed, this, &AMain::ESCDown);
+	PauseButton.bExecuteWhenPaused = true; // Setting this to true will allow the editor to still track inputs from this button for when we want to resume the game
+	PlayerInputComponent->BindAction("ESC", EInputEvent::IE_Released, this, &AMain::ESCUp);
+}
+
+bool AMain::CanMove(float Value)
+{
+	if (MainPlayerController)
+	{
+		return ((Controller != nullptr) &&
+			(Value != 0.0f) && (!bAttacking) &&
+			(MovementStatus != EMovementStatus::EMS_Dead));
+	}
+	return false;
 }
 
 void AMain::MoveForward(float Value)
 {
 	bMovingForward = false;
-	if ((Controller != nullptr) && (Value != 0.0f) && (!bAttacking) && (MovementStatus!=EMovementStatus::EMS_Dead))
+	if (CanMove(Value))
 	{
 		bMovingForward = true;
 		const FRotator Rotation = Controller->GetControlRotation();
@@ -280,7 +297,7 @@ void AMain::MoveForward(float Value)
 void AMain::MoveRight(float Value)
 {
 	bMovingRight = false;
-	if ((Controller != nullptr) && (Value != 0.0f) && (!bAttacking) && (MovementStatus != EMovementStatus::EMS_Dead))
+	if (CanMove(Value))
 	{
 		bMovingRight = true;
 		const FRotator Rotation = Controller->GetControlRotation();
@@ -331,6 +348,21 @@ void AMain::LMBDown()
 void AMain::LMBUp()
 {
 	bLMBDown = false;
+}
+
+void AMain::ESCDown()
+{
+	bESCDown = true;
+
+	if (MainPlayerController)
+	{
+		MainPlayerController->TogglePauseMenu();
+	}
+}
+
+void AMain::ESCUp()
+{
+	bESCDown = false;
 }
 
 void AMain::DecrementHealth(float Damage)

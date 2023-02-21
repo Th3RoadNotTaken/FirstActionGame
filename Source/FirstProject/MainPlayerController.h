@@ -38,6 +38,20 @@ public:
 
 	FVector EnemyLocation;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<UUserWidget> WPauseMenu;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UUserWidget* PauseMenu;
+
+	bool bPauseMenuVisible;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Widgets")
+	void DisplayPauseMenu();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Widgets")
+	void RemovePauseMenu();
+	void TogglePauseMenu();
+
 protected:
 
 	virtual void BeginPlay() override;

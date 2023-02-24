@@ -118,6 +118,18 @@ void AMain::BeginPlay()
 	CombatCollisionRight->OnComponentEndOverlap.AddDynamic(this, &AMain::CombatOnOverlapEnd);
 
 	MainPlayerController = Cast<AMainPlayerController>(GetController());
+
+	FString Map = GetWorld()->GetMapName();
+	Map.RemoveFromStart(GetWorld()->StreamingLevelsPrefix);
+
+	if (Map != "SunTemple")
+	{
+		LoadGameNoSwitch();
+	}
+	if (MainPlayerController)
+	{
+		MainPlayerController->GameModeOnly();
+	}
 }
 
 // Called every frame
@@ -702,6 +714,7 @@ void AMain::SwitchLevel(FName LevelName)
 	if (World)
 	{
 		FString CurrentLevel = World->GetMapName();
+		CurrentLevel.RemoveFromStart(World->StreamingLevelsPrefix);
 		FName CurrentLevelName(*CurrentLevel); //FName can be initialized with a string literal(You can get the string literal by using the dereference op
 
 		if (CurrentLevelName != LevelName)
@@ -720,6 +733,10 @@ void AMain::SaveGame()
 	SaveGameInstance->CharacterStats.Stamina = Stamina;
 	SaveGameInstance->CharacterStats.MaxStamina = MaxStamina;
 	SaveGameInstance->CharacterStats.Coins = Coins;
+	
+	FString MapName = GetWorld()->GetMapName();
+	MapName.RemoveFromStart(GetWorld()->StreamingLevelsPrefix);
+	SaveGameInstance->CharacterStats.LevelName = MapName;
 
 	SaveGameInstance->CharacterStats.Location = GetActorLocation();
 	SaveGameInstance->CharacterStats.Rotation = GetActorRotation();
@@ -727,6 +744,7 @@ void AMain::SaveGame()
 	if (EquippedWeapon)
 	{
 		SaveGameInstance->CharacterStats.WeaponName = EquippedWeapon->Name;
+		SaveGameInstance->CharacterStats.bHasEquippedWeapon = true;
 	}
 
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SaveGameInstance->PlayerName, SaveGameInstance->UserIndex);
@@ -764,4 +782,47 @@ void AMain::LoadGame(bool SetPosition)
 		SetActorLocation(LoadGameInstance->CharacterStats.Location);
 		SetActorRotation(LoadGameInstance->CharacterStats.Rotation);
 	}
+
+	SetMovementStatus(EMovementStatus::EMS_Normal); // We won't remain in the dead state if we try to load the game
+	GetMesh()->bPauseAnims = false;			// Resetting these parameters for the same reason as above
+	GetMesh()->bNoSkeletonUpdate = false;
+
+	if (LoadGameInstance->CharacterStats.LevelName != TEXT(""))
+	{
+		FName LevelName(*LoadGameInstance->CharacterStats.LevelName); // FName cannot accept an FString but only a C style string...
+																	  // ... Hence, we are using the dereference op
+		SwitchLevel(LevelName);
+	}
+}
+
+void AMain::LoadGameNoSwitch()
+{
+	UFirstSaveGame* LoadGameInstance = Cast<UFirstSaveGame>(UGameplayStatics::CreateSaveGameObject(UFirstSaveGame::StaticClass()));
+
+	LoadGameInstance = Cast<UFirstSaveGame>(UGameplayStatics::LoadGameFromSlot(LoadGameInstance->PlayerName, LoadGameInstance->UserIndex));
+
+	Health = 65.f;
+	MaxHealth = LoadGameInstance->CharacterStats.MaxHealth;
+	Stamina = 120.f;
+	MaxStamina = LoadGameInstance->CharacterStats.MaxStamina;
+	Coins = LoadGameInstance->CharacterStats.Coins;
+
+	if (WeaponStorage && LoadGameInstance->CharacterStats.bHasEquippedWeapon)
+	{
+		AItemStorage* Weapons = GetWorld()->SpawnActor<AItemStorage>(WeaponStorage);
+
+		if (Weapons)
+		{
+			FString WeaponName = LoadGameInstance->CharacterStats.WeaponName;
+			if (Weapons->WeaponMap.Contains(WeaponName))
+			{
+				AWeapon* WeaponToEquip = GetWorld()->SpawnActor<AWeapon>(Weapons->WeaponMap[WeaponName]);
+				WeaponToEquip->Equip(this);
+			}
+		}
+	}
+
+	SetMovementStatus(EMovementStatus::EMS_Normal); // We won't remain in the dead state if we try to load the game
+	GetMesh()->bPauseAnims = false;			// Resetting these parameters for the same reason as above
+	GetMesh()->bNoSkeletonUpdate = false;
 }

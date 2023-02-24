@@ -20,10 +20,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 template<> FIRSTPROJECT_API UScriptStruct* StaticStruct<struct FCharacterStats>();
 
-#define FirstProject_Source_FirstProject_FirstSaveGame_h_48_SPARSE_DATA
-#define FirstProject_Source_FirstProject_FirstSaveGame_h_48_RPC_WRAPPERS
-#define FirstProject_Source_FirstProject_FirstSaveGame_h_48_RPC_WRAPPERS_NO_PURE_DECLS
-#define FirstProject_Source_FirstProject_FirstSaveGame_h_48_INCLASS_NO_PURE_DECLS \
+#define FirstProject_Source_FirstProject_FirstSaveGame_h_51_SPARSE_DATA
+#define FirstProject_Source_FirstProject_FirstSaveGame_h_51_RPC_WRAPPERS
+#define FirstProject_Source_FirstProject_FirstSaveGame_h_51_RPC_WRAPPERS_NO_PURE_DECLS
+#define FirstProject_Source_FirstProject_FirstSaveGame_h_51_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUFirstSaveGame(); \
 	friend struct Z_Construct_UClass_UFirstSaveGame_Statics; \
@@ -32,7 +32,7 @@ public: \
 	DECLARE_SERIALIZER(UFirstSaveGame)
 
 
-#define FirstProject_Source_FirstProject_FirstSaveGame_h_48_INCLASS \
+#define FirstProject_Source_FirstProject_FirstSaveGame_h_51_INCLASS \
 private: \
 	static void StaticRegisterNativesUFirstSaveGame(); \
 	friend struct Z_Construct_UClass_UFirstSaveGame_Statics; \
@@ -41,7 +41,7 @@ public: \
 	DECLARE_SERIALIZER(UFirstSaveGame)
 
 
-#define FirstProject_Source_FirstProject_FirstSaveGame_h_48_STANDARD_CONSTRUCTORS \
+#define FirstProject_Source_FirstProject_FirstSaveGame_h_51_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UFirstSaveGame(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UFirstSaveGame) \
@@ -54,7 +54,7 @@ private: \
 public:
 
 
-#define FirstProject_Source_FirstProject_FirstSaveGame_h_48_ENHANCED_CONSTRUCTORS \
+#define FirstProject_Source_FirstProject_FirstSaveGame_h_51_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API UFirstSaveGame(UFirstSaveGame&&); \
@@ -65,28 +65,28 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UFirstSaveGame)
 
 
-#define FirstProject_Source_FirstProject_FirstSaveGame_h_48_PRIVATE_PROPERTY_OFFSET
-#define FirstProject_Source_FirstProject_FirstSaveGame_h_45_PROLOG
-#define FirstProject_Source_FirstProject_FirstSaveGame_h_48_GENERATED_BODY_LEGACY \
+#define FirstProject_Source_FirstProject_FirstSaveGame_h_51_PRIVATE_PROPERTY_OFFSET
+#define FirstProject_Source_FirstProject_FirstSaveGame_h_48_PROLOG
+#define FirstProject_Source_FirstProject_FirstSaveGame_h_51_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FirstProject_Source_FirstProject_FirstSaveGame_h_48_PRIVATE_PROPERTY_OFFSET \
-	FirstProject_Source_FirstProject_FirstSaveGame_h_48_SPARSE_DATA \
-	FirstProject_Source_FirstProject_FirstSaveGame_h_48_RPC_WRAPPERS \
-	FirstProject_Source_FirstProject_FirstSaveGame_h_48_INCLASS \
-	FirstProject_Source_FirstProject_FirstSaveGame_h_48_STANDARD_CONSTRUCTORS \
+	FirstProject_Source_FirstProject_FirstSaveGame_h_51_PRIVATE_PROPERTY_OFFSET \
+	FirstProject_Source_FirstProject_FirstSaveGame_h_51_SPARSE_DATA \
+	FirstProject_Source_FirstProject_FirstSaveGame_h_51_RPC_WRAPPERS \
+	FirstProject_Source_FirstProject_FirstSaveGame_h_51_INCLASS \
+	FirstProject_Source_FirstProject_FirstSaveGame_h_51_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FirstProject_Source_FirstProject_FirstSaveGame_h_48_GENERATED_BODY \
+#define FirstProject_Source_FirstProject_FirstSaveGame_h_51_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FirstProject_Source_FirstProject_FirstSaveGame_h_48_PRIVATE_PROPERTY_OFFSET \
-	FirstProject_Source_FirstProject_FirstSaveGame_h_48_SPARSE_DATA \
-	FirstProject_Source_FirstProject_FirstSaveGame_h_48_RPC_WRAPPERS_NO_PURE_DECLS \
-	FirstProject_Source_FirstProject_FirstSaveGame_h_48_INCLASS_NO_PURE_DECLS \
-	FirstProject_Source_FirstProject_FirstSaveGame_h_48_ENHANCED_CONSTRUCTORS \
+	FirstProject_Source_FirstProject_FirstSaveGame_h_51_PRIVATE_PROPERTY_OFFSET \
+	FirstProject_Source_FirstProject_FirstSaveGame_h_51_SPARSE_DATA \
+	FirstProject_Source_FirstProject_FirstSaveGame_h_51_RPC_WRAPPERS_NO_PURE_DECLS \
+	FirstProject_Source_FirstProject_FirstSaveGame_h_51_INCLASS_NO_PURE_DECLS \
+	FirstProject_Source_FirstProject_FirstSaveGame_h_51_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

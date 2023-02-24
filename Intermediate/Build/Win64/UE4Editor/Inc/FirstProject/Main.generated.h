@@ -19,6 +19,7 @@ struct FHitResult;
 #define FirstProject_Source_FirstProject_Main_h_33_SPARSE_DATA
 #define FirstProject_Source_FirstProject_Main_h_33_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execLoadGameNoSwitch); \
 	DECLARE_FUNCTION(execLoadGame); \
 	DECLARE_FUNCTION(execSaveGame); \
 	DECLARE_FUNCTION(execDeathEnd); \
@@ -36,6 +37,7 @@ struct FHitResult;
 
 #define FirstProject_Source_FirstProject_Main_h_33_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execLoadGameNoSwitch); \
 	DECLARE_FUNCTION(execLoadGame); \
 	DECLARE_FUNCTION(execSaveGame); \
 	DECLARE_FUNCTION(execDeathEnd); \

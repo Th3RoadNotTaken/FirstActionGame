@@ -83,10 +83,8 @@ void AMainPlayerController::RemovePauseMenu_Implementation()
 	{
 		//PauseMenu->SetVisibility(ESlateVisibility::Hidden);		//Implemented in the BP after a certain delay so that the exit animation will play first
 
-		FInputModeGameOnly InputModeGameOnly;
-		SetInputMode(InputModeGameOnly);
+		GameModeOnly();
 		bShowMouseCursor = false;
-
 		bPauseMenuVisible = false;
 		UGameplayStatics::SetGamePaused(GetWorld(), false);
 	}
@@ -117,4 +115,10 @@ void AMainPlayerController::Tick(float DeltaTime)
 		EnemyHealthBar->SetPositionInViewport(PositionInViewport);
 		EnemyHealthBar->SetDesiredSizeInViewport(SizeInViewport);
 	}
+}
+
+void AMainPlayerController::GameModeOnly()
+{
+	FInputModeGameOnly InputModeGameOnly;
+	SetInputMode(InputModeGameOnly);
 }

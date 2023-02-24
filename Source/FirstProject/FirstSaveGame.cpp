@@ -10,4 +10,5 @@ UFirstSaveGame::UFirstSaveGame()
 
 	CharacterStats.WeaponName = TEXT("");
 	CharacterStats.bHasEquippedWeapon = false;
+	CharacterStats.LevelName = TEXT("");
 }

@@ -52,6 +52,8 @@ public:
 	void RemovePauseMenu();
 	void TogglePauseMenu();
 
+	void GameModeOnly();
+
 protected:
 
 	virtual void BeginPlay() override;

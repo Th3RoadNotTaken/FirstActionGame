@@ -168,6 +168,13 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return ReturnEnum;
 	}
+	DEFINE_FUNCTION(AMain::execLoadGameNoSwitch)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->LoadGameNoSwitch();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AMain::execLoadGame)
 	{
 		P_GET_UBOOL(Z_Param_SetPosition);
@@ -285,6 +292,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 			{ "IncrementCoins", &AMain::execIncrementCoins },
 			{ "IncrementHealth", &AMain::execIncrementHealth },
 			{ "LoadGame", &AMain::execLoadGame },
+			{ "LoadGameNoSwitch", &AMain::execLoadGameNoSwitch },
 			{ "PlaySwingSound", &AMain::execPlaySwingSound },
 			{ "SaveGame", &AMain::execSaveGame },
 			{ "ShowPickupLocations", &AMain::execShowPickupLocations },
@@ -622,6 +630,28 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AMain_LoadGameNoSwitch_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMain_LoadGameNoSwitch_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Main.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AMain_LoadGameNoSwitch_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMain, nullptr, "LoadGameNoSwitch", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AMain_LoadGameNoSwitch_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AMain_LoadGameNoSwitch_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AMain_LoadGameNoSwitch()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMain_LoadGameNoSwitch_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_AMain_PlaySwingSound_Statics
 	{
 #if WITH_METADATA
@@ -875,6 +905,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		{ &Z_Construct_UFunction_AMain_IncrementCoins, "IncrementCoins" }, // 3889794533
 		{ &Z_Construct_UFunction_AMain_IncrementHealth, "IncrementHealth" }, // 2495941764
 		{ &Z_Construct_UFunction_AMain_LoadGame, "LoadGame" }, // 932701903
+		{ &Z_Construct_UFunction_AMain_LoadGameNoSwitch, "LoadGameNoSwitch" }, // 647955253
 		{ &Z_Construct_UFunction_AMain_PlaySwingSound, "PlaySwingSound" }, // 3537128432
 		{ &Z_Construct_UFunction_AMain_SaveGame, "SaveGame" }, // 1842646444
 		{ &Z_Construct_UFunction_AMain_ShowPickupLocations, "ShowPickupLocations" }, // 488232727
@@ -1214,7 +1245,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMain, 2080929137);
+	IMPLEMENT_CLASS(AMain, 61640331);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AMain>()
 	{
 		return AMain::StaticClass();

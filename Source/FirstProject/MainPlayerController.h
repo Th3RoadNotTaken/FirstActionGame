@@ -38,6 +38,18 @@ public:
 
 	FVector EnemyLocation;
 
+	/** Reference to the shield health bar asset in the editor */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<UUserWidget> WShieldHealthBar;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UUserWidget* ShieldHealthBar;
+
+	bool bShieldHealthBarVisible;
+
+	void DisplayShieldHealthBar();
+	void RemoveShieldHealthBar();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<UUserWidget> WPauseMenu;
 

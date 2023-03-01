@@ -9,22 +9,23 @@
 UENUM(BlueprintType) // BlueprintType same as Blueprintable
 enum class EMovementStatus : uint8
 {
-	EMS_Normal UMETA(DisplayName = "Normal"),  // If we are marking the enum class and UENUM, we also need to mark the enum constants with UMETA
-	EMS_Sprinting UMETA(DisplayName = "Sprinting"),
-	EMS_Dead UMETA(DisplayName = "Dead"),
+	EMS_Normal		UMETA(DisplayName = "Normal"),  // If we are marking the enum class and UENUM, we also need to mark the enum constants with UMETA
+	EMS_Sprinting	UMETA(DisplayName = "Sprinting"),
+	EMS_Blocking	UMETA(DisplayName = "Blocking"),
+	EMS_Dead		UMETA(DisplayName = "Dead"),
 
-	EMS_Max UMETA(DisplayName = "DefaultMax")
+	EMS_Max			UMETA(DisplayName = "DefaultMax")
 };
 
 UENUM(BlueprintType)
 enum class EStaminaStatus : uint8
 {
-	ESS_Normal UMETA(DisplayName = "Normal"),
-	ESS_BelowMinimum UMETA(DisplayName = "BelowMinimum"),
-	ESS_Exhausted UMETA(DisplayName = "Exhausted"),
+	ESS_Normal				UMETA(DisplayName = "Normal"),
+	ESS_BelowMinimum		UMETA(DisplayName = "BelowMinimum"),
+	ESS_Exhausted			UMETA(DisplayName = "Exhausted"),
 	ESS_ExhaustedRecovering UMETA(DisplayName = "ExhaustedRecovering"),
 
-	ESS_MAX UMETA(DisplayName = "DefaultMax")
+	ESS_MAX					UMETA(DisplayName = "DefaultMax")
 };
 
 UCLASS()
@@ -174,6 +175,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Item | Combat" )
 	float UnarmedDamage;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item | Combat")
+	bool bHasShieldEquipped;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -212,17 +216,28 @@ public:
 
 	void LMBUp();
 
+	bool bRMBDown;
+
+	void RMBDown();
+
+	void RMBUp();
+
 	bool bESCDown;
 
 	void ESCDown();
 
 	void ESCUp();
 
+	void Roll();
+
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Items")
 	class AWeapon* EquippedWeapon;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Items")
+	class AShield* EquippedShield;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Items")
 	class AItem* ActiveOverlappingItem;
@@ -231,13 +246,16 @@ public:
 	FORCEINLINE AWeapon* GetEquippedWeapon() { return EquippedWeapon; }
 	FORCEINLINE void SetActiveOverlappingItem(AItem* Item) { ActiveOverlappingItem = Item; }
 
+	void SetEquippedShield(AShield* ShieldToSet);
+	FORCEINLINE AShield* GetEquippedShield() { return EquippedShield; }
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Anims")
 	bool bAttacking;
 
 	void Attack();
 
 	void UnarmedAttack();
-
+	
 	UFUNCTION(BlueprintCallable)
 	void AttackEnd();
 

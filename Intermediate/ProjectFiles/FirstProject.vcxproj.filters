@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\FirstProject.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{40EFD0E5-52EC-44B3-BE2E-7C54EC79F574}</UniqueIdentifier>
+      <UniqueIdentifier>{1FDFF9BE-4163-4DD3-B60F-D058C1C52A7A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\FirstProject.Target.cs">
       <Filter>Source</Filter>
@@ -14,7 +14,7 @@
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{9CA1178F-CE45-43E7-8E70-13815571315F}</UniqueIdentifier>
+      <UniqueIdentifier>{DC992DB8-8525-4824-914E-528286581AE7}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -29,7 +29,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\FirstProject">
-      <UniqueIdentifier>{D31AEE15-C84C-4288-B631-4BFC42FB7905}</UniqueIdentifier>
+      <UniqueIdentifier>{0346D7DD-411B-45C9-A46A-4109BFD899CE}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\FirstProject\Collider.cpp">
       <Filter>Source\FirstProject</Filter>
@@ -148,10 +148,22 @@
     <ClInclude Include="..\..\Source\FirstProject\MyObject.h">
       <Filter>Source\FirstProject</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\FirstProject\OutOfBoundsVolume.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\OutOfBoundsVolume.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\FirstProject\Pickup.cpp">
       <Filter>Source\FirstProject</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\FirstProject\Pickup.h">
+      <Filter>Source\FirstProject</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\FirstProject\Shield.cpp">
+      <Filter>Source\FirstProject</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\FirstProject\Shield.h">
       <Filter>Source\FirstProject</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\FirstProject\SpawnVolume.cpp">
@@ -167,7 +179,7 @@
       <Filter>Source\FirstProject</Filter>
     </ClInclude>
     <Filter Include="Source\FirstProject\GameplayActors">
-      <UniqueIdentifier>{37FF4536-7B6D-422A-B9C4-B7D388CC5184}</UniqueIdentifier>
+      <UniqueIdentifier>{63863638-E7AC-4292-A13C-6EEBD3768C09}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\FirstProject\GameplayActors\Floater.cpp">
       <Filter>Source\FirstProject\GameplayActors</Filter>

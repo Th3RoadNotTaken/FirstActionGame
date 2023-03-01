@@ -65,3 +65,5 @@ C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Sav
 D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\FirstSaveGame.generated.h
 D:\UEProjects\FirstProject\Source\FirstProject\ItemStorage.h
 D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\ItemStorage.generated.h
+D:\UEProjects\FirstProject\Source\FirstProject\Shield.h
+D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\Shield.generated.h

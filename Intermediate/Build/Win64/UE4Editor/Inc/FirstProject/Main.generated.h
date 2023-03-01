@@ -16,8 +16,8 @@ struct FHitResult;
 #endif
 #define FIRSTPROJECT_Main_generated_h
 
-#define FirstProject_Source_FirstProject_Main_h_33_SPARSE_DATA
-#define FirstProject_Source_FirstProject_Main_h_33_RPC_WRAPPERS \
+#define FirstProject_Source_FirstProject_Main_h_34_SPARSE_DATA
+#define FirstProject_Source_FirstProject_Main_h_34_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execLoadGameNoSwitch); \
 	DECLARE_FUNCTION(execLoadGame); \
@@ -35,7 +35,7 @@ struct FHitResult;
 	DECLARE_FUNCTION(execShowPickupLocations);
 
 
-#define FirstProject_Source_FirstProject_Main_h_33_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FirstProject_Source_FirstProject_Main_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execLoadGameNoSwitch); \
 	DECLARE_FUNCTION(execLoadGame); \
@@ -53,7 +53,7 @@ struct FHitResult;
 	DECLARE_FUNCTION(execShowPickupLocations);
 
 
-#define FirstProject_Source_FirstProject_Main_h_33_INCLASS_NO_PURE_DECLS \
+#define FirstProject_Source_FirstProject_Main_h_34_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMain(); \
 	friend struct Z_Construct_UClass_AMain_Statics; \
@@ -62,7 +62,7 @@ public: \
 	DECLARE_SERIALIZER(AMain)
 
 
-#define FirstProject_Source_FirstProject_Main_h_33_INCLASS \
+#define FirstProject_Source_FirstProject_Main_h_34_INCLASS \
 private: \
 	static void StaticRegisterNativesAMain(); \
 	friend struct Z_Construct_UClass_AMain_Statics; \
@@ -71,7 +71,7 @@ public: \
 	DECLARE_SERIALIZER(AMain)
 
 
-#define FirstProject_Source_FirstProject_Main_h_33_STANDARD_CONSTRUCTORS \
+#define FirstProject_Source_FirstProject_Main_h_34_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AMain(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AMain) \
@@ -84,7 +84,7 @@ private: \
 public:
 
 
-#define FirstProject_Source_FirstProject_Main_h_33_ENHANCED_CONSTRUCTORS \
+#define FirstProject_Source_FirstProject_Main_h_34_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AMain(AMain&&); \
@@ -95,28 +95,28 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AMain)
 
 
-#define FirstProject_Source_FirstProject_Main_h_33_PRIVATE_PROPERTY_OFFSET
-#define FirstProject_Source_FirstProject_Main_h_30_PROLOG
-#define FirstProject_Source_FirstProject_Main_h_33_GENERATED_BODY_LEGACY \
+#define FirstProject_Source_FirstProject_Main_h_34_PRIVATE_PROPERTY_OFFSET
+#define FirstProject_Source_FirstProject_Main_h_31_PROLOG
+#define FirstProject_Source_FirstProject_Main_h_34_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FirstProject_Source_FirstProject_Main_h_33_PRIVATE_PROPERTY_OFFSET \
-	FirstProject_Source_FirstProject_Main_h_33_SPARSE_DATA \
-	FirstProject_Source_FirstProject_Main_h_33_RPC_WRAPPERS \
-	FirstProject_Source_FirstProject_Main_h_33_INCLASS \
-	FirstProject_Source_FirstProject_Main_h_33_STANDARD_CONSTRUCTORS \
+	FirstProject_Source_FirstProject_Main_h_34_PRIVATE_PROPERTY_OFFSET \
+	FirstProject_Source_FirstProject_Main_h_34_SPARSE_DATA \
+	FirstProject_Source_FirstProject_Main_h_34_RPC_WRAPPERS \
+	FirstProject_Source_FirstProject_Main_h_34_INCLASS \
+	FirstProject_Source_FirstProject_Main_h_34_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FirstProject_Source_FirstProject_Main_h_33_GENERATED_BODY \
+#define FirstProject_Source_FirstProject_Main_h_34_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FirstProject_Source_FirstProject_Main_h_33_PRIVATE_PROPERTY_OFFSET \
-	FirstProject_Source_FirstProject_Main_h_33_SPARSE_DATA \
-	FirstProject_Source_FirstProject_Main_h_33_RPC_WRAPPERS_NO_PURE_DECLS \
-	FirstProject_Source_FirstProject_Main_h_33_INCLASS_NO_PURE_DECLS \
-	FirstProject_Source_FirstProject_Main_h_33_ENHANCED_CONSTRUCTORS \
+	FirstProject_Source_FirstProject_Main_h_34_PRIVATE_PROPERTY_OFFSET \
+	FirstProject_Source_FirstProject_Main_h_34_SPARSE_DATA \
+	FirstProject_Source_FirstProject_Main_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
+	FirstProject_Source_FirstProject_Main_h_34_INCLASS_NO_PURE_DECLS \
+	FirstProject_Source_FirstProject_Main_h_34_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -139,6 +139,7 @@ template<> FIRSTPROJECT_API UEnum* StaticEnum<EStaminaStatus>();
 #define FOREACH_ENUM_EMOVEMENTSTATUS(op) \
 	op(EMovementStatus::EMS_Normal) \
 	op(EMovementStatus::EMS_Sprinting) \
+	op(EMovementStatus::EMS_Blocking) \
 	op(EMovementStatus::EMS_Dead) \
 	op(EMovementStatus::EMS_Max) 
 

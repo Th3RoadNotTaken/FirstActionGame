@@ -16,6 +16,7 @@
 #include "Components/CapsuleComponent.h"
 #include "MainPlayerController.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Shield.h"
 
 // Sets default values
 AEnemy::AEnemy()
@@ -76,6 +77,7 @@ void AEnemy::BeginPlay()
 	CombatCollision->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
 	CombatCollision->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
 	CombatCollision->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
+	CombatCollision->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldDynamic, ECollisionResponse::ECR_Overlap);
 
 	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
@@ -201,7 +203,7 @@ void AEnemy::MoveToTarget(AMain* Target)
 	{
 		FAIMoveRequest MoveRequest;
 		MoveRequest.SetGoalActor(Target);
-		MoveRequest.SetAcceptanceRadius(15.f);
+		MoveRequest.SetAcceptanceRadius(20.f);
 
 		FNavPathSharedPtr NavPath;
 
@@ -246,6 +248,15 @@ void AEnemy::CombatOnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AAct
 				UGameplayStatics::ApplyDamage(Main, Damage, AIController, this, DamageTypeClass); // This will call the TakeDamage function of Main
 			}
 		}
+		AShield* Shield = Cast<AShield>(OtherActor);
+		if (Shield)
+		{
+			if (DamageTypeClass)
+			{
+				UGameplayStatics::ApplyDamage(Shield, Damage, AIController, this, DamageTypeClass); // This will call the TakeDamage function of Main
+			}
+		}
+
 	}
 }
 
@@ -295,6 +306,7 @@ void AEnemy::Attack()
 
 void AEnemy::AttackEnd()
 {
+	CombatCollision->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap); // Setting this here again so that the enemy can start overlapping with the player even if a shield is equipped
 	bAttacking = false;
 	SetInterpToPlayer(false);
 	if (bOverlappingCombatSphere)

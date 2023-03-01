@@ -19,6 +19,7 @@
 #include "MainPlayerController.h"
 #include "FirstSaveGame.h"
 #include "ItemStorage.h"
+#include "Shield.h"
 
 // Sets default values
 AMain::AMain()
@@ -80,6 +81,8 @@ AMain::AMain()
 
 	bLMBDown = false;
 
+	bRMBDown = false;
+
 	bESCDown = false;
 
 	CombatCollisionLeft = CreateDefaultSubobject<UBoxComponent>(TEXT("CombatCollisionLeft"));
@@ -139,6 +142,19 @@ void AMain::Tick(float DeltaTime)
 
 	if (MovementStatus == EMovementStatus::EMS_Dead)
 		return;
+
+	if (bRMBDown && bHasShieldEquipped && MovementStatus != EMovementStatus::EMS_Dead)
+	{
+		if (CombatTarget)
+		{
+			FRotator LookAtYaw = GetLookAtRotationYaw(CombatTarget->GetActorLocation());
+			FRotator InterpRotation = FMath::RInterpTo(GetActorRotation(), LookAtYaw, DeltaTime, InterpSpeed);
+
+			SetActorRotation(InterpRotation);
+		}
+		SetMovementStatus(EMovementStatus::EMS_Blocking);
+		return;
+	}
 
 	float DeltaStamina = StaminaDrainRate * DeltaTime;
 	float DeltaStaminaRecovery = StaminaRecoveryRate * DeltaTime;
@@ -249,6 +265,14 @@ void AMain::Tick(float DeltaTime)
 			MainPlayerController->EnemyLocation = CombatTargetLocation;
 		}
 	}
+
+	if(EquippedShield==nullptr)
+	{
+		if (MainPlayerController)
+		{
+			MainPlayerController->RemoveShieldHealthBar();
+		}
+	}
 }
 
 // Called to bind functionality to input
@@ -275,6 +299,9 @@ void AMain::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction("LMB", EInputEvent::IE_Pressed, this, &AMain::LMBDown);
 	PlayerInputComponent->BindAction("LMB", EInputEvent::IE_Released, this, &AMain::LMBUp);
 
+	PlayerInputComponent->BindAction("RMB", EInputEvent::IE_Pressed, this, &AMain::RMBDown);
+	PlayerInputComponent->BindAction("RMB", EInputEvent::IE_Released, this, &AMain::RMBUp);
+
 	FInputActionBinding& PauseButton = PlayerInputComponent->BindAction("ESC", EInputEvent::IE_Pressed, this, &AMain::ESCDown);
 	PauseButton.bExecuteWhenPaused = true; // Setting this to true will allow the editor to still track inputs from this button for when we want to resume the game
 	PlayerInputComponent->BindAction("ESC", EInputEvent::IE_Released, this, &AMain::ESCUp);
@@ -286,7 +313,7 @@ bool AMain::CanMove(float Value)
 	{
 		return ((Controller != nullptr) &&
 			(Value != 0.0f) && (!bAttacking) &&
-			(MovementStatus != EMovementStatus::EMS_Dead));
+			(MovementStatus != EMovementStatus::EMS_Dead) && (MovementStatus != EMovementStatus::EMS_Blocking));
 	}
 	return false;
 }
@@ -346,6 +373,17 @@ void AMain::LMBDown()
 			Weapon->Equip(this);
 			SetActiveOverlappingItem(nullptr);
 		}
+		AShield* Shield = Cast<AShield>(ActiveOverlappingItem);
+		if (Shield)
+		{
+			Shield->Equip(this);
+			bHasShieldEquipped = true;
+			SetActiveOverlappingItem(nullptr);
+			if (MainPlayerController)
+			{
+				MainPlayerController->DisplayShieldHealthBar();
+			}
+		}
 	}
 	else if(EquippedWeapon)
 	{
@@ -360,6 +398,24 @@ void AMain::LMBDown()
 void AMain::LMBUp()
 {
 	bLMBDown = false;
+}
+
+void AMain::RMBDown()
+{
+	bRMBDown = true;
+}
+
+void AMain::RMBUp()
+{
+	bRMBDown = false;
+	if (MovementStatus == EMovementStatus::EMS_Blocking)
+	{
+		if (EquippedShield)
+		{
+			GetEquippedShield()->DeactivateCollision();
+		}
+		SetMovementStatus(EMovementStatus::EMS_Normal);
+	}
 }
 
 void AMain::ESCDown()
@@ -406,7 +462,7 @@ void AMain::Die()
 
 void AMain::Jump()
 {
-	if (MovementStatus != EMovementStatus::EMS_Dead)
+	if (MovementStatus != EMovementStatus::EMS_Dead && MovementStatus!=EMovementStatus::EMS_Blocking)
 	{
 		ACharacter::Jump();
 	}
@@ -416,6 +472,7 @@ void AMain::DeathEnd()
 {
 	GetMesh()->bPauseAnims = true;
 	GetMesh()->bNoSkeletonUpdate = true;
+	UKismetSystemLibrary::QuitGame(GetWorld(), MainPlayerController, EQuitPreference::Quit, false);
 }
 
 void AMain::IncrementCoins(int32 CoinCount)
@@ -472,6 +529,15 @@ void AMain::SetEquippedWeapon(AWeapon* WeaponToSet)
 	EquippedWeapon = WeaponToSet;
 }
 
+void AMain::SetEquippedShield(AShield* ShieldToSet)
+{
+	if (EquippedShield)
+	{
+		EquippedShield->Destroy();
+	}
+	EquippedShield = ShieldToSet;
+}
+
 void AMain::Attack()
 {
 	if (!bAttacking && MovementStatus!=EMovementStatus::EMS_Dead)
@@ -516,6 +582,9 @@ void AMain::UnarmedAttack()
 		if (AnimInstance && CombatMontage)
 		{
 			int32 Section = FMath::RandRange(0, 1);
+
+			if (bHasShieldEquipped)
+				Section = 1;
 
 			switch (Section)
 			{

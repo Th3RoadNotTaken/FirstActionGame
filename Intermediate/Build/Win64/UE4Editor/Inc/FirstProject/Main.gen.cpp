@@ -34,6 +34,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 	ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
 	FIRSTPROJECT_API UClass* Z_Construct_UClass_AWeapon_NoRegister();
+	FIRSTPROJECT_API UClass* Z_Construct_UClass_AShield_NoRegister();
 	FIRSTPROJECT_API UClass* Z_Construct_UClass_AItem_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 // End Cross Module References
@@ -116,7 +117,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		return EMovementStatus_StaticEnum();
 	}
 	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_EMovementStatus(EMovementStatus_StaticEnum, TEXT("/Script/FirstProject"), TEXT("EMovementStatus"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_FirstProject_EMovementStatus_Hash() { return 3287894408U; }
+	uint32 Get_Z_Construct_UEnum_FirstProject_EMovementStatus_Hash() { return 2456320259U; }
 	UEnum* Z_Construct_UEnum_FirstProject_EMovementStatus()
 	{
 #if WITH_HOT_RELOAD
@@ -130,6 +131,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 			static const UE4CodeGen_Private::FEnumeratorParam Enumerators[] = {
 				{ "EMovementStatus::EMS_Normal", (int64)EMovementStatus::EMS_Normal },
 				{ "EMovementStatus::EMS_Sprinting", (int64)EMovementStatus::EMS_Sprinting },
+				{ "EMovementStatus::EMS_Blocking", (int64)EMovementStatus::EMS_Blocking },
 				{ "EMovementStatus::EMS_Dead", (int64)EMovementStatus::EMS_Dead },
 				{ "EMovementStatus::EMS_Max", (int64)EMovementStatus::EMS_Max },
 			};
@@ -137,6 +139,8 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 			const UE4CodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
 				{ "BlueprintType", "true" },
 				{ "Comment", "// BlueprintType same as Blueprintable\n" },
+				{ "EMS_Blocking.DisplayName", "Blocking" },
+				{ "EMS_Blocking.Name", "EMovementStatus::EMS_Blocking" },
 				{ "EMS_Dead.DisplayName", "Dead" },
 				{ "EMS_Dead.Name", "EMovementStatus::EMS_Dead" },
 				{ "EMS_Max.DisplayName", "DefaultMax" },
@@ -867,9 +871,18 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_UnarmedDamage;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bHasShieldEquipped_MetaData[];
+#endif
+		static void NewProp_bHasShieldEquipped_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bHasShieldEquipped;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_EquippedWeapon_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_EquippedWeapon;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_EquippedShield_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_EquippedShield;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ActiveOverlappingItem_MetaData[];
 #endif
@@ -1143,12 +1156,30 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMain_Statics::NewProp_UnarmedDamage = { "UnarmedDamage", nullptr, (EPropertyFlags)0x0010000000020005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMain, UnarmedDamage), METADATA_PARAMS(Z_Construct_UClass_AMain_Statics::NewProp_UnarmedDamage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMain_Statics::NewProp_UnarmedDamage_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped_MetaData[] = {
+		{ "Category", "Item | Combat" },
+		{ "ModuleRelativePath", "Main.h" },
+	};
+#endif
+	void Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped_SetBit(void* Obj)
+	{
+		((AMain*)Obj)->bHasShieldEquipped = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped = { "bHasShieldEquipped", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AMain), &Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped_SetBit, METADATA_PARAMS(Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMain_Statics::NewProp_EquippedWeapon_MetaData[] = {
 		{ "Category", "Items" },
 		{ "ModuleRelativePath", "Main.h" },
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMain_Statics::NewProp_EquippedWeapon = { "EquippedWeapon", nullptr, (EPropertyFlags)0x0010000000010015, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMain, EquippedWeapon), Z_Construct_UClass_AWeapon_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AMain_Statics::NewProp_EquippedWeapon_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMain_Statics::NewProp_EquippedWeapon_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMain_Statics::NewProp_EquippedShield_MetaData[] = {
+		{ "Category", "Items" },
+		{ "ModuleRelativePath", "Main.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMain_Statics::NewProp_EquippedShield = { "EquippedShield", nullptr, (EPropertyFlags)0x0010000000010015, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMain, EquippedShield), Z_Construct_UClass_AShield_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AMain_Statics::NewProp_EquippedShield_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMain_Statics::NewProp_EquippedShield_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMain_Statics::NewProp_ActiveOverlappingItem_MetaData[] = {
 		{ "Category", "Items" },
@@ -1212,7 +1243,9 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_PunchSound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_DamageTypeClass,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_UnarmedDamage,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_EquippedWeapon,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_EquippedShield,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_ActiveOverlappingItem,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_bAttacking,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_CombatMontage,
@@ -1245,7 +1278,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMain, 61640331);
+	IMPLEMENT_CLASS(AMain, 2681143246);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AMain>()
 	{
 		return AMain::StaticClass();

@@ -42,6 +42,19 @@ void AMainPlayerController::BeginPlay()
 			PauseMenu->SetVisibility(ESlateVisibility::Hidden);
 		}
 	}
+
+	if (WShieldHealthBar)
+	{
+		ShieldHealthBar = CreateWidget<UUserWidget>(this, WShieldHealthBar);
+
+		if (ShieldHealthBar)
+		{
+			ShieldHealthBar->AddToViewport();
+			ShieldHealthBar->SetVisibility(ESlateVisibility::Hidden);
+		}
+		FVector2D Alignment(0.f, 0.f);
+		ShieldHealthBar->SetAlignmentInViewport(Alignment);
+	}
 }
 
 void AMainPlayerController::DisplayEnemyHealthBar()
@@ -59,6 +72,24 @@ void AMainPlayerController::RemoveEnemyHealthBar()
 	{
 		bEnemyHealthBarVisible = false;
 		EnemyHealthBar->SetVisibility(ESlateVisibility::Hidden);
+	}
+}
+
+void AMainPlayerController::DisplayShieldHealthBar()
+{
+	if (ShieldHealthBar)
+	{
+		bShieldHealthBarVisible = true;
+		ShieldHealthBar->SetVisibility(ESlateVisibility::Visible);
+	}
+}
+
+void AMainPlayerController::RemoveShieldHealthBar()
+{
+	if (ShieldHealthBar)
+	{
+		bShieldHealthBarVisible = false;
+		ShieldHealthBar->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
 

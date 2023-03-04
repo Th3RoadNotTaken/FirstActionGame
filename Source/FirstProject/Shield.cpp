@@ -9,6 +9,9 @@
 #include "Main.h"
 #include "Enemy.h"
 #include "Components/SphereComponent.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundCue.h"
 
 AShield::AShield()
 {
@@ -77,6 +80,16 @@ void AShield::ShieldOnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AAc
 		{
 			Enemy->CombatCollision->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
 		}
+
+		if (HitParticles)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), FRotator(0.f), false);
+		}
+
+		if (OnHitSound)
+		{
+			UGameplayStatics::PlaySound2D(this, OnHitSound);
+		}
 	}
 }
 
@@ -106,6 +119,21 @@ void AShield::Equip(AMain* Character)
 			Character->SetActiveOverlappingItem(nullptr);
 		}
 		CollisionVolume->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+		if (!bShieldParticles)
+		{
+			IdleParticlesComponent->Deactivate();
+		}
+
+		if (OnEquipSound)
+		{
+			UGameplayStatics::PlaySound2D(this, OnEquipSound);
+		}
+
+		if (OverlapParticles)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(this, OverlapParticles, GetActorLocation(), FRotator(0.f), false);
+		}
 	}
 }
 
@@ -142,5 +170,9 @@ void AShield::DestroyShield()
 		Main->SetEquippedShield(nullptr);
 		Main->bHasShieldEquipped = false;
 		Destroy();
+	}
+	if (OnDestroySound)
+	{
+		UGameplayStatics::PlaySound2D(this, OnDestroySound);
 	}
 }

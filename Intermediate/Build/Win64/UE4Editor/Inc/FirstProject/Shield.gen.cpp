@@ -25,6 +25,7 @@ void EmptyLinkFunctionForGeneratedCodeShield() {}
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 // End Cross Module References
 	static UEnum* EShieldState_StaticEnum()
 	{
@@ -398,6 +399,14 @@ void EmptyLinkFunctionForGeneratedCodeShield() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_OnHitSound;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnDestroySound_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_OnDestroySound;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HitParticles_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_HitParticles;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Health_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_Health;
@@ -477,6 +486,20 @@ void EmptyLinkFunctionForGeneratedCodeShield() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShield_Statics::NewProp_OnHitSound = { "OnHitSound", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShield, OnHitSound), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AShield_Statics::NewProp_OnHitSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShield_Statics::NewProp_OnHitSound_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShield_Statics::NewProp_OnDestroySound_MetaData[] = {
+		{ "Category", "Item | Sound" },
+		{ "ModuleRelativePath", "Shield.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShield_Statics::NewProp_OnDestroySound = { "OnDestroySound", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShield, OnDestroySound), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AShield_Statics::NewProp_OnDestroySound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShield_Statics::NewProp_OnDestroySound_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShield_Statics::NewProp_HitParticles_MetaData[] = {
+		{ "Category", "Item | Particles" },
+		{ "ModuleRelativePath", "Shield.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AShield_Statics::NewProp_HitParticles = { "HitParticles", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AShield, HitParticles), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AShield_Statics::NewProp_HitParticles_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AShield_Statics::NewProp_HitParticles_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AShield_Statics::NewProp_Health_MetaData[] = {
 		{ "Category", "Item | Properties" },
 		{ "ModuleRelativePath", "Shield.h" },
@@ -498,6 +521,8 @@ void EmptyLinkFunctionForGeneratedCodeShield() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShield_Statics::NewProp_CombatCollision,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShield_Statics::NewProp_OnEquipSound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShield_Statics::NewProp_OnHitSound,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShield_Statics::NewProp_OnDestroySound,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShield_Statics::NewProp_HitParticles,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShield_Statics::NewProp_Health,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AShield_Statics::NewProp_MaxHealth,
 	};
@@ -528,7 +553,7 @@ void EmptyLinkFunctionForGeneratedCodeShield() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AShield, 759647136);
+	IMPLEMENT_CLASS(AShield, 947284793);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AShield>()
 	{
 		return AShield::StaticClass();

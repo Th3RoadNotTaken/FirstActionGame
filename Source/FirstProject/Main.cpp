@@ -143,19 +143,6 @@ void AMain::Tick(float DeltaTime)
 	if (MovementStatus == EMovementStatus::EMS_Dead)
 		return;
 
-	if (bRMBDown && bHasShieldEquipped && MovementStatus != EMovementStatus::EMS_Dead)
-	{
-		if (CombatTarget)
-		{
-			FRotator LookAtYaw = GetLookAtRotationYaw(CombatTarget->GetActorLocation());
-			FRotator InterpRotation = FMath::RInterpTo(GetActorRotation(), LookAtYaw, DeltaTime, InterpSpeed);
-
-			SetActorRotation(InterpRotation);
-		}
-		SetMovementStatus(EMovementStatus::EMS_Blocking);
-		return;
-	}
-
 	float DeltaStamina = StaminaDrainRate * DeltaTime;
 	float DeltaStaminaRecovery = StaminaRecoveryRate * DeltaTime;
 
@@ -247,6 +234,18 @@ void AMain::Tick(float DeltaTime)
 
 		default:
 			;
+	}
+
+	if (bRMBDown && bHasShieldEquipped && MovementStatus != EMovementStatus::EMS_Dead)
+	{
+		if (CombatTarget)
+		{
+			FRotator LookAtYaw = GetLookAtRotationYaw(CombatTarget->GetActorLocation());
+			FRotator InterpRotation = FMath::RInterpTo(GetActorRotation(), LookAtYaw, DeltaTime, InterpSpeed);
+
+			SetActorRotation(InterpRotation);
+		}
+		SetMovementStatus(EMovementStatus::EMS_Blocking);
 	}
 
 	if (bInterpToEnemy && CombatTarget)

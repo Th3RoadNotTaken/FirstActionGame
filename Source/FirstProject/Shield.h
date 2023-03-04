@@ -43,7 +43,13 @@ public:
 	class USoundCue* OnEquipSound;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | Sound")
-	class USoundCue* OnHitSound;
+	USoundCue* OnHitSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | Sound")
+	USoundCue* OnDestroySound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | Particles")
+	class UParticleSystem* HitParticles;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item | Properties")
 	float Health;

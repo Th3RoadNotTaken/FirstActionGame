@@ -4,6 +4,7 @@
 #include "MainPlayerController.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
+#include "Framework/Application/SlateApplication.h"
 
 void AMainPlayerController::BeginPlay()
 {
@@ -17,7 +18,7 @@ void AMainPlayerController::BeginPlay()
 	HudOverlay->AddToViewport();
 
 	// Visibility of the HUD
-	HudOverlay->SetVisibility(ESlateVisibility::Visible);
+	HudOverlay->SetVisibility(ESlateVisibility::Hidden);
 
 	if (WEnemyHealthBar)
 	{
@@ -55,6 +56,11 @@ void AMainPlayerController::BeginPlay()
 		FVector2D Alignment(0.f, 0.f);
 		ShieldHealthBar->SetAlignmentInViewport(Alignment);
 	}
+}
+
+void AMainPlayerController::DisplayHUDOverlay()
+{
+	HudOverlay->SetVisibility(ESlateVisibility::Visible);
 }
 
 void AMainPlayerController::DisplayEnemyHealthBar()
@@ -97,11 +103,12 @@ void AMainPlayerController::DisplayPauseMenu_Implementation()
 {
 	if (PauseMenu)
 	{
+		ShieldHealthBar->SetVisibility(ESlateVisibility::Hidden);
 		bPauseMenuVisible = true;
 		PauseMenu->SetVisibility(ESlateVisibility::Visible);
 
-
 		FInputModeGameAndUI InputModeGameAndUI;
+		//InputModeGameAndUI.SetWidgetToFocus(PauseMenu->TakeWidget());
 		SetInputMode(InputModeGameAndUI); // Allows the Game and UI to respond to player input
 		bShowMouseCursor = true;
 		UGameplayStatics::SetGamePaused(GetWorld(), true);
@@ -112,8 +119,11 @@ void AMainPlayerController::RemovePauseMenu_Implementation()
 {
 	if (PauseMenu)
 	{
-		//PauseMenu->SetVisibility(ESlateVisibility::Hidden);		//Implemented in the BP after a certain delay so that the exit animation will play first
-
+		//PauseMenu->SetVisibility(ESlateVisibility::Hidden);		// Implemented in the BP after a certain delay so that the exit animation will play first
+		/*if (bHasShield)
+		{
+			ShieldHealthBar->SetVisibility(ESlateVisibility::Visible); // Implemented in the BP after a certain delay so that the exit animation will play first
+		}*/
 		GameModeOnly();
 		bShowMouseCursor = false;
 		bPauseMenuVisible = false;

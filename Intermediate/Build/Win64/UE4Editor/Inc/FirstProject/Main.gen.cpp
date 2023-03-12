@@ -194,6 +194,14 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		P_THIS->SaveGame();
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(AMain::execSwitchLevel)
+	{
+		P_GET_PROPERTY(FNameProperty,Z_Param_LevelName);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->SwitchLevel(Z_Param_LevelName);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AMain::execDeathEnd)
 	{
 		P_FINISH;
@@ -300,6 +308,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 			{ "PlaySwingSound", &AMain::execPlaySwingSound },
 			{ "SaveGame", &AMain::execSaveGame },
 			{ "ShowPickupLocations", &AMain::execShowPickupLocations },
+			{ "SwitchLevel", &AMain::execSwitchLevel },
 			{ "UnarmedAttackEnd", &AMain::execUnarmedAttackEnd },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -722,6 +731,38 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AMain_SwitchLevel_Statics
+	{
+		struct Main_eventSwitchLevel_Parms
+		{
+			FName LevelName;
+		};
+		static const UE4CodeGen_Private::FNamePropertyParams NewProp_LevelName;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UFunction_AMain_SwitchLevel_Statics::NewProp_LevelName = { "LevelName", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(Main_eventSwitchLevel_Parms, LevelName), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMain_SwitchLevel_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMain_SwitchLevel_Statics::NewProp_LevelName,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMain_SwitchLevel_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Main.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AMain_SwitchLevel_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMain, nullptr, "SwitchLevel", nullptr, nullptr, sizeof(Main_eventSwitchLevel_Parms), Z_Construct_UFunction_AMain_SwitchLevel_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMain_SwitchLevel_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AMain_SwitchLevel_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AMain_SwitchLevel_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AMain_SwitchLevel()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMain_SwitchLevel_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_AMain_UnarmedAttackEnd_Statics
 	{
 #if WITH_METADATA
@@ -922,6 +963,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		{ &Z_Construct_UFunction_AMain_PlaySwingSound, "PlaySwingSound" }, // 3537128432
 		{ &Z_Construct_UFunction_AMain_SaveGame, "SaveGame" }, // 1842646444
 		{ &Z_Construct_UFunction_AMain_ShowPickupLocations, "ShowPickupLocations" }, // 488232727
+		{ &Z_Construct_UFunction_AMain_SwitchLevel, "SwitchLevel" }, // 3264141325
 		{ &Z_Construct_UFunction_AMain_UnarmedAttackEnd, "UnarmedAttackEnd" }, // 2422634254
 	};
 #if WITH_METADATA
@@ -1278,7 +1320,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMain, 2681143246);
+	IMPLEMENT_CLASS(AMain, 1756524690);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AMain>()
 	{
 		return AMain::StaticClass();

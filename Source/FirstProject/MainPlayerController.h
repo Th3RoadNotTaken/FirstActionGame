@@ -49,6 +49,8 @@ public:
 
 	void DisplayShieldHealthBar();
 	void RemoveShieldHealthBar();
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	bool bHasShield;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<UUserWidget> WPauseMenu;
@@ -65,6 +67,9 @@ public:
 	void TogglePauseMenu();
 
 	void GameModeOnly();
+
+	UFUNCTION(BlueprintCallable)
+	void DisplayHUDOverlay();
 
 protected:
 

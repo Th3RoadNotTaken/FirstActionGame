@@ -5,6 +5,8 @@
 #include "Components/BoxComponent.h"
 #include "Main.h"
 #include "Kismet/GameplayStatics.h"
+#include "Main.h"
+#include "Enemy.h"
 
 // Sets default values
 AOutOfBoundsVolume::AOutOfBoundsVolume()
@@ -33,6 +35,17 @@ void AOutOfBoundsVolume::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent
 {
 	if (OtherActor)
 	{
-		UGameplayStatics::OpenLevel(GetWorld(), FName(*GetWorld()->GetName()), false);
+		AMain* Main = Cast<AMain>(OtherActor);
+		AEnemy* Enemy = Cast<AEnemy>(OtherActor);
+
+		if (Main)
+		{
+			UGameplayStatics::OpenLevel(GetWorld(), FName(*GetWorld()->GetName()), false);
+		}
+
+		if (Enemy)
+		{
+			Enemy->Disappear();
+		}
 	}
 }

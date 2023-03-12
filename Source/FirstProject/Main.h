@@ -289,6 +289,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	TSubclassOf<AEnemy> EnemyFilter;
 
+	UFUNCTION(BlueprintCallable)
 	void SwitchLevel(FName LevelName);
 
 	UFUNCTION(BlueprintCallable)

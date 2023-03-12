@@ -22,6 +22,7 @@ struct FHitResult;
 	DECLARE_FUNCTION(execLoadGameNoSwitch); \
 	DECLARE_FUNCTION(execLoadGame); \
 	DECLARE_FUNCTION(execSaveGame); \
+	DECLARE_FUNCTION(execSwitchLevel); \
 	DECLARE_FUNCTION(execDeathEnd); \
 	DECLARE_FUNCTION(execDeactivatePunchCollision); \
 	DECLARE_FUNCTION(execActivatePunchCollision); \
@@ -40,6 +41,7 @@ struct FHitResult;
 	DECLARE_FUNCTION(execLoadGameNoSwitch); \
 	DECLARE_FUNCTION(execLoadGame); \
 	DECLARE_FUNCTION(execSaveGame); \
+	DECLARE_FUNCTION(execSwitchLevel); \
 	DECLARE_FUNCTION(execDeathEnd); \
 	DECLARE_FUNCTION(execDeactivatePunchCollision); \
 	DECLARE_FUNCTION(execActivatePunchCollision); \

@@ -20,6 +20,13 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	UMG_API UClass* Z_Construct_UClass_UUserWidget_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(AMainPlayerController::execDisplayHUDOverlay)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->DisplayHUDOverlay();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AMainPlayerController::execRemovePauseMenu)
 	{
 		P_FINISH;
@@ -48,10 +55,33 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 	{
 		UClass* Class = AMainPlayerController::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "DisplayHUDOverlay", &AMainPlayerController::execDisplayHUDOverlay },
 			{ "DisplayPauseMenu", &AMainPlayerController::execDisplayPauseMenu },
 			{ "RemovePauseMenu", &AMainPlayerController::execRemovePauseMenu },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_AMainPlayerController_DisplayHUDOverlay_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMainPlayerController_DisplayHUDOverlay_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainPlayerController.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainPlayerController_DisplayHUDOverlay_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainPlayerController, nullptr, "DisplayHUDOverlay", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AMainPlayerController_DisplayHUDOverlay_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AMainPlayerController_DisplayHUDOverlay_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AMainPlayerController_DisplayHUDOverlay()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMainPlayerController_DisplayHUDOverlay_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_AMainPlayerController_DisplayPauseMenu_Statics
 	{
@@ -135,6 +165,11 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ShieldHealthBar;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bHasShield_MetaData[];
+#endif
+		static void NewProp_bHasShield_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bHasShield;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_WPauseMenu_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FClassPropertyParams NewProp_WPauseMenu;
@@ -151,6 +186,7 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_FirstProject,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AMainPlayerController_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_AMainPlayerController_DisplayHUDOverlay, "DisplayHUDOverlay" }, // 3271298550
 		{ &Z_Construct_UFunction_AMainPlayerController_DisplayPauseMenu, "DisplayPauseMenu" }, // 3079682836
 		{ &Z_Construct_UFunction_AMainPlayerController_RemovePauseMenu, "RemovePauseMenu" }, // 3128477820
 	};
@@ -216,6 +252,17 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainPlayerController_Statics::NewProp_ShieldHealthBar = { "ShieldHealthBar", nullptr, (EPropertyFlags)0x00100000000a000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMainPlayerController, ShieldHealthBar), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_ShieldHealthBar_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_ShieldHealthBar_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMainPlayerController_Statics::NewProp_bHasShield_MetaData[] = {
+		{ "Category", "Widgets" },
+		{ "ModuleRelativePath", "MainPlayerController.h" },
+	};
+#endif
+	void Z_Construct_UClass_AMainPlayerController_Statics::NewProp_bHasShield_SetBit(void* Obj)
+	{
+		((AMainPlayerController*)Obj)->bHasShield = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMainPlayerController_Statics::NewProp_bHasShield = { "bHasShield", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AMainPlayerController), &Z_Construct_UClass_AMainPlayerController_Statics::NewProp_bHasShield_SetBit, METADATA_PARAMS(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_bHasShield_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_bHasShield_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMainPlayerController_Statics::NewProp_WPauseMenu_MetaData[] = {
 		{ "Category", "Widgets" },
 		{ "ModuleRelativePath", "MainPlayerController.h" },
@@ -237,6 +284,7 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_EnemyHealthBar,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_WShieldHealthBar,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_ShieldHealthBar,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_bHasShield,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_WPauseMenu,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_PauseMenu,
 	};
@@ -267,7 +315,7 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMainPlayerController, 3781193028);
+	IMPLEMENT_CLASS(AMainPlayerController, 3220703826);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AMainPlayerController>()
 	{
 		return AMainPlayerController::StaticClass();

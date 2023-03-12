@@ -72,7 +72,6 @@ void AShield::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 
 void AShield::ShieldOnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Overlap Begins"))
 	if (OtherActor)
 	{
 		AEnemy* Enemy = Cast<AEnemy>(OtherActor);

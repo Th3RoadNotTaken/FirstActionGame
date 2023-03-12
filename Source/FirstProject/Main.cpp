@@ -125,13 +125,17 @@ void AMain::BeginPlay()
 	FString Map = GetWorld()->GetMapName();
 	Map.RemoveFromStart(GetWorld()->StreamingLevelsPrefix);
 
-	if (Map != "SunTemple")
+	if (Map != "SunTemple" && Map!="MainMenu")
 	{
 		LoadGameNoSwitch();
 	}
 	if (MainPlayerController)
 	{
 		MainPlayerController->GameModeOnly();
+	}
+	if (Map != "MainMenu" && MainPlayerController)
+	{
+		MainPlayerController->DisplayHUDOverlay();
 	}
 }
 
@@ -269,6 +273,7 @@ void AMain::Tick(float DeltaTime)
 	{
 		if (MainPlayerController)
 		{
+			MainPlayerController->bHasShield = false;
 			MainPlayerController->RemoveShieldHealthBar();
 		}
 	}
@@ -380,6 +385,7 @@ void AMain::LMBDown()
 			SetActiveOverlappingItem(nullptr);
 			if (MainPlayerController)
 			{
+				MainPlayerController->bHasShield = true;
 				MainPlayerController->DisplayShieldHealthBar();
 			}
 		}
@@ -824,6 +830,13 @@ void AMain::LoadGame(bool SetPosition)
 
 	LoadGameInstance = Cast<UFirstSaveGame>(UGameplayStatics::LoadGameFromSlot(LoadGameInstance->PlayerName, LoadGameInstance->UserIndex));
 
+	if (LoadGameInstance->CharacterStats.LevelName != TEXT(""))
+	{
+		FName LevelName(*LoadGameInstance->CharacterStats.LevelName); // FName cannot accept an FString but only a C style string...
+		// ... Hence, we are using the dereference op
+		SwitchLevel(LevelName);
+	}
+
 	Health = LoadGameInstance->CharacterStats.Health;
 	MaxHealth = LoadGameInstance->CharacterStats.MaxHealth;
 	Stamina = LoadGameInstance->CharacterStats.Stamina;
@@ -854,13 +867,6 @@ void AMain::LoadGame(bool SetPosition)
 	SetMovementStatus(EMovementStatus::EMS_Normal); // We won't remain in the dead state if we try to load the game
 	GetMesh()->bPauseAnims = false;			// Resetting these parameters for the same reason as above
 	GetMesh()->bNoSkeletonUpdate = false;
-
-	if (LoadGameInstance->CharacterStats.LevelName != TEXT(""))
-	{
-		FName LevelName(*LoadGameInstance->CharacterStats.LevelName); // FName cannot accept an FString but only a C style string...
-																	  // ... Hence, we are using the dereference op
-		SwitchLevel(LevelName);
-	}
 }
 
 void AMain::LoadGameNoSwitch()

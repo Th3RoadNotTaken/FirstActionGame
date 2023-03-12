@@ -51,9 +51,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | Particles")
 	class UParticleSystem* HitParticles;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item | Properties")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item | Properties")
 	float Health;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item | Properties")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Item | Properties")
 	float MaxHealth;
 
 protected:

@@ -18,6 +18,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	virtual void RemovePauseMenu_Implementation(); \
 	virtual void DisplayPauseMenu_Implementation(); \
  \
+	DECLARE_FUNCTION(execDisplayHUDOverlay); \
 	DECLARE_FUNCTION(execRemovePauseMenu); \
 	DECLARE_FUNCTION(execDisplayPauseMenu);
 
@@ -26,6 +27,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	virtual void RemovePauseMenu_Implementation(); \
 	virtual void DisplayPauseMenu_Implementation(); \
  \
+	DECLARE_FUNCTION(execDisplayHUDOverlay); \
 	DECLARE_FUNCTION(execRemovePauseMenu); \
 	DECLARE_FUNCTION(execDisplayPauseMenu);
 

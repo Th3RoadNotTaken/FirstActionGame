@@ -27,6 +27,13 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 		P_THIS->DisplayHUDOverlay();
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(AMainPlayerController::execRemoveFourthIntroductionBox)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->RemoveFourthIntroductionBox_Implementation();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AMainPlayerController::execRemoveThirdIntroductionBox)
 	{
 		P_FINISH;
@@ -84,6 +91,11 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 	{
 		ProcessEvent(FindFunctionChecked(NAME_AMainPlayerController_RemoveFirstIntroductionBox),NULL);
 	}
+	static FName NAME_AMainPlayerController_RemoveFourthIntroductionBox = FName(TEXT("RemoveFourthIntroductionBox"));
+	void AMainPlayerController::RemoveFourthIntroductionBox()
+	{
+		ProcessEvent(FindFunctionChecked(NAME_AMainPlayerController_RemoveFourthIntroductionBox),NULL);
+	}
 	static FName NAME_AMainPlayerController_RemovePauseMenu = FName(TEXT("RemovePauseMenu"));
 	void AMainPlayerController::RemovePauseMenu()
 	{
@@ -107,6 +119,7 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 			{ "DisplayIntroductionMenu", &AMainPlayerController::execDisplayIntroductionMenu },
 			{ "DisplayPauseMenu", &AMainPlayerController::execDisplayPauseMenu },
 			{ "RemoveFirstIntroductionBox", &AMainPlayerController::execRemoveFirstIntroductionBox },
+			{ "RemoveFourthIntroductionBox", &AMainPlayerController::execRemoveFourthIntroductionBox },
 			{ "RemovePauseMenu", &AMainPlayerController::execRemovePauseMenu },
 			{ "RemoveSecondIntroductionBox", &AMainPlayerController::execRemoveSecondIntroductionBox },
 			{ "RemoveThirdIntroductionBox", &AMainPlayerController::execRemoveThirdIntroductionBox },
@@ -201,6 +214,29 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMainPlayerController_RemoveFirstIntroductionBox_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AMainPlayerController_RemoveFourthIntroductionBox_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AMainPlayerController_RemoveFourthIntroductionBox_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Widgets" },
+		{ "ModuleRelativePath", "MainPlayerController.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainPlayerController_RemoveFourthIntroductionBox_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainPlayerController, nullptr, "RemoveFourthIntroductionBox", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x0C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AMainPlayerController_RemoveFourthIntroductionBox_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AMainPlayerController_RemoveFourthIntroductionBox_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_AMainPlayerController_RemoveFourthIntroductionBox()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AMainPlayerController_RemoveFourthIntroductionBox_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -349,6 +385,11 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 #endif
 		static void NewProp_AttackDone_SetBit(void* Obj);
 		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_AttackDone;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_JumpDone_MetaData[];
+#endif
+		static void NewProp_JumpDone_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_JumpDone;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -362,6 +403,7 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 		{ &Z_Construct_UFunction_AMainPlayerController_DisplayIntroductionMenu, "DisplayIntroductionMenu" }, // 3699811392
 		{ &Z_Construct_UFunction_AMainPlayerController_DisplayPauseMenu, "DisplayPauseMenu" }, // 3079682836
 		{ &Z_Construct_UFunction_AMainPlayerController_RemoveFirstIntroductionBox, "RemoveFirstIntroductionBox" }, // 1026913536
+		{ &Z_Construct_UFunction_AMainPlayerController_RemoveFourthIntroductionBox, "RemoveFourthIntroductionBox" }, // 319103360
 		{ &Z_Construct_UFunction_AMainPlayerController_RemovePauseMenu, "RemovePauseMenu" }, // 3128477820
 		{ &Z_Construct_UFunction_AMainPlayerController_RemoveSecondIntroductionBox, "RemoveSecondIntroductionBox" }, // 3554932942
 		{ &Z_Construct_UFunction_AMainPlayerController_RemoveThirdIntroductionBox, "RemoveThirdIntroductionBox" }, // 338762608
@@ -512,6 +554,17 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 		((AMainPlayerController*)Obj)->AttackDone = 1;
 	}
 	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMainPlayerController_Statics::NewProp_AttackDone = { "AttackDone", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AMainPlayerController), &Z_Construct_UClass_AMainPlayerController_Statics::NewProp_AttackDone_SetBit, METADATA_PARAMS(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_AttackDone_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_AttackDone_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMainPlayerController_Statics::NewProp_JumpDone_MetaData[] = {
+		{ "Category", "Widgets" },
+		{ "ModuleRelativePath", "MainPlayerController.h" },
+	};
+#endif
+	void Z_Construct_UClass_AMainPlayerController_Statics::NewProp_JumpDone_SetBit(void* Obj)
+	{
+		((AMainPlayerController*)Obj)->JumpDone = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMainPlayerController_Statics::NewProp_JumpDone = { "JumpDone", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AMainPlayerController), &Z_Construct_UClass_AMainPlayerController_Statics::NewProp_JumpDone_SetBit, METADATA_PARAMS(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_JumpDone_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMainPlayerController_Statics::NewProp_JumpDone_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMainPlayerController_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_HUDOverlayAsset,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_HudOverlay,
@@ -528,6 +581,7 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_MoveDone,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_RotateDone,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_AttackDone,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainPlayerController_Statics::NewProp_JumpDone,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AMainPlayerController_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AMainPlayerController>::IsAbstract,
@@ -556,7 +610,7 @@ void EmptyLinkFunctionForGeneratedCodeMainPlayerController() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMainPlayerController, 2024062374);
+	IMPLEMENT_CLASS(AMainPlayerController, 899266866);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AMainPlayerController>()
 	{
 		return AMainPlayerController::StaticClass();

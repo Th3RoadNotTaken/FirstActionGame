@@ -161,6 +161,11 @@ void AMainPlayerController::RemoveThirdIntroductionBox_Implementation()
 
 }
 
+void AMainPlayerController::RemoveFourthIntroductionBox_Implementation()
+{
+
+}
+
 void AMainPlayerController::TogglePauseMenu()
 {
 	if (bPauseMenuVisible)

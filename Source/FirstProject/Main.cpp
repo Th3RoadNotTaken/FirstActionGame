@@ -98,18 +98,13 @@ AMain::AMain()
 	bMovingForward = false;
 	bMovingRight = false;
 
-	for (int i = 0; i < 4; i++)
-	{
-		MoveDirections[i] = false;
-	}
+	MoveDirections.Init(false, 4);
 	MoveDone = false;
 	
-	for (int i = 0; i < 2; i++)
-	{
-		RotateDirections[i] = false;
-	}
+	RotateDirections.Init(false, 2);
 	RotateDone = false;
 	AttackDone = false;
+	JumpDone = false;
 }
 
 // Called when the game starts or when spawned
@@ -538,6 +533,15 @@ void AMain::Jump()
 {
 	if (MovementStatus != EMovementStatus::EMS_Dead && MovementStatus!=EMovementStatus::EMS_Blocking)
 	{
+		if (JumpDone == false)
+		{
+			JumpDone = true;
+			if (MainPlayerController)
+			{
+				MainPlayerController->JumpDone = true;
+				MainPlayerController->RemoveFourthIntroductionBox();
+			}
+		}
 		ACharacter::Jump();
 	}
 }

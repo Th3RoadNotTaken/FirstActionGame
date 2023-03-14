@@ -80,6 +80,8 @@ public:
 	bool RotateDone;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
 	bool AttackDone;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	bool JumpDone;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Widgets")
 	void DisplayIntroductionMenu();
@@ -90,6 +92,8 @@ public:
 	void RemoveSecondIntroductionBox();
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Widgets")
 	void RemoveThirdIntroductionBox();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Widgets")
+	void RemoveFourthIntroductionBox();
 
 	void GameModeOnly();
 

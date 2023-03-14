@@ -183,15 +183,14 @@ public:
 	bool bHasShieldEquipped;
 
 	/** Boolean array to check if the player has moved all 4 directions after the introduction menu appears */
-	bool MoveDirections[4]; 
+	TArray<bool> MoveDirections;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
-	bool MoveDone;
 	/** Boolean array to check if the player has rotated on both axes after the introduction menu appears */
-	bool RotateDirections[2];
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	TArray<bool> RotateDirections;
+	bool MoveDone;
 	bool RotateDone;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
 	bool AttackDone;
+	bool JumpDone;
 
 protected:
 	// Called when the game starts or when spawned

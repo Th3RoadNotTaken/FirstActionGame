@@ -15,19 +15,35 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define FirstProject_Source_FirstProject_MainPlayerController_h_15_SPARSE_DATA
 #define FirstProject_Source_FirstProject_MainPlayerController_h_15_RPC_WRAPPERS \
+	virtual void RemoveThirdIntroductionBox_Implementation(); \
+	virtual void RemoveSecondIntroductionBox_Implementation(); \
+	virtual void RemoveFirstIntroductionBox_Implementation(); \
+	virtual void DisplayIntroductionMenu_Implementation(); \
 	virtual void RemovePauseMenu_Implementation(); \
 	virtual void DisplayPauseMenu_Implementation(); \
  \
 	DECLARE_FUNCTION(execDisplayHUDOverlay); \
+	DECLARE_FUNCTION(execRemoveThirdIntroductionBox); \
+	DECLARE_FUNCTION(execRemoveSecondIntroductionBox); \
+	DECLARE_FUNCTION(execRemoveFirstIntroductionBox); \
+	DECLARE_FUNCTION(execDisplayIntroductionMenu); \
 	DECLARE_FUNCTION(execRemovePauseMenu); \
 	DECLARE_FUNCTION(execDisplayPauseMenu);
 
 
 #define FirstProject_Source_FirstProject_MainPlayerController_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	virtual void RemoveThirdIntroductionBox_Implementation(); \
+	virtual void RemoveSecondIntroductionBox_Implementation(); \
+	virtual void RemoveFirstIntroductionBox_Implementation(); \
+	virtual void DisplayIntroductionMenu_Implementation(); \
 	virtual void RemovePauseMenu_Implementation(); \
 	virtual void DisplayPauseMenu_Implementation(); \
  \
 	DECLARE_FUNCTION(execDisplayHUDOverlay); \
+	DECLARE_FUNCTION(execRemoveThirdIntroductionBox); \
+	DECLARE_FUNCTION(execRemoveSecondIntroductionBox); \
+	DECLARE_FUNCTION(execRemoveFirstIntroductionBox); \
+	DECLARE_FUNCTION(execDisplayIntroductionMenu); \
 	DECLARE_FUNCTION(execRemovePauseMenu); \
 	DECLARE_FUNCTION(execDisplayPauseMenu);
 

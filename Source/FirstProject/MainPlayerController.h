@@ -66,6 +66,31 @@ public:
 	void RemovePauseMenu();
 	void TogglePauseMenu();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<UUserWidget> WIntroductionMenu;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UUserWidget* IntroductionMenu;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
+	bool bIntroductionMenuVisible;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	bool MoveDone;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	bool RotateDone;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	bool AttackDone;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Widgets")
+	void DisplayIntroductionMenu();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Widgets")
+	void RemoveFirstIntroductionBox();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Widgets")
+	void RemoveSecondIntroductionBox();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Widgets")
+	void RemoveThirdIntroductionBox();
+
 	void GameModeOnly();
 
 	UFUNCTION(BlueprintCallable)

@@ -97,6 +97,19 @@ AMain::AMain()
 
 	bMovingForward = false;
 	bMovingRight = false;
+
+	for (int i = 0; i < 4; i++)
+	{
+		MoveDirections[i] = false;
+	}
+	MoveDone = false;
+	
+	for (int i = 0; i < 2; i++)
+	{
+		RotateDirections[i] = false;
+	}
+	RotateDone = false;
+	AttackDone = false;
 }
 
 // Called when the game starts or when spawned
@@ -136,6 +149,7 @@ void AMain::BeginPlay()
 	if (Map != "MainMenu" && MainPlayerController)
 	{
 		MainPlayerController->DisplayHUDOverlay();
+		MainPlayerController->DisplayIntroductionMenu();
 	}
 }
 
@@ -277,6 +291,35 @@ void AMain::Tick(float DeltaTime)
 			MainPlayerController->RemoveShieldHealthBar();
 		}
 	}
+
+	if (MoveDone == false)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (MoveDirections[i] == false)
+				break;
+			MoveDone = true;
+			if (MainPlayerController)
+			{
+				MainPlayerController->MoveDone = true;
+				MainPlayerController->RemoveFirstIntroductionBox();
+			}
+		}
+	}
+	if (RotateDone == false)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			if (RotateDirections[i] == false)
+				break;
+			RotateDone = true;
+			if (MainPlayerController)
+			{
+				MainPlayerController->RotateDone = true;
+				MainPlayerController->RemoveSecondIntroductionBox();
+			}
+		}
+	}
 }
 
 // Called to bind functionality to input
@@ -288,8 +331,8 @@ void AMain::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMain::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMain::MoveRight);
 
-	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
-	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
+	PlayerInputComponent->BindAxis("Turn", this, &AMain::AddControllerYawInput); // Originally functions from APawn. Overriden for introduction menu functionality
+	PlayerInputComponent->BindAxis("LookUp", this, &AMain::AddControllerPitchInput);
 
 	PlayerInputComponent->BindAxis("TurnRate", this, &AMain::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AMain::LookUpAtRate);
@@ -311,6 +354,20 @@ void AMain::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction("ESC", EInputEvent::IE_Released, this, &AMain::ESCUp);
 }
 
+void AMain::AddControllerYawInput(float Value)
+{
+	if(Value!=0)
+		RotateDirections[0] = true;
+	Super::AddControllerYawInput(Value);
+}
+
+void AMain::AddControllerPitchInput(float Value)
+{
+	if(Value!=0)
+		RotateDirections[1] = true;
+	Super::AddControllerPitchInput(Value);
+}
+
 bool AMain::CanMove(float Value)
 {
 	if (MainPlayerController)
@@ -327,6 +384,14 @@ void AMain::MoveForward(float Value)
 	bMovingForward = false;
 	if (CanMove(Value))
 	{
+		if (Value > 0.f)
+		{
+			MoveDirections[0] = true;
+		}
+		if (Value < 0.f)
+		{
+			MoveDirections[1] = true;
+		}
 		bMovingForward = true;
 		const FRotator Rotation = Controller->GetControlRotation();
 		// Find out which way is forward
@@ -342,6 +407,10 @@ void AMain::MoveRight(float Value)
 	bMovingRight = false;
 	if (CanMove(Value))
 	{
+		if (Value > 0.f)
+			MoveDirections[2] = true;
+		if (Value < 0.f)
+			MoveDirections[3] = true;
 		bMovingRight = true;
 		const FRotator Rotation = Controller->GetControlRotation();
 		// Find out which way is forward
@@ -579,6 +648,12 @@ void AMain::UnarmedAttack()
 {
 	if (!bAttacking && MovementStatus != EMovementStatus::EMS_Dead)
 	{
+		if (AttackDone==false && MainPlayerController)
+		{
+			AttackDone = true;
+			MainPlayerController->AttackDone = true;
+			MainPlayerController->RemoveThirdIntroductionBox();
+		}
 		bAttacking = true;
 		SetInterpToEnemy(true);
 

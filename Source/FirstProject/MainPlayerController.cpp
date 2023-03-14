@@ -15,7 +15,7 @@ void AMainPlayerController::BeginPlay()
 		HudOverlay = CreateWidget<UUserWidget>(this, HUDOverlayAsset);
 	}
 
-	HudOverlay->AddToViewport();
+	HudOverlay->AddToViewport(0);
 
 	// Visibility of the HUD
 	HudOverlay->SetVisibility(ESlateVisibility::Hidden);
@@ -26,7 +26,7 @@ void AMainPlayerController::BeginPlay()
 
 		if (EnemyHealthBar)
 		{
-			EnemyHealthBar->AddToViewport();
+			EnemyHealthBar->AddToViewport(0);
 			EnemyHealthBar->SetVisibility(ESlateVisibility::Hidden);
 		}
 		FVector2D Alignment(0.f, 0.f);
@@ -39,7 +39,7 @@ void AMainPlayerController::BeginPlay()
 
 		if (PauseMenu)
 		{
-			PauseMenu->AddToViewport();
+			PauseMenu->AddToViewport(10);
 			PauseMenu->SetVisibility(ESlateVisibility::Hidden);
 		}
 	}
@@ -50,11 +50,22 @@ void AMainPlayerController::BeginPlay()
 
 		if (ShieldHealthBar)
 		{
-			ShieldHealthBar->AddToViewport();
+			ShieldHealthBar->AddToViewport(0);
 			ShieldHealthBar->SetVisibility(ESlateVisibility::Hidden);
 		}
 		FVector2D Alignment(0.f, 0.f);
 		ShieldHealthBar->SetAlignmentInViewport(Alignment);
+	}
+
+	if (WIntroductionMenu)
+	{
+		IntroductionMenu = CreateWidget<UUserWidget>(this, WIntroductionMenu);
+
+		if (IntroductionMenu)
+		{
+			IntroductionMenu->AddToViewport(5);
+			IntroductionMenu->SetVisibility(ESlateVisibility::Hidden);
+		}
 	}
 }
 
@@ -103,7 +114,6 @@ void AMainPlayerController::DisplayPauseMenu_Implementation()
 {
 	if (PauseMenu)
 	{
-		ShieldHealthBar->SetVisibility(ESlateVisibility::Hidden);
 		bPauseMenuVisible = true;
 		PauseMenu->SetVisibility(ESlateVisibility::Visible);
 
@@ -120,15 +130,35 @@ void AMainPlayerController::RemovePauseMenu_Implementation()
 	if (PauseMenu)
 	{
 		//PauseMenu->SetVisibility(ESlateVisibility::Hidden);		// Implemented in the BP after a certain delay so that the exit animation will play first
-		/*if (bHasShield)
-		{
-			ShieldHealthBar->SetVisibility(ESlateVisibility::Visible); // Implemented in the BP after a certain delay so that the exit animation will play first
-		}*/
 		GameModeOnly();
 		bShowMouseCursor = false;
 		bPauseMenuVisible = false;
 		UGameplayStatics::SetGamePaused(GetWorld(), false);
 	}
+}
+
+void AMainPlayerController::DisplayIntroductionMenu_Implementation()
+{
+	if (IntroductionMenu)
+	{
+		bIntroductionMenuVisible = true;
+		IntroductionMenu->SetVisibility(ESlateVisibility::Visible);
+	}
+}
+
+void AMainPlayerController::RemoveFirstIntroductionBox_Implementation()
+{
+
+}
+
+void AMainPlayerController::RemoveSecondIntroductionBox_Implementation()
+{
+
+}
+
+void AMainPlayerController::RemoveThirdIntroductionBox_Implementation()
+{
+
 }
 
 void AMainPlayerController::TogglePauseMenu()

@@ -152,6 +152,10 @@ public:
 
 	virtual void Jump() override;
 
+	virtual void AddControllerYawInput(float Value) override;
+
+	virtual void AddControllerPitchInput(float Value) override;
+
 	UFUNCTION(BlueprintCallable)
 	void IncrementCoins(int32 CoinCount);
 	UFUNCTION(BlueprintCallable)
@@ -177,6 +181,17 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item | Combat")
 	bool bHasShieldEquipped;
+
+	/** Boolean array to check if the player has moved all 4 directions after the introduction menu appears */
+	bool MoveDirections[4]; 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	bool MoveDone;
+	/** Boolean array to check if the player has rotated on both axes after the introduction menu appears */
+	bool RotateDirections[2];
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	bool RotateDone;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	bool AttackDone;
 
 protected:
 	// Called when the game starts or when spawned

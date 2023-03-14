@@ -917,6 +917,21 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		static void NewProp_bHasShieldEquipped_SetBit(void* Obj);
 		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bHasShieldEquipped;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MoveDone_MetaData[];
+#endif
+		static void NewProp_MoveDone_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_MoveDone;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RotateDone_MetaData[];
+#endif
+		static void NewProp_RotateDone_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_RotateDone;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_AttackDone_MetaData[];
+#endif
+		static void NewProp_AttackDone_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_AttackDone;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_EquippedWeapon_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_EquippedWeapon;
@@ -1209,6 +1224,39 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 	}
 	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped = { "bHasShieldEquipped", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AMain), &Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped_SetBit, METADATA_PARAMS(Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMain_Statics::NewProp_MoveDone_MetaData[] = {
+		{ "Category", "Widgets" },
+		{ "ModuleRelativePath", "Main.h" },
+	};
+#endif
+	void Z_Construct_UClass_AMain_Statics::NewProp_MoveDone_SetBit(void* Obj)
+	{
+		((AMain*)Obj)->MoveDone = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMain_Statics::NewProp_MoveDone = { "MoveDone", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AMain), &Z_Construct_UClass_AMain_Statics::NewProp_MoveDone_SetBit, METADATA_PARAMS(Z_Construct_UClass_AMain_Statics::NewProp_MoveDone_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMain_Statics::NewProp_MoveDone_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMain_Statics::NewProp_RotateDone_MetaData[] = {
+		{ "Category", "Widgets" },
+		{ "ModuleRelativePath", "Main.h" },
+	};
+#endif
+	void Z_Construct_UClass_AMain_Statics::NewProp_RotateDone_SetBit(void* Obj)
+	{
+		((AMain*)Obj)->RotateDone = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMain_Statics::NewProp_RotateDone = { "RotateDone", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AMain), &Z_Construct_UClass_AMain_Statics::NewProp_RotateDone_SetBit, METADATA_PARAMS(Z_Construct_UClass_AMain_Statics::NewProp_RotateDone_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMain_Statics::NewProp_RotateDone_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMain_Statics::NewProp_AttackDone_MetaData[] = {
+		{ "Category", "Widgets" },
+		{ "ModuleRelativePath", "Main.h" },
+	};
+#endif
+	void Z_Construct_UClass_AMain_Statics::NewProp_AttackDone_SetBit(void* Obj)
+	{
+		((AMain*)Obj)->AttackDone = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMain_Statics::NewProp_AttackDone = { "AttackDone", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AMain), &Z_Construct_UClass_AMain_Statics::NewProp_AttackDone_SetBit, METADATA_PARAMS(Z_Construct_UClass_AMain_Statics::NewProp_AttackDone_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMain_Statics::NewProp_AttackDone_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMain_Statics::NewProp_EquippedWeapon_MetaData[] = {
 		{ "Category", "Items" },
 		{ "ModuleRelativePath", "Main.h" },
@@ -1286,6 +1334,9 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_DamageTypeClass,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_UnarmedDamage,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_bHasShieldEquipped,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_MoveDone,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_RotateDone,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_AttackDone,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_EquippedWeapon,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_EquippedShield,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMain_Statics::NewProp_ActiveOverlappingItem,
@@ -1320,7 +1371,7 @@ void EmptyLinkFunctionForGeneratedCodeMain() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMain, 1756524690);
+	IMPLEMENT_CLASS(AMain, 705932840);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AMain>()
 	{
 		return AMain::StaticClass();

@@ -18,6 +18,11 @@ public:
 
 	AExplosive();
 
+	bool AlreadyOverlapped;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
+	class USoundCue* ExplosionSound;
+
 	/** Amount of damage the explosive will deal to the character */ 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
 	float Damage;
@@ -30,4 +35,6 @@ public:
 	/** Parameter for ApplyDamage function */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
 	TSubclassOf<UDamageType> DamageTypeClass;
+
+	void ExplosionDamage();
 };

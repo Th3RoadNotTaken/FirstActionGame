@@ -18,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeExplosive() {}
 	FIRSTPROJECT_API UClass* Z_Construct_UClass_AItem();
 	UPackage* Z_Construct_UPackage__Script_FirstProject();
 	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UParticleSystemComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
 // End Cross Module References
@@ -35,9 +36,18 @@ void EmptyLinkFunctionForGeneratedCodeExplosive() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bTimeBomb_MetaData[];
+#endif
+		static void NewProp_bTimeBomb_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bTimeBomb;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ExplosionSound_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ExplosionSound;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BombTickingParticles_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_BombTickingParticles;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Damage_MetaData[];
 #endif
@@ -62,12 +72,31 @@ void EmptyLinkFunctionForGeneratedCodeExplosive() {}
 	};
 #endif
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AExplosive_Statics::NewProp_bTimeBomb_MetaData[] = {
+		{ "Category", "Damage" },
+		{ "ModuleRelativePath", "Explosive.h" },
+	};
+#endif
+	void Z_Construct_UClass_AExplosive_Statics::NewProp_bTimeBomb_SetBit(void* Obj)
+	{
+		((AExplosive*)Obj)->bTimeBomb = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AExplosive_Statics::NewProp_bTimeBomb = { "bTimeBomb", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AExplosive), &Z_Construct_UClass_AExplosive_Statics::NewProp_bTimeBomb_SetBit, METADATA_PARAMS(Z_Construct_UClass_AExplosive_Statics::NewProp_bTimeBomb_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AExplosive_Statics::NewProp_bTimeBomb_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AExplosive_Statics::NewProp_ExplosionSound_MetaData[] = {
 		{ "Category", "Damage" },
 		{ "ModuleRelativePath", "Explosive.h" },
 	};
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AExplosive_Statics::NewProp_ExplosionSound = { "ExplosionSound", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AExplosive, ExplosionSound), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AExplosive_Statics::NewProp_ExplosionSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AExplosive_Statics::NewProp_ExplosionSound_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AExplosive_Statics::NewProp_BombTickingParticles_MetaData[] = {
+		{ "Category", "Damage" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Explosive.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AExplosive_Statics::NewProp_BombTickingParticles = { "BombTickingParticles", nullptr, (EPropertyFlags)0x001000000008000d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AExplosive, BombTickingParticles), Z_Construct_UClass_UParticleSystemComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AExplosive_Statics::NewProp_BombTickingParticles_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AExplosive_Statics::NewProp_BombTickingParticles_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AExplosive_Statics::NewProp_Damage_MetaData[] = {
 		{ "Category", "Damage" },
@@ -87,7 +116,9 @@ void EmptyLinkFunctionForGeneratedCodeExplosive() {}
 #endif
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AExplosive_Statics::NewProp_DamageTypeClass = { "DamageTypeClass", nullptr, (EPropertyFlags)0x0014000000000005, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AExplosive, DamageTypeClass), Z_Construct_UClass_UDamageType_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AExplosive_Statics::NewProp_DamageTypeClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AExplosive_Statics::NewProp_DamageTypeClass_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AExplosive_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AExplosive_Statics::NewProp_bTimeBomb,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AExplosive_Statics::NewProp_ExplosionSound,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AExplosive_Statics::NewProp_BombTickingParticles,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AExplosive_Statics::NewProp_Damage,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AExplosive_Statics::NewProp_DamageTypeClass,
 	};
@@ -118,7 +149,7 @@ void EmptyLinkFunctionForGeneratedCodeExplosive() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AExplosive, 393770381);
+	IMPLEMENT_CLASS(AExplosive, 2655767915);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AExplosive>()
 	{
 		return AExplosive::StaticClass();

@@ -14,7 +14,11 @@
 AExplosive::AExplosive()
 {
 	Damage = 15.f;
-	AlreadyOverlapped = false;
+	bAlreadyOverlapped = false;
+	bTimeBomb = false;
+
+	BombTickingParticles = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("BombTickingParticles"));
+	BombTickingParticles->SetupAttachment(GetRootComponent());
 }
 
 void AExplosive::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -29,11 +33,23 @@ void AExplosive::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor
 		{
 			FTimerHandle TimerHandle;
 			FTimerDelegate TimerDelegate = FTimerDelegate::CreateUObject(this, &AExplosive::ExplosionDamage); // Required when setting a timer which calls a function with parameters. Can give parameters after a comma
-			if (OverlapSound && AlreadyOverlapped==false)
+
+			if (bTimeBomb && bAlreadyOverlapped == false)
 			{
-				UGameplayStatics::PlaySound2D(this, OverlapSound);
-				AlreadyOverlapped = true;
-				GetWorldTimerManager().SetTimer(TimerHandle, TimerDelegate, 3.f, false);
+				bAlreadyOverlapped = true;
+				if (OverlapSound)
+				{
+					UGameplayStatics::PlaySound2D(this, OverlapSound);
+				}
+				if (BombTickingParticles)
+				{
+					BombTickingParticles->Activate();
+				}
+				GetWorldTimerManager().SetTimer(TimerHandle, TimerDelegate, 2.f, false);
+			}
+			else
+			{
+				ExplosionDamage();
 			}
 		}
 	}
@@ -48,6 +64,11 @@ void AExplosive::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* 
 
 void AExplosive::ExplosionDamage()
 {
+	if (BombTickingParticles)
+	{
+		BombTickingParticles->Deactivate();
+	}
+
 	if (OverlapParticles)
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), OverlapParticles, GetActorLocation(), FRotator(0.f), true);
@@ -76,6 +97,5 @@ void AExplosive::ExplosionDamage()
 			UGameplayStatics::ApplyDamage(Enemy, Damage, nullptr, this, DamageTypeClass);
 		}
 	}
-
 	Destroy();
 }

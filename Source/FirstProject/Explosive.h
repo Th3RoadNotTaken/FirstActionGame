@@ -18,10 +18,16 @@ public:
 
 	AExplosive();
 
-	bool AlreadyOverlapped;
+	bool bAlreadyOverlapped;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
+	bool bTimeBomb;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
 	class USoundCue* ExplosionSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
+	class UParticleSystemComponent* BombTickingParticles;
 
 	/** Amount of damage the explosive will deal to the character */ 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")

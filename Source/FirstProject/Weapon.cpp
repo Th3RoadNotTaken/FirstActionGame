@@ -10,6 +10,7 @@
 #include "Particles/ParticleSystemComponent.h"
 #include "Components/BoxComponent.h"
 #include "Enemy.h"
+#include "MainPlayerController.h"
 
 AWeapon::AWeapon()
 {
@@ -49,6 +50,11 @@ void AWeapon::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* O
 		if (Main)
 		{
 			Main->SetActiveOverlappingItem(this);
+			if (Main->MainPlayerController)
+			{
+				Main->MainPlayerController->DisplayItemCost();
+				Main->MainPlayerController->ItemLocation = SkeletalMesh->GetComponentLocation();
+			}
 		}
 	}
 }
@@ -63,6 +69,10 @@ void AWeapon::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 		if (Main)
 		{
 			Main->SetActiveOverlappingItem(nullptr);
+			if (Main->MainPlayerController)
+			{
+				Main->MainPlayerController->RemoveItemCost();
+			}
 		}
 	}
 }
@@ -107,6 +117,10 @@ void AWeapon::Equip(AMain* Character)
 {
 	if (Character)
 	{
+		if (Character->MainPlayerController)
+		{
+			Character->MainPlayerController->RemoveItemCost();
+		}
 		SetInstigator(Character->GetController()); // We are setting this to the Main's controller since the weapon...
 												   // ... does not have a controller
 		// Camera won't zoom in if the sword is in the way

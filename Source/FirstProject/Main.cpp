@@ -438,15 +438,48 @@ void AMain::LMBDown()
 		AWeapon* Weapon = Cast<AWeapon>(ActiveOverlappingItem);
 		if (Weapon)
 		{
-			Weapon->Equip(this);
-			SetActiveOverlappingItem(nullptr);
+			if (Coins - Weapon->Cost >= 0)
+			{
+				DecrementCoins(Weapon->Cost);
+				Weapon->Equip(this);
+				SetActiveOverlappingItem(nullptr);
+			}
+			else
+			{
+				if (MainPlayerController)
+				{
+					MainPlayerController->DisplayInsufficientCoins();
+					FTimerHandle TimerHandle;
+					GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
+						{
+							MainPlayerController->RemoveInsufficientCoins();
+						}, 2, false);
+				}
+			}
 		}
 		AShield* Shield = Cast<AShield>(ActiveOverlappingItem);
 		if (Shield)
 		{
-			Shield->Equip(this);
-			bHasShieldEquipped = true;
-			SetActiveOverlappingItem(nullptr);
+			if (Coins - Shield->Cost >= 0)
+			{
+				DecrementCoins(Shield->Cost);
+				Shield->Equip(this);
+				bHasShieldEquipped = true;
+				SetActiveOverlappingItem(nullptr);
+			}
+			else
+			{
+				if (MainPlayerController)
+				{
+					MainPlayerController->DisplayInsufficientCoins();
+					FTimerHandle TimerHandle;
+					GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
+						{
+							MainPlayerController->RemoveInsufficientCoins();
+						}, 2, false);
+				}
+			}
+
 			if (MainPlayerController)
 			{
 				MainPlayerController->bHasShield = true;
@@ -556,6 +589,11 @@ void AMain::DeathEnd()
 void AMain::IncrementCoins(int32 CoinCount)
 {
 	Coins += CoinCount;
+}
+
+void AMain::DecrementCoins(int32 ItemCost)
+{
+	Coins -= ItemCost;
 }
 
 void AMain::IncrementHealth(float Amount)

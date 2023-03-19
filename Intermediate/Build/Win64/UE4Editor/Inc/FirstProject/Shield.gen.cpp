@@ -553,7 +553,7 @@ void EmptyLinkFunctionForGeneratedCodeShield() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AShield, 1365013504);
+	IMPLEMENT_CLASS(AShield, 1547654178);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AShield>()
 	{
 		return AShield::StaticClass();

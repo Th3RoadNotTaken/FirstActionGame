@@ -100,6 +100,27 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void DisplayHUDOverlay();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<UUserWidget> WItemCost;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UUserWidget* ItemCost;
+
+	bool bItemCostVisible;
+
+	FVector ItemLocation;
+	void DisplayItemCost();
+	void RemoveItemCost();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<UUserWidget> WInsufficientCoins;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UUserWidget* InsufficientCoins;
+
+	void DisplayInsufficientCoins();
+	void RemoveInsufficientCoins();
+
 protected:
 
 	virtual void BeginPlay() override;

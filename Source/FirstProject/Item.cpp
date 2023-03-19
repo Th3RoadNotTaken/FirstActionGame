@@ -28,6 +28,9 @@ AItem::AItem()
 	bHover = false;
 	HoverRate = 30.f;
 	OscillationRate = 0.4f;
+
+	Cost = 0;
+	bIsFree = true;
 }
 
 // Called when the game starts or when spawned

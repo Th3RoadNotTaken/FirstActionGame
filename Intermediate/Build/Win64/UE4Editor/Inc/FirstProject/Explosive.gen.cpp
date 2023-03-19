@@ -149,7 +149,7 @@ void EmptyLinkFunctionForGeneratedCodeExplosive() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AExplosive, 2655767915);
+	IMPLEMENT_CLASS(AExplosive, 3529341319);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AExplosive>()
 	{
 		return AExplosive::StaticClass();

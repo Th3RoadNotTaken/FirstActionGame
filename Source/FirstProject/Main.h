@@ -141,6 +141,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
 	int32 Coins;
 
+	void DecrementCoins(int32 ItemCost);
+
 	/** Function to decrease character health if damaged */
 	void DecrementHealth(float Damage);
 

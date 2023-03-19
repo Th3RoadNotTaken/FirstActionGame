@@ -51,6 +51,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item | ItemProperties")
 	float OscillationRate;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item | ItemProperties")
+	int32 Cost;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item | ItemProperties")
+	bool bIsFree;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

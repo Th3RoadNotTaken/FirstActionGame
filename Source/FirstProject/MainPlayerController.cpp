@@ -67,6 +67,30 @@ void AMainPlayerController::BeginPlay()
 			IntroductionMenu->SetVisibility(ESlateVisibility::Hidden);
 		}
 	}
+
+	if (WItemCost)
+	{
+		ItemCost = CreateWidget<UUserWidget>(this, WItemCost);
+
+		if (ItemCost)
+		{
+			ItemCost->AddToViewport(0);
+			ItemCost->SetVisibility(ESlateVisibility::Hidden);
+		}
+		FVector2D Alignment(0.f, 0.f);
+		ItemCost->SetAlignmentInViewport(Alignment);
+	}
+
+	if (WInsufficientCoins)
+	{
+		InsufficientCoins = CreateWidget<UUserWidget>(this, WInsufficientCoins);
+
+		if (InsufficientCoins)
+		{
+			InsufficientCoins->AddToViewport(0);
+			InsufficientCoins->SetVisibility(ESlateVisibility::Hidden);
+		}
+	}
 }
 
 void AMainPlayerController::DisplayHUDOverlay()
@@ -107,6 +131,38 @@ void AMainPlayerController::RemoveShieldHealthBar()
 	{
 		bShieldHealthBarVisible = false;
 		ShieldHealthBar->SetVisibility(ESlateVisibility::Hidden);
+	}
+}
+
+void AMainPlayerController::DisplayItemCost()
+{
+	if (ItemCost)
+	{
+		ItemCost->SetVisibility(ESlateVisibility::Visible);
+	}
+}
+
+void AMainPlayerController::RemoveItemCost()
+{
+	if (ItemCost)
+	{
+		ItemCost->SetVisibility(ESlateVisibility::Hidden);
+	}
+}
+
+void AMainPlayerController::DisplayInsufficientCoins()
+{
+	if (InsufficientCoins)
+	{
+		InsufficientCoins->SetVisibility(ESlateVisibility::Visible);
+	}
+}
+
+void AMainPlayerController::RemoveInsufficientCoins()
+{
+	if (InsufficientCoins)
+	{
+		InsufficientCoins->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
 
@@ -184,12 +240,24 @@ void AMainPlayerController::Tick(float DeltaTime)
 	{
 		FVector2D PositionInViewport;
 		ProjectWorldLocationToScreen(EnemyLocation, PositionInViewport);
-		PositionInViewport.Y -= 85.f; // In the 2D screen, the origin is located at the top left
+		PositionInViewport.Y -= 90.f; // In the 2D screen, the origin is located at the top left
 
 		FVector2D SizeInViewport = FVector2D(300.f, 25.f);
 
 		EnemyHealthBar->SetPositionInViewport(PositionInViewport);
 		EnemyHealthBar->SetDesiredSizeInViewport(SizeInViewport);
+	}
+
+	if (ItemCost)
+	{
+		FVector2D PositionInViewport;
+		ProjectWorldLocationToScreen(ItemLocation, PositionInViewport);
+		PositionInViewport.Y -= 15.f; // In the 2D screen, the origin is located at the top left
+
+		FVector2D SizeInViewport = FVector2D(300.f, 100.f);
+
+		ItemCost->SetPositionInViewport(PositionInViewport);
+		ItemCost->SetDesiredSizeInViewport(SizeInViewport);
 	}
 }
 

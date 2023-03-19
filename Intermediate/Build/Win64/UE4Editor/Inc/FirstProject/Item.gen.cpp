@@ -253,6 +253,15 @@ void EmptyLinkFunctionForGeneratedCodeItem() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OscillationRate_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_OscillationRate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Cost_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_Cost;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsFree_MetaData[];
+#endif
+		static void NewProp_bIsFree_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bIsFree;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -364,6 +373,24 @@ void EmptyLinkFunctionForGeneratedCodeItem() {}
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_OscillationRate = { "OscillationRate", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AItem, OscillationRate), METADATA_PARAMS(Z_Construct_UClass_AItem_Statics::NewProp_OscillationRate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AItem_Statics::NewProp_OscillationRate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AItem_Statics::NewProp_Cost_MetaData[] = {
+		{ "Category", "Item | ItemProperties" },
+		{ "ModuleRelativePath", "Item.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_Cost = { "Cost", nullptr, (EPropertyFlags)0x0010000000010015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AItem, Cost), METADATA_PARAMS(Z_Construct_UClass_AItem_Statics::NewProp_Cost_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AItem_Statics::NewProp_Cost_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AItem_Statics::NewProp_bIsFree_MetaData[] = {
+		{ "Category", "Item | ItemProperties" },
+		{ "ModuleRelativePath", "Item.h" },
+	};
+#endif
+	void Z_Construct_UClass_AItem_Statics::NewProp_bIsFree_SetBit(void* Obj)
+	{
+		((AItem*)Obj)->bIsFree = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AItem_Statics::NewProp_bIsFree = { "bIsFree", nullptr, (EPropertyFlags)0x0010000000010015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AItem), &Z_Construct_UClass_AItem_Statics::NewProp_bIsFree_SetBit, METADATA_PARAMS(Z_Construct_UClass_AItem_Statics::NewProp_bIsFree_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AItem_Statics::NewProp_bIsFree_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AItem_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_CollisionVolume,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_Mesh,
@@ -375,6 +402,8 @@ void EmptyLinkFunctionForGeneratedCodeItem() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_bHover,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_HoverRate,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_OscillationRate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_Cost,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AItem_Statics::NewProp_bIsFree,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AItem_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AItem>::IsAbstract,
@@ -403,7 +432,7 @@ void EmptyLinkFunctionForGeneratedCodeItem() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AItem, 3226207375);
+	IMPLEMENT_CLASS(AItem, 90989988);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AItem>()
 	{
 		return AItem::StaticClass();

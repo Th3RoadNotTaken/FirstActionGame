@@ -12,6 +12,7 @@
 #include "Particles/ParticleSystemComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundCue.h"
+#include "MainPlayerController.h"
 
 AShield::AShield()
 {
@@ -52,6 +53,11 @@ void AShield::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* O
 		if (Main)
 		{
 			Main->SetActiveOverlappingItem(this);
+			if (Main->MainPlayerController)
+			{
+				Main->MainPlayerController->DisplayItemCost();
+				Main->MainPlayerController->ItemLocation = SkeletalMesh->GetComponentLocation();
+			}
 		}
 	}
 }
@@ -66,6 +72,10 @@ void AShield::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 		if (Main)
 		{
 			Main->SetActiveOverlappingItem(nullptr);
+			if (Main->MainPlayerController)
+			{
+				Main->MainPlayerController->RemoveItemCost();
+			}
 		}
 	}
 }
@@ -101,6 +111,10 @@ void AShield::Equip(AMain* Character)
 {
 	if (Character)
 	{
+		if (Character->MainPlayerController)
+		{
+			Character->MainPlayerController->RemoveItemCost();
+		}
 		// Camera won't zoom in if the sword is in the way
 		SkeletalMesh->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
 		SkeletalMesh->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);

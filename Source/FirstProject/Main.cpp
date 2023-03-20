@@ -105,6 +105,8 @@ AMain::AMain()
 	RotateDone = false;
 	AttackDone = false;
 	JumpDone = false;
+
+	bAlreadyClickedInvalid = false;
 }
 
 // Called when the game starts or when spawned
@@ -446,14 +448,25 @@ void AMain::LMBDown()
 			}
 			else
 			{
-				if (MainPlayerController)
+				if (bAlreadyClickedInvalid == false)
 				{
-					MainPlayerController->DisplayInsufficientCoins();
-					FTimerHandle TimerHandle;
-					GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
-						{
-							MainPlayerController->RemoveInsufficientCoins();
-						}, 2, false);
+					bAlreadyClickedInvalid = true;
+
+					if (InvalidSelectionSound)
+					{
+						UGameplayStatics::PlaySound2D(this, InvalidSelectionSound);
+					}
+
+					if (MainPlayerController)
+					{
+						MainPlayerController->DisplayInsufficientCoins();
+						FTimerHandle TimerHandle;
+						GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
+							{
+								MainPlayerController->RemoveInsufficientCoins();
+								bAlreadyClickedInvalid = false;
+							}, 2, false);
+					}
 				}
 			}
 		}
@@ -469,14 +482,25 @@ void AMain::LMBDown()
 			}
 			else
 			{
-				if (MainPlayerController)
+				if (bAlreadyClickedInvalid == false)
 				{
-					MainPlayerController->DisplayInsufficientCoins();
-					FTimerHandle TimerHandle;
-					GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
-						{
-							MainPlayerController->RemoveInsufficientCoins();
-						}, 2, false);
+					bAlreadyClickedInvalid = true;
+
+					if (InvalidSelectionSound)
+					{
+						UGameplayStatics::PlaySound2D(this, InvalidSelectionSound);
+					}
+
+					if (MainPlayerController)
+					{
+						MainPlayerController->DisplayInsufficientCoins();
+						FTimerHandle TimerHandle;
+						GetWorld()->GetTimerManager().SetTimer(TimerHandle, [&]()
+							{
+								MainPlayerController->RemoveInsufficientCoins();
+								bAlreadyClickedInvalid = false;
+							}, 2, false);
+					}
 				}
 			}
 

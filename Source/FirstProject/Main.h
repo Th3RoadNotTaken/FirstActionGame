@@ -46,6 +46,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	class USoundCue* HitSound;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	USoundCue* InvalidSelectionSound;
+
+	/** A boolean to make sure that the player cannot repeatedly make an invalid selection and overlap the effects*/
+	bool bAlreadyClickedInvalid;
+
 	TArray<FVector> PickupLocations;
 
 	UFUNCTION(BlueprintCallable)

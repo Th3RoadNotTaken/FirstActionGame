@@ -47,7 +47,7 @@ void AExplosive::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor
 				}
 				GetWorldTimerManager().SetTimer(TimerHandle, TimerDelegate, 2.f, false);
 			}
-			else
+			else if(bTimeBomb==false)
 			{
 				ExplosionDamage();
 			}

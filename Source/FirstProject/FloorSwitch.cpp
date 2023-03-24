@@ -33,6 +33,7 @@ AFloorSwitch::AFloorSwitch()
 	bCharacterOnSwitch = false;
 
 	bConditionalDoor = false;
+	RemainingEnemies = 0;
 }
 
 // Called when the game starts or when spawned
@@ -58,7 +59,7 @@ void AFloorSwitch::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AAct
 {
 	if (bConditionalDoor)
 	{
-		if (AllEnemiesDead)
+		if (AllEnemiesDead())
 		{
 			if (!bCharacterOnSwitch)
 				bCharacterOnSwitch = true;
@@ -112,7 +113,7 @@ bool AFloorSwitch::AllEnemiesDead()
 	TArray<AActor*> EnemyActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemy::StaticClass(), EnemyActors);
 
-	if (EnemyActors.Num() == 0)
+	if (EnemyActors.Num() == RemainingEnemies)
 		return true;
 	else
 		return false;

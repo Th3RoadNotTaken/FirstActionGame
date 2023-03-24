@@ -48,8 +48,12 @@ public:
 
 	bool bCharacterOnSwitch;
 
+	/** Boolean to check if a door needs to open only after a certain number of enemies have been defeated */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FloorSwitch)
 	bool bConditionalDoor;
+	/** This integer represents the number of enemies that will remain after defeating enemies of a particular section(which allows the player to open a certain door) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FloorSwitch)
+	int32 RemainingEnemies;
 
 protected:
 	// Called when the game starts or when spawned

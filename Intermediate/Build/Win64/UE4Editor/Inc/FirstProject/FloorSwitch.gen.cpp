@@ -436,6 +436,10 @@ void EmptyLinkFunctionForGeneratedCodeFloorSwitch() {}
 #endif
 		static void NewProp_bConditionalDoor_SetBit(void* Obj);
 		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bConditionalDoor;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RemainingEnemies_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_RemainingEnemies;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -520,7 +524,9 @@ void EmptyLinkFunctionForGeneratedCodeFloorSwitch() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor_MetaData[] = {
 		{ "Category", "FloorSwitch" },
+		{ "Comment", "/** Boolean to check if a door needs to open only after a certain number of enemies have been defeated */" },
 		{ "ModuleRelativePath", "FloorSwitch.h" },
+		{ "ToolTip", "Boolean to check if a door needs to open only after a certain number of enemies have been defeated" },
 	};
 #endif
 	void Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor_SetBit(void* Obj)
@@ -528,6 +534,15 @@ void EmptyLinkFunctionForGeneratedCodeFloorSwitch() {}
 		((AFloorSwitch*)Obj)->bConditionalDoor = 1;
 	}
 	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor = { "bConditionalDoor", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AFloorSwitch), &Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor_SetBit, METADATA_PARAMS(Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFloorSwitch_Statics::NewProp_RemainingEnemies_MetaData[] = {
+		{ "Category", "FloorSwitch" },
+		{ "Comment", "/** This integer represents the number of enemies that will remain after defeating enemies of a particular section(which allows the player to open a certain door) */" },
+		{ "ModuleRelativePath", "FloorSwitch.h" },
+		{ "ToolTip", "This integer represents the number of enemies that will remain after defeating enemies of a particular section(which allows the player to open a certain door)" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AFloorSwitch_Statics::NewProp_RemainingEnemies = { "RemainingEnemies", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AFloorSwitch, RemainingEnemies), METADATA_PARAMS(Z_Construct_UClass_AFloorSwitch_Statics::NewProp_RemainingEnemies_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFloorSwitch_Statics::NewProp_RemainingEnemies_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AFloorSwitch_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_TriggerBox,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_FloorSwitch,
@@ -536,6 +551,7 @@ void EmptyLinkFunctionForGeneratedCodeFloorSwitch() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_InitialSwitchLocation,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_SwitchTime,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_RemainingEnemies,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AFloorSwitch_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AFloorSwitch>::IsAbstract,
@@ -564,7 +580,7 @@ void EmptyLinkFunctionForGeneratedCodeFloorSwitch() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AFloorSwitch, 3402563804);
+	IMPLEMENT_CLASS(AFloorSwitch, 881293285);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AFloorSwitch>()
 	{
 		return AFloorSwitch::StaticClass();

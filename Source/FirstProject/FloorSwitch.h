@@ -48,6 +48,9 @@ public:
 
 	bool bCharacterOnSwitch;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FloorSwitch)
+	bool bConditionalDoor;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -79,4 +82,6 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = FloorSwitch)
 	void UpdateFloorSwitchLocation(float Z);
+
+	bool AllEnemiesDead();
 };

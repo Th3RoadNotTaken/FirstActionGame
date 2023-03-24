@@ -4,6 +4,8 @@
 #include "FloorSwitch.h"
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Enemy.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AFloorSwitch::AFloorSwitch()
@@ -29,6 +31,8 @@ AFloorSwitch::AFloorSwitch()
 
 	SwitchTime = 2.f;
 	bCharacterOnSwitch = false;
+
+	bConditionalDoor = false;
 }
 
 // Called when the game starts or when spawned
@@ -52,16 +56,29 @@ void AFloorSwitch::Tick(float DeltaTime)
 
 void AFloorSwitch::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Overlap begun!"));
-	if (!bCharacterOnSwitch)
-		bCharacterOnSwitch = true;
-	RaiseDoor();
-	LowerFloorSwitch();
+	if (bConditionalDoor)
+	{
+		if (AllEnemiesDead)
+		{
+			if (!bCharacterOnSwitch)
+				bCharacterOnSwitch = true;
+			RaiseDoor();
+			LowerFloorSwitch();
+		}
+		else
+			return;
+	}
+	else
+	{
+		if (!bCharacterOnSwitch)
+			bCharacterOnSwitch = true;
+		RaiseDoor();
+		LowerFloorSwitch();
+	}
 }
 
 void AFloorSwitch::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Overlap end..."));
 	if (bCharacterOnSwitch)
 		bCharacterOnSwitch = false;
 	GetWorldTimerManager().SetTimer(SwitchHandle, this, &AFloorSwitch::CloseDoor, SwitchTime);
@@ -88,4 +105,15 @@ void AFloorSwitch::CloseDoor()
 		LowerDoor();
 		RaiseFloorSwitch();
 	}
+}
+
+bool AFloorSwitch::AllEnemiesDead()
+{
+	TArray<AActor*> EnemyActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemy::StaticClass(), EnemyActors);
+
+	if (EnemyActors.Num() == 0)
+		return true;
+	else
+		return false;
 }

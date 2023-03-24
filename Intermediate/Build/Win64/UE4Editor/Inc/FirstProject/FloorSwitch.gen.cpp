@@ -431,6 +431,11 @@ void EmptyLinkFunctionForGeneratedCodeFloorSwitch() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SwitchTime_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_SwitchTime;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bConditionalDoor_MetaData[];
+#endif
+		static void NewProp_bConditionalDoor_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bConditionalDoor;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -512,6 +517,17 @@ void EmptyLinkFunctionForGeneratedCodeFloorSwitch() {}
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AFloorSwitch_Statics::NewProp_SwitchTime = { "SwitchTime", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AFloorSwitch, SwitchTime), METADATA_PARAMS(Z_Construct_UClass_AFloorSwitch_Statics::NewProp_SwitchTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFloorSwitch_Statics::NewProp_SwitchTime_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor_MetaData[] = {
+		{ "Category", "FloorSwitch" },
+		{ "ModuleRelativePath", "FloorSwitch.h" },
+	};
+#endif
+	void Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor_SetBit(void* Obj)
+	{
+		((AFloorSwitch*)Obj)->bConditionalDoor = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor = { "bConditionalDoor", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AFloorSwitch), &Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor_SetBit, METADATA_PARAMS(Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AFloorSwitch_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_TriggerBox,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_FloorSwitch,
@@ -519,6 +535,7 @@ void EmptyLinkFunctionForGeneratedCodeFloorSwitch() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_InitialDoorLocation,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_InitialSwitchLocation,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_SwitchTime,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFloorSwitch_Statics::NewProp_bConditionalDoor,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AFloorSwitch_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AFloorSwitch>::IsAbstract,
@@ -547,7 +564,7 @@ void EmptyLinkFunctionForGeneratedCodeFloorSwitch() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AFloorSwitch, 4024495116);
+	IMPLEMENT_CLASS(AFloorSwitch, 3402563804);
 	template<> FIRSTPROJECT_API UClass* StaticClass<AFloorSwitch>()
 	{
 		return AFloorSwitch::StaticClass();

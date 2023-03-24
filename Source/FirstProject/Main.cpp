@@ -984,7 +984,7 @@ void AMain::LoadGame(bool SetPosition)
 	MaxStamina = LoadGameInstance->CharacterStats.MaxStamina;
 	Coins = LoadGameInstance->CharacterStats.Coins;
 
-	if (WeaponStorage && LoadGameInstance->CharacterStats.bHasEquippedWeapon)
+	if (WeaponStorage && LoadGameInstance->CharacterStats.bHasEquippedWeapon) // bHasEquippedWeapon is making sure that we actually have a weapon equipped so that we don't try to load something that doesn't exist
 	{
 		AItemStorage* Weapons = GetWorld()->SpawnActor<AItemStorage>(WeaponStorage);
 

@@ -22,6 +22,7 @@ void EmptyLinkFunctionForGeneratedCodeSpawnVolume() {}
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UObject_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 // End Cross Module References
 	DEFINE_FUNCTION(ASpawnVolume::execSpawnOurActor)
 	{
@@ -205,6 +206,10 @@ void EmptyLinkFunctionForGeneratedCodeSpawnVolume() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Actor_4_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FClassPropertyParams NewProp_Actor_4;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SpawnRotation_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_SpawnRotation;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -264,12 +269,20 @@ void EmptyLinkFunctionForGeneratedCodeSpawnVolume() {}
 	};
 #endif
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ASpawnVolume_Statics::NewProp_Actor_4 = { "Actor_4", nullptr, (EPropertyFlags)0x0014000000000015, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASpawnVolume, Actor_4), Z_Construct_UClass_AActor_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ASpawnVolume_Statics::NewProp_Actor_4_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASpawnVolume_Statics::NewProp_Actor_4_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASpawnVolume_Statics::NewProp_SpawnRotation_MetaData[] = {
+		{ "Category", "Spawning" },
+		{ "ModuleRelativePath", "SpawnVolume.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_ASpawnVolume_Statics::NewProp_SpawnRotation = { "SpawnRotation", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASpawnVolume, SpawnRotation), Z_Construct_UScriptStruct_FRotator, METADATA_PARAMS(Z_Construct_UClass_ASpawnVolume_Statics::NewProp_SpawnRotation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASpawnVolume_Statics::NewProp_SpawnRotation_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASpawnVolume_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASpawnVolume_Statics::NewProp_SpawningBox,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASpawnVolume_Statics::NewProp_Actor_1,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASpawnVolume_Statics::NewProp_Actor_2,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASpawnVolume_Statics::NewProp_Actor_3,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASpawnVolume_Statics::NewProp_Actor_4,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASpawnVolume_Statics::NewProp_SpawnRotation,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ASpawnVolume_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ASpawnVolume>::IsAbstract,
@@ -298,7 +311,7 @@ void EmptyLinkFunctionForGeneratedCodeSpawnVolume() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASpawnVolume, 2333343788);
+	IMPLEMENT_CLASS(ASpawnVolume, 459879471);
 	template<> FIRSTPROJECT_API UClass* StaticClass<ASpawnVolume>()
 	{
 		return ASpawnVolume::StaticClass();

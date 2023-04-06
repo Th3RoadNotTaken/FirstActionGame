@@ -30,6 +30,9 @@ public:
 
 	TArray<TSubclassOf<AActor>> SpawnArray;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Spawning)
+	FRotator SpawnRotation;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

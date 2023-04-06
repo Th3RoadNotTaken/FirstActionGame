@@ -15,6 +15,8 @@ ASpawnVolume::ASpawnVolume()
 	PrimaryActorTick.bCanEverTick = true;
 
 	SpawningBox = CreateDefaultSubobject<UBoxComponent>(TEXT("SpawningBox"));
+
+	SpawnRotation = FRotator(0.f, -90.f, 0.f);
 }
 
 // Called when the game starts or when spawned
@@ -57,7 +59,7 @@ void ASpawnVolume::SpawnOurActor_Implementation(UClass* ToSpawn, const FVector& 
 
 		if (World)
 		{
-			AActor* Actor = World->SpawnActor<AActor>(ToSpawn, Location, FRotator(0.f, -90.f, 0.f), SpawnParams);
+			AActor* Actor = World->SpawnActor<AActor>(ToSpawn, Location, SpawnRotation, SpawnParams);
 
 			AEnemy* Enemy = Cast<AEnemy>(Actor);
 			if (Enemy)

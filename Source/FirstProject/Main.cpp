@@ -607,7 +607,7 @@ void AMain::DeathEnd()
 {
 	GetMesh()->bPauseAnims = true;
 	GetMesh()->bNoSkeletonUpdate = true;
-	UKismetSystemLibrary::QuitGame(GetWorld(), MainPlayerController, EQuitPreference::Quit, false);
+	UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
 }
 
 void AMain::IncrementCoins(int32 CoinCount)

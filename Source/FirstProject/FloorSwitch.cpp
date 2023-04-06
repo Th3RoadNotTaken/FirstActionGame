@@ -6,6 +6,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Enemy.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/SphereComponent.h"
 
 // Sets default values
 AFloorSwitch::AFloorSwitch()

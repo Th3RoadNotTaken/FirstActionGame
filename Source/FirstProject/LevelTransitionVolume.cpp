@@ -27,7 +27,7 @@ void ALevelTransitionVolume::BeginPlay()
 	Super::BeginPlay();
 
 	TransitionVolume->OnComponentBeginOverlap.AddDynamic(this, &ALevelTransitionVolume::OnOverlapBegin);
-	
+
 }
 
 // Called every frame

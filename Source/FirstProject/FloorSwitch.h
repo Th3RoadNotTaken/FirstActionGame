@@ -31,6 +31,10 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = FloorSwitch)
 	FVector InitialDoorLocation;
 
+	/** Initial rotation for the door */
+	UPROPERTY(BlueprintReadWrite, Category = FloorSwitch)
+	FRotator InitialDoorRotation;
+
 	/** Initial location for the floor switch */
 	UPROPERTY(BlueprintReadWrite, Category = FloorSwitch)
 	FVector InitialSwitchLocation;
@@ -83,6 +87,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = FloorSwitch)
 	void UpdateDoorLocation(float Z);
+
+	UFUNCTION(BlueprintCallable, Category = FloorSwitch)
+	void UpdateDoorRotation(float Z);
 
 	UFUNCTION(BlueprintCallable, Category = FloorSwitch)
 	void UpdateFloorSwitchLocation(float Z);

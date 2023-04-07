@@ -20,6 +20,7 @@ struct FHitResult;
 #define FirstProject_Source_FirstProject_FloorSwitch_h_12_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execUpdateFloorSwitchLocation); \
+	DECLARE_FUNCTION(execUpdateDoorRotation); \
 	DECLARE_FUNCTION(execUpdateDoorLocation); \
 	DECLARE_FUNCTION(execOnOverlapEnd); \
 	DECLARE_FUNCTION(execOnOverlapBegin);
@@ -28,6 +29,7 @@ struct FHitResult;
 #define FirstProject_Source_FirstProject_FloorSwitch_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execUpdateFloorSwitchLocation); \
+	DECLARE_FUNCTION(execUpdateDoorRotation); \
 	DECLARE_FUNCTION(execUpdateDoorLocation); \
 	DECLARE_FUNCTION(execOnOverlapEnd); \
 	DECLARE_FUNCTION(execOnOverlapBegin);

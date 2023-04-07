@@ -29,7 +29,7 @@ AFloorSwitch::AFloorSwitch()
 	FloorSwitch->SetupAttachment(GetRootComponent());
 	Door = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Door"));
 	Door->SetupAttachment(GetRootComponent());
-
+	
 	SwitchTime = 2.f;
 	bCharacterOnSwitch = false;
 
@@ -46,6 +46,7 @@ void AFloorSwitch::BeginPlay()
 	TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &AFloorSwitch::OnOverlapBegin);  // AddDynamic is a macro for OnComponentBeginOverlap (Binds a function to the overlap event
 	TriggerBox->OnComponentEndOverlap.AddDynamic(this, &AFloorSwitch::OnOverlapEnd);
 	InitialDoorLocation = Door->GetComponentLocation();
+	InitialDoorRotation = Door->GetComponentRotation();
 	InitialSwitchLocation = FloorSwitch->GetComponentLocation();
 }
 
@@ -91,6 +92,13 @@ void AFloorSwitch::UpdateDoorLocation(float Z)
 	FVector NewLocation = InitialDoorLocation;
 	NewLocation.Z += Z;
 	Door->SetWorldLocation(NewLocation);
+}
+
+void AFloorSwitch::UpdateDoorRotation(float Z)
+{
+	FRotator NewRotation = InitialDoorRotation;
+	NewRotation.Yaw -= Z;
+	Door->SetWorldRotation(NewRotation);
 }
 
 void AFloorSwitch::UpdateFloorSwitchLocation(float Z)

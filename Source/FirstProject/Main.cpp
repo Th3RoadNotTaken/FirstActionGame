@@ -146,6 +146,9 @@ void AMain::BeginPlay()
 	if (Map != "MainMenu" && MainPlayerController)
 	{
 		MainPlayerController->DisplayHUDOverlay();
+	}
+	if (Map == "SunTemple" && MainPlayerController)
+	{
 		MainPlayerController->DisplayIntroductionMenu();
 	}
 }
@@ -1016,7 +1019,7 @@ void AMain::LoadGameNoSwitch()
 
 	LoadGameInstance = Cast<UFirstSaveGame>(UGameplayStatics::LoadGameFromSlot(LoadGameInstance->PlayerName, LoadGameInstance->UserIndex));
 
-	Health = 65.f;
+	Health = 75.f;
 	MaxHealth = LoadGameInstance->CharacterStats.MaxHealth;
 	Stamina = 120.f;
 	MaxStamina = LoadGameInstance->CharacterStats.MaxStamina;

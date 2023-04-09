@@ -123,6 +123,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "AI")
 	AMain* CombatTarget;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "AI")
+	AMain* FollowTarget;
+
 	/** Creating interpolation for the enemy towards the player if it is attacking */
 	float InterpSpeed;
 	bool bInterpToPlayer;

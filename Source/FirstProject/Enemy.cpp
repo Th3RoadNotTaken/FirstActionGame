@@ -96,6 +96,10 @@ void AEnemy::Tick(float DeltaTime)
 		SetActorRotation(InterpRotation);
 	}
 
+	if (FollowTarget)
+	{
+		MoveToTarget(FollowTarget);
+	}
 }
 
 // Called to bind functionality to input
@@ -113,7 +117,7 @@ void AEnemy::AggroSphereOnOverlapBegin(UPrimitiveComponent* OverlappedComponent,
 
 		if (Main)
 		{
-			MoveToTarget(Main);
+			FollowTarget = Main;
 		}
 	}
 }
@@ -138,6 +142,7 @@ void AEnemy::AggroSphereOnOverlapEnd(UPrimitiveComponent* OverlappedComponent, A
 				Main->SetCombatTarget(nullptr);
 				Main->SetHasCombatTarget(false);
 				Main->UpdateCombatTarget();
+				FollowTarget = nullptr;
 			}
 		}
 	}
@@ -156,6 +161,8 @@ void AEnemy::CombatSphereOnOverlapBegin(UPrimitiveComponent* OverlappedComponent
 			
 			Main->UpdateCombatTarget();
 
+			FollowTarget = nullptr;
+
 			CombatTarget = Main;
 			bOverlappingCombatSphere = true;
 			
@@ -173,13 +180,13 @@ void AEnemy::CombatSphereOnOverlapEnd(UPrimitiveComponent* OverlappedComponent, 
 		if (Main)
 		{
 			bOverlappingCombatSphere = false;
-			MoveToTarget(Main);
 
 			if (Main->CombatTarget == this)
 			{
 				Main->SetCombatTarget(nullptr);
 				Main->bHasCombatTarget = false;
 				Main->UpdateCombatTarget();
+				FollowTarget = Main;
 			}
 			if (Main->MainPlayerController)
 			{

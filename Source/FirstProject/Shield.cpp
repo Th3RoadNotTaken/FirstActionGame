@@ -88,16 +88,15 @@ void AShield::ShieldOnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AAc
 		if (Enemy)
 		{
 			Enemy->CombatCollision->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
-		}
+			if (HitParticles)
+			{
+				UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), FRotator(0.f), false);
+			}
 
-		if (HitParticles)
-		{
-			UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), FRotator(0.f), false);
-		}
-
-		if (OnHitSound)
-		{
-			UGameplayStatics::PlaySound2D(this, OnHitSound);
+			if (OnHitSound)
+			{
+				UGameplayStatics::PlaySound2D(this, OnHitSound);
+			}
 		}
 	}
 }

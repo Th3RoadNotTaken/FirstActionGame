@@ -131,6 +131,7 @@ void AEnemy::AggroSphereOnOverlapEnd(UPrimitiveComponent* OverlappedComponent, A
 		if (Main)
 		{
 			bHasValidTarget = false;
+			FollowTarget = nullptr;
 			SetEnemyMovementStatus(EEnemyMovementStatus::EMS_Idle);
 			if (AIController)
 			{
@@ -142,7 +143,6 @@ void AEnemy::AggroSphereOnOverlapEnd(UPrimitiveComponent* OverlappedComponent, A
 				Main->SetCombatTarget(nullptr);
 				Main->SetHasCombatTarget(false);
 				Main->UpdateCombatTarget();
-				FollowTarget = nullptr;
 			}
 		}
 	}
@@ -180,13 +180,13 @@ void AEnemy::CombatSphereOnOverlapEnd(UPrimitiveComponent* OverlappedComponent, 
 		if (Main)
 		{
 			bOverlappingCombatSphere = false;
+			FollowTarget = Main;
 
 			if (Main->CombatTarget == this)
 			{
 				Main->SetCombatTarget(nullptr);
 				Main->bHasCombatTarget = false;
 				Main->UpdateCombatTarget();
-				FollowTarget = Main;
 			}
 			if (Main->MainPlayerController)
 			{

@@ -1,6 +1,6 @@
-D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h
-D:\UEProjects\FirstProject\Source\FirstProject\MainPlayerController.h
-D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\MainPlayerController.generated.h
+D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h
+D:\FirstProjectCleaned\FirstProject\Source\FirstProject\MainPlayerController.h
+D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\MainPlayerController.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\UMG\Public\Blueprint/UserWidget.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\UMG\Public\Components/SlateWrapperTypes.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\SlateWrapperTypes.generated.h

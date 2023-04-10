@@ -1,6 +1,6 @@
-D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h
-D:\UEProjects\FirstProject\Source\FirstProject\Item.h
-D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\Item.generated.h
+D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h
+D:\FirstProjectCleaned\FirstProject\Source\FirstProject\Item.h
+D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\Item.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/SphereComponent.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ShapeComponent.generated.h

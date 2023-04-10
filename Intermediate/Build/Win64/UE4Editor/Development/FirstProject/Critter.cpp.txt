@@ -1,5 +1,5 @@
-D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h
-D:\UEProjects\FirstProject\Source\FirstProject\Critter.h
-D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\Critter.generated.h
+D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h
+D:\FirstProjectCleaned\FirstProject\Source\FirstProject\Critter.h
+D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\Critter.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Camera/CameraComponent.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CameraComponent.generated.h

@@ -49,6 +49,8 @@
 /I Runtime\SlateCore\Public
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\ImageWrapper
 /I Runtime\ImageWrapper\Public
+/I D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject
+/I D:\FirstProjectCleaned\FirstProject\Source
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\Engine
 /I Runtime\Engine\Classes
 /I Runtime\Engine\Public
@@ -231,8 +233,6 @@
 /I Editor\Kismet\Public
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\ClothingSystemRuntimeInterface
 /I Runtime\ClothingSystemRuntimeInterface\Public
-/I D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject
-/I D:\UEProjects\FirstProject\Source
 /I ThirdParty\PhysX3\PxShared\include
 /I ThirdParty\PhysX3\PxShared\include\cudamanager
 /I ThirdParty\PhysX3\PxShared\include\filebuf
@@ -262,12 +262,12 @@
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"
-/FI"D:\UEProjects\FirstProject\Intermediate\Build\Win64\FirstProjectEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Yu"D:\UEProjects\FirstProject\Intermediate\Build\Win64\FirstProjectEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Fp"D:\UEProjects\FirstProject\Intermediate\Build\Win64\FirstProjectEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-"D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\Collider.gen.cpp"
-/FI"D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h"
-/Fo"D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Collider.gen.cpp.obj"
+/FI"D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\FirstProjectEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Yu"D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\FirstProjectEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\FirstProjectEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+"D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\Collider.gen.cpp"
+/FI"D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h"
+/Fo"D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Collider.gen.cpp.obj"
 /TP
 /GR-
 /W4

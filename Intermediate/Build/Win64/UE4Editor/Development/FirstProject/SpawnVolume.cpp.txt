@@ -1,6 +1,6 @@
-D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h
-D:\UEProjects\FirstProject\Source\FirstProject\SpawnVolume.h
-D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\SpawnVolume.generated.h
+D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Development\FirstProject\Definitions.FirstProject.h
+D:\FirstProjectCleaned\FirstProject\Source\FirstProject\SpawnVolume.h
+D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\SpawnVolume.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/BoxComponent.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ShapeComponent.generated.h
@@ -8,14 +8,14 @@ C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Box
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Kismet/KismetMathLibrary.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetMathLibrary.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl
-D:\UEProjects\FirstProject\Source\FirstProject\Enemy.h
+D:\FirstProjectCleaned\FirstProject\Source\FirstProject\Enemy.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/CharacterMovementReplication.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CharacterMovementReplication.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
-D:\UEProjects\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\Enemy.generated.h
+D:\FirstProjectCleaned\FirstProject\Intermediate\Build\Win64\UE4Editor\Inc\FirstProject\Enemy.generated.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\AIModule\Classes\AIController.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\NavigationSystem\Public\NavFilters/NavigationQueryFilter.h
 C:\UnrealEngine\UE_4.27\Engine\Source\Runtime\NavigationSystem\Public\NavAreas/NavArea.h

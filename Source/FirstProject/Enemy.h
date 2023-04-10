@@ -123,6 +123,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "AI")
 	AMain* CombatTarget;
 
+	/** This variable ensures that the enemy follows the player as long as it is inside the aggro sphere and outside the combat sphere */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "AI")
 	AMain* FollowTarget;
 

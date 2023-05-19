@@ -5,9 +5,9 @@ An action-platformer game which takes you through multiple levels battling enemi
 
 https://github.com/Th3RoadNotTaken/FirstActionGame/assets/34506769/ff569b58-daeb-4c33-9c08-d2727644faaa
 
-Watch the complete trailer here - https://www.youtube.com/watch?v=vvy8v_CKUsA&ab_channel=TheRoadNotTaken
+Watch the complete trailer [here](https://www.youtube.com/watch?v=vvy8v_CKUsA&ab_channel=TheRoadNotTaken)
 
-Download link for the game - https://theroadnottaken.itch.io/the-knights-revenge
+Download the game [here](https://theroadnottaken.itch.io/the-knights-revenge)
 
 ## Steps to run the game
 

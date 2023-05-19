@@ -25,11 +25,11 @@ I've developed this game using **Unreal Engine** 4.27 and **C++** using the foll
   - Pausing the game, and level change called on completion.
 
 * Unreal Motion Graphics UI Design (UMG) - 
-  - Health, stamina, dynamic health bars, and various game event prompts.
+  - Displaying player health, stamina, dynamic health bars for enemies, and various game event prompts.
 
 * Mathematical concepts - 
-  - Interpolation, Randomization, Vector computations such as Dot and Cross products.
-  - Vectors, Arrays, Maps.
+  - Interpolation for creating moving trap doors, Randomization, Vector computations such as Dot and Cross products to determine the reaction to weapon impact points.
+  - Vectors, Dynamic Arrays, and Maps to store and retrieve data for various operations.
 
 * Collisions -
   - Creating collision for game objects.
@@ -37,7 +37,7 @@ I've developed this game using **Unreal Engine** 4.27 and **C++** using the foll
   - Disabling and enabling collision based on animation timing (Anim Notifies).
 
 * Animation - 
-  - Animation instances, animation blueprints, montages, notifies, and timelines.
+  - Animation instances, animation blueprints, montages, notifies, and timelines for the character and enemies
 
 * Artificial intelligence (AI) -
   - Used AIControllers and Nav Mesh Bound Volumes to create intelligent enemies.
